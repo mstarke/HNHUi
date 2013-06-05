@@ -25,7 +25,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface MPRoundedTextFieldCell : NSTextFieldCell
+@interface HNHRoundedTextFieldCell : NSTextFieldCell
 
 
 @end

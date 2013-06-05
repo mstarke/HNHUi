@@ -23,18 +23,18 @@
 //  THE SOFTWARE.
 //
 
-#import "MPRoundedTextFieldCell.h"
+#import "HNHRoundedTextFieldCell.h"
 
 #define CORNER_RADIUS 4.0
 
-@interface MPRoundedTextFieldCell ()
+@interface HNHRoundedTextFieldCell ()
 
 /* Creates the bezel path */
 - (NSBezierPath *)bezelpathForRect:(NSRect)aRect;
 
 @end
 
-@implementation MPRoundedTextFieldCell
+@implementation HNHRoundedTextFieldCell
 
 - (NSBezierPath *)bezelpathForRect:(NSRect)aRect {
   aRect = NSInsetRect(aRect, 0.5, 0.5);
