@@ -27,5 +27,4 @@
 
 @interface HNHRoundedTextFieldCell : NSTextFieldCell
 
-
 @end
