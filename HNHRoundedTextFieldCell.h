@@ -2,8 +2,6 @@
 //  HNHRoundedTextFieldCell.h
 //  Created by Michael Starke on 01.06.13.
 //
-//  The MIT License (MIT)
-//  
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
