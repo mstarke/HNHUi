@@ -1,7 +1,7 @@
 //
 //  HNHRoundedTextFieldCell.h
-//  Created by Michael Starke on 01.06.13.
 //
+//  Created by Michael Starke on 01.06.13.
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -25,6 +25,9 @@
 
 #import <Cocoa/Cocoa.h>
 
+/*
+ Textfieldcell with rounded corners and Highlight at the bottom
+ */
 @interface HNHRoundedTextFieldCell : NSTextFieldCell
 
 @end

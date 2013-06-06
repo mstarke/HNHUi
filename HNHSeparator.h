@@ -2,7 +2,6 @@
 //  HNHSeparator.h
 //
 //  Created by Michael Starke on 31.05.13.
-//
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy

@@ -1,7 +1,5 @@
 //
-//  MPGradientView.m
-//  MacPass
-//
+//  HNHGradientView.m
 //  Created by Michael Starke on 20.02.13.
 //
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
