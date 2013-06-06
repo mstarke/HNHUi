@@ -1,10 +1,13 @@
-HNHUi
-=====
+#HNHUi
 
 Reusable Cocoa UI Components
 
-License
-------
+##Contents
+* HNHGradientView - simple View that displays the Aqua like gray gradient used in Menus, Windows and Toolbars
+* HNHRoundedTextFieldCell - Safari address-input look-alike
+* HNHSeparator - engraved line
+
+##License
 
 Copyright (c) 2013 HicknHack Software GmbH
 
