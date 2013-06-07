@@ -69,7 +69,7 @@
   [NSGraphicsContext restoreGraphicsState];
   
   [strokePath stroke];
-  [super drawInteriorWithFrame:cellFrame inView:controlView];
+  [self drawInteriorWithFrame:cellFrame inView:controlView];
 }
 
 /* Set the focusRing to the bezel shape */
