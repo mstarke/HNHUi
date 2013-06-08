@@ -14,17 +14,17 @@
 //
 
 #define BADGE_HEIGHT 16
-#define BADGE_BACKGROUND_COLOR [NSColor grayColor]
+#define BADGE_BACKGROUND_COLOR [NSColor colorWithCalibratedWhite:0.55 alpha:1]
 #define BADGE_HIDDEN_BACKGROUND_COLOR [NSColor lightGrayColor]
+#define BADGE_SELECTED_BACKGROUND_COLOR [NSColor whiteColor]
 #define BADGE_FONT [NSFont boldSystemFontOfSize:11]
-#define MIN_BADGE_WIDTH 16
+#define MIN_BADGE_WIDTH 20
 #define BADGE_MARGIN 4
 #define ROW_RIGHT_MARGIN 0
 #import "HNHBadgedTextFieldCell.h"
 
 @interface HNHBadgedTextFieldCell () {
   NSShadow *_badgeShadow;
-  NSShadow *_selectedBadgeShadow;
 }
 
 - (void)_drawBadgeWithCount:(NSInteger)count inFrame:(NSRect)badgeFrame;
@@ -41,10 +41,6 @@
     [_badgeShadow setShadowColor:[NSColor whiteColor]];
     [_badgeShadow setShadowOffset:NSMakeSize(0, -1)];
     [_badgeShadow setShadowBlurRadius:0];
-    _selectedBadgeShadow = [[NSShadow alloc] init];
-    [_selectedBadgeShadow setShadowColor:[NSColor blackColor]];
-    [_selectedBadgeShadow setShadowOffset:[_badgeShadow shadowOffset]];
-    [_selectedBadgeShadow setShadowBlurRadius:[_badgeShadow shadowBlurRadius]];
   }
   return self;
 }
@@ -52,7 +48,6 @@
 - (void)dealloc
 {
   [_badgeShadow release];
-  [_selectedBadgeShadow release];
   [super dealloc];
 }
 
@@ -86,29 +81,30 @@
   
 	//Get window and control state to determine colours used
 	BOOL isVisible = [[NSApp mainWindow] isVisible];
-  
+  BOOL isSelected = ([self backgroundStyle] != NSBackgroundStyleLight && [self backgroundStyle] != NSBackgroundStyleLowered);
 	//Set the attributes based on the row state
-	NSDictionary *attributes;
+  
 	NSColor *backgroundColor;
   //Set the text colour based on window and control state
-  NSColor *badgeColor = [NSColor whiteColor];
+  NSColor *badgeColor = isSelected ? [NSColor darkGrayColor] : [NSColor whiteColor];
   
   if(isVisible) {
-    backgroundColor = BADGE_BACKGROUND_COLOR;
-    
+    backgroundColor = isSelected ? BADGE_SELECTED_BACKGROUND_COLOR : BADGE_BACKGROUND_COLOR;
   }
   else { //Gray colour
-    backgroundColor = BADGE_HIDDEN_BACKGROUND_COLOR;
+    backgroundColor = isSelected ? BADGE_SELECTED_BACKGROUND_COLOR : BADGE_HIDDEN_BACKGROUND_COLOR;
   }
-  attributes = [[NSDictionary alloc] initWithObjectsAndKeys:BADGE_FONT, NSFontAttributeName,
-                badgeColor, NSForegroundColorAttributeName, nil];
+ 	NSDictionary *attributes = @{ NSFontAttributeName: BADGE_FONT, NSForegroundColorAttributeName : badgeColor };
   
-  [NSGraphicsContext saveGraphicsState];
-	[([self isHighlighted] ? _selectedBadgeShadow : _badgeShadow) set];
+  if(isSelected) {
+    [NSGraphicsContext saveGraphicsState]; // Only save/restore if needed
+    [_badgeShadow set];
+  }
   [backgroundColor set];
 	[badgePath fill];
-  [NSGraphicsContext restoreGraphicsState];
-  
+  if(isSelected) {
+    [NSGraphicsContext restoreGraphicsState];
+  }
 	//Draw the badge text
 	NSAttributedString *badgeAttrString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%ld", (long)count]
                                                                         attributes:attributes];
@@ -116,9 +112,7 @@
 	NSPoint badgeTextPoint = NSMakePoint(NSMidX(badgeFrame)-(stringSize.width/2.0),		//Center in the badge frame
                                        NSMidY(badgeFrame)-(stringSize.height/2.0));	//Center in the badge frame
 	[badgeAttrString drawAtPoint:badgeTextPoint];
-  
-	[attributes release];
-	[badgeAttrString release];
+  [badgeAttrString release];
 }
 
 - (NSSize)_sizeOfBadgeForCount:(NSInteger)count
