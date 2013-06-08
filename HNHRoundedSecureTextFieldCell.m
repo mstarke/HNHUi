@@ -74,6 +74,37 @@
   }
 }
 
+#pragma mark Tracking
+- (void)addTrackingAreasForView:(NSView *)controlView inRect:(NSRect)cellFrame withUserInfo:(NSDictionary *)userInfo mouseLocation:(NSPoint)mouseLocation {
+  NSRect infoButtonRect = [self _buttonCellForFrame:cellFrame];
+  
+  NSTrackingAreaOptions options = NSTrackingEnabledDuringMouseDrag | NSTrackingMouseEnteredAndExited | NSTrackingActiveAlways;
+  
+  BOOL mouseIsInside = NSMouseInRect(mouseLocation, infoButtonRect, [controlView isFlipped]);
+  if (mouseIsInside) {
+    options |= NSTrackingAssumeInside;
+    [controlView setNeedsDisplayInRect:cellFrame];
+  }
+  
+  // We make the view the owner, and it delegates the calls back to the cell after it is properly setup for the corresponding row/column in the outlineview
+  NSTrackingArea *area = [[NSTrackingArea alloc] initWithRect:infoButtonRect options:options owner:controlView userInfo:userInfo];
+  [controlView addTrackingArea:area];
+  [area release];
+}
+
+- (NSUInteger)hitTestForEvent:(NSEvent *)event inRect:(NSRect)cellFrame ofView:(NSView *)controlView {
+  NSPoint point = [controlView convertPoint:[event locationInWindow] fromView:nil];
+  NSRect textRect = [self _textCellForFrame:cellFrame];
+  NSRect buttonRect = [self _buttonCellForFrame:cellFrame];
+  if( NSMouseInRect(point, textRect, [controlView isFlipped])) {
+    return  NSCellHitContentArea | NSCellHitEditableTextArea;
+  }
+  if( NSMouseInRect(point, buttonRect, [controlView isFlipped])) {
+    return NSCellHitContentArea | NSCellHitTrackableArea;
+  }
+  return NSCellHitNone;
+}
+
 #pragma mark Helper
 - (NSSecureTextFieldCell *)_allocSecureCell {
   NSSecureTextFieldCell *secureCell = [[NSSecureTextFieldCell alloc] init];
