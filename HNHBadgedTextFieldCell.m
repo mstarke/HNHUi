@@ -22,6 +22,7 @@
 #define BADGE_MARGIN 4
 #define ROW_RIGHT_MARGIN 0
 #import "HNHBadgedTextFieldCell.h"
+#import "HNHBadgedTextField.h"
 
 @interface HNHBadgedTextFieldCell () {
   NSShadow *_badgeShadow;
@@ -53,11 +54,15 @@
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
   NSUInteger count = NSNotFound;
+  BOOL showEmpty = YES;
   
   if([controlView respondsToSelector:@selector(count)]) {
     count = [(id)controlView count];
   }
-  if(count != NSNotFound) {
+  if([controlView respondsToSelector:@selector(showEmptyBadge)]) {
+    showEmpty = [(id)controlView showEmptyBadge];
+  }
+  if( (count != 0 && count != NSNotFound) || (showEmpty && count == 0)) {
     NSSize badgeSize = [self _sizeOfBadgeForCount:count];
     NSRect badgeFrame = NSMakeRect(NSMaxX(cellFrame) - badgeSize.width - ROW_RIGHT_MARGIN,
                                    NSMidY(cellFrame) - floor(badgeSize.height/2.0),

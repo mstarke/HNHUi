@@ -27,6 +27,9 @@
 
 @interface HNHBadgedTextField : NSTextField
 
+/* The count for the Badge */
 @property (nonatomic, assign) NSInteger count;
+/* Set to YES if empty badges should be draw, NO if the should be hidden */
+@property (nonatomic, assign) BOOL showEmptyBadge;
 
 @end

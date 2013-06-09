@@ -32,6 +32,7 @@
   self = [super initWithCoder:aDecoder];
   if(self) {
     _count = NSNotFound;
+    _showEmptyBadge = NO;
   }
   return self;
 }
@@ -40,14 +41,21 @@
   self = [super initWithFrame:frameRect];
   if(self) {
     _count = NSNotFound;
+    _showEmptyBadge = NO;
   }
   return self;
 }
 
 - (void)setCount:(NSInteger)count {
-  NSLog(@"count:%ld", count);
   if(_count != count) {
     _count = count;
+    [self setNeedsDisplay:YES];
+  }
+}
+
+- (void)setShowEmptyBadge:(BOOL)showEmptyBadge {
+  if(_showEmptyBadge != showEmptyBadge) {
+    _showEmptyBadge = showEmptyBadge;
     [self setNeedsDisplay:YES];
   }
 }
