@@ -50,6 +50,7 @@
 - (id)initWithFrame:(NSRect)frame activeGradient:(NSGradient *)activeGradient inactiveGradient:(NSGradient *)inactiveGradient {
   self = [super initWithFrame:frame];
   if(self) {
+    _drawBorder = YES;
     _activeGradient = [activeGradient retain];
     _inactiveGradient = [inactiveGradient retain];
   }
@@ -68,8 +69,16 @@
   /*
    We draw a Gradient, so make sure we always redraw the full view
    */
+  NSRect bounds = [self bounds];
   NSGradient *gradient = self.isRenderedActive ? self.activeGradient : self.inactiveGradient;
-  [gradient drawInRect:self.bounds angle:90];
+  [gradient drawInRect:bounds angle:90];
+  if(_drawBorder) {
+    [[NSColor grayColor] set];
+    NSRect strokeRect = NSMakeRect(NSMinX(bounds), NSMaxY(bounds) - 1, NSWidth(bounds), 1);
+    NSRectFill(strokeRect);
+    [[NSColor colorWithCalibratedWhite:1 alpha:1] set];
+    NSRectFill(NSOffsetRect(strokeRect, 0, -1));
+  }
 }
 
 - (BOOL)isOpaque {

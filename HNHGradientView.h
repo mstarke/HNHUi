@@ -30,6 +30,8 @@
  */
 @interface HNHGradientView : NSView
 
+@property (nonatomic, assign) BOOL drawBorder;
+
 - (id)initWithFrame:(NSRect)frame activeGradient:(NSGradient *)activeGradient inactiveGradient:(NSGradient *)inactiveGradient;
 
 @end
