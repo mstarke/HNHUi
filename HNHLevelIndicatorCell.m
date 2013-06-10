@@ -10,4 +10,7 @@
 
 @implementation HNHLevelIndicatorCell
 
+- (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
+
+}
 @end
