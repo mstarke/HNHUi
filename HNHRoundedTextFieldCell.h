@@ -30,4 +30,6 @@
  */
 @interface HNHRoundedTextFieldCell : NSTextFieldCell
 
+@property (nonatomic, assign) BOOL drawHighlight;
+
 @end

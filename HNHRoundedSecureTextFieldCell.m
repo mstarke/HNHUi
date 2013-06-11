@@ -63,8 +63,12 @@
 }
 
 - (void)drawInteriorWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
-  [self.buttonCell setEnabled:[self isEnabled]];
-  [self.buttonCell drawWithFrame:[self _buttonCellForFrame:cellFrame] inView:controlView];
+  if([controlView respondsToSelector:@selector(currentEditor)]) {
+    if(![(id)controlView currentEditor]) {
+      [self.buttonCell setEnabled:[self isEnabled]];
+      [self.buttonCell drawWithFrame:[self _buttonCellForFrame:cellFrame] inView:controlView];
+    }
+  }
   if(_isObfuscated) {
     [self.secureCell setTitle:[self title]];
     [self.secureCell drawInteriorWithFrame:[self _textCellForFrame:cellFrame] inView:controlView];

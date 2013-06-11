@@ -10,10 +10,10 @@
 //  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 //  copies of the Software, and to permit persons to whom the Software is
 //  furnished to do so, subject to the following conditions:
-//  
+//
 //  The above copyright notice and this permission notice shall be included in
 //  all copies or substantial portions of the Software.
-//  
+//
 //  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 //  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 //  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -36,9 +36,19 @@
 
 @implementation HNHRoundedTextFieldCell
 
+- (id)initWithCoder:(NSCoder *)aDecoder {
+  self = [super initWithCoder:aDecoder];
+  if(self) {
+    _drawHighlight = NO;
+  }
+  return self;
+}
+
 - (NSBezierPath *)bezelpathForRect:(NSRect)aRect {
   aRect = NSInsetRect(aRect, 0.5, 0.5);
-  aRect.size.height -= 1;
+  if(_drawHighlight) {
+    aRect.size.height -= 1;
+  }
   return[NSBezierPath bezierPathWithRoundedRect:aRect xRadius:CORNER_RADIUS yRadius:CORNER_RADIUS];
 }
 
@@ -48,12 +58,13 @@
   
   [NSGraphicsContext saveGraphicsState];
   NSShadow *shadow = [[NSShadow alloc] init];
-  [shadow setShadowColor:[NSColor colorWithCalibratedWhite:1 alpha:1]];
   [shadow setShadowOffset:NSMakeSize(0, -1)];
-  [shadow setShadowBlurRadius:1];
-  [shadow setShadowColor:[NSColor whiteColor]];
-  [shadow set];
-  
+  if(_drawHighlight) {
+    [shadow setShadowColor:[NSColor colorWithCalibratedWhite:1 alpha:1]];
+    [shadow setShadowBlurRadius:1];
+    [shadow setShadowColor:[NSColor whiteColor]];
+    [shadow set];
+  }
   [[NSColor whiteColor] setFill];
   [strokePath fill];
   
@@ -67,6 +78,7 @@
   [shadow release];
   
   [NSGraphicsContext restoreGraphicsState];
+  
   
   [strokePath stroke];
   [self drawInteriorWithFrame:cellFrame inView:controlView];
