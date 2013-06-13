@@ -25,12 +25,18 @@
 
 #import <Cocoa/Cocoa.h>
 
+
+typedef NS_OPTIONS(NSUInteger, HNHBorderType) {
+  HNHNoBorder     = 0,
+  HNHBorderTop    = ( 1<<0 ),
+  HNHBorderBottom = ( 1<<1 )
+};
 /*
  A view just displaying a gradient
  */
 @interface HNHGradientView : NSView
 
-@property (nonatomic, assign) BOOL drawBorder;
+@property (nonatomic, assign) HNHBorderType borderType;
 
 - (id)initWithFrame:(NSRect)frame activeGradient:(NSGradient *)activeGradient inactiveGradient:(NSGradient *)inactiveGradient;
 

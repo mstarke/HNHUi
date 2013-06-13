@@ -50,7 +50,7 @@
 - (id)initWithFrame:(NSRect)frame activeGradient:(NSGradient *)activeGradient inactiveGradient:(NSGradient *)inactiveGradient {
   self = [super initWithFrame:frame];
   if(self) {
-    _drawBorder = YES;
+    _borderType = HNHNoBorder;
     _activeGradient = [activeGradient retain];
     _inactiveGradient = [inactiveGradient retain];
   }
@@ -72,17 +72,31 @@
   NSRect bounds = [self bounds];
   NSGradient *gradient = self.isRenderedActive ? self.activeGradient : self.inactiveGradient;
   [gradient drawInRect:bounds angle:90];
-  if(_drawBorder) {
+
+  if(self.borderType & HNHBorderTop) {
+    /* Border at top nees border and highlight */
     [[NSColor grayColor] set];
     NSRect strokeRect = NSMakeRect(NSMinX(bounds), NSMaxY(bounds) - 1, NSWidth(bounds), 1);
     NSRectFill(strokeRect);
     [[NSColor colorWithCalibratedWhite:1 alpha:1] set];
     NSRectFill(NSOffsetRect(strokeRect, 0, -1));
+    
+  }
+  if(self.borderType & HNHBorderBottom) {
+    /* Border at bottom needs no highlight */
+    [[NSColor grayColor] set];
+    NSRect strokeRect = NSMakeRect(NSMinX(bounds), NSMinY(bounds), NSWidth(bounds), 1);
+    NSRectFill(strokeRect);
   }
 }
 
 - (BOOL)isOpaque {
   return YES;
+}
+
+- (void)viewWillMoveToWindow:(NSWindow *)newWindow {
+  [self _registerWindow:newWindow];
+  [super viewWillMoveToWindow:newWindow];
 }
 
 #pragma mark State Refresh
@@ -97,11 +111,6 @@
   }
 }
 
-- (void)viewWillMoveToWindow:(NSWindow *)newWindow {
-  [self _registerWindow:newWindow];
-  [super viewWillMoveToWindow:newWindow];
-}
-
 - (void)_refreshActiveState {
   self.isRenderedActive = [[self window] isKeyWindow];
 }
@@ -110,6 +119,13 @@
 - (void)setIsRenderedActive:(BOOL)isRenderedActive {
   if(_isRenderedActive != isRenderedActive) {
     _isRenderedActive = isRenderedActive;
+    [self setNeedsDisplay:YES];
+  }
+}
+
+- (void)setBorderType:(HNHBorderType)borderType {
+  if(_borderType != borderType) {
+    _borderType = borderType;
     [self setNeedsDisplay:YES];
   }
 }
