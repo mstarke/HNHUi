@@ -32,4 +32,9 @@
   return [HNHRoundedTextFieldCell class];
 }
 
+- (void)awakeFromNib {
+  //NSTextFieldCell *newCell = [[HNHRoundedTextFieldCell alloc] init];
+  
+}
+
 @end

@@ -1,5 +1,5 @@
 //
-//  HNHScrollView.m
+//  HNHFlippedView.m
 //
 //  Created by Michael Starke on 16.06.13.
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
@@ -23,11 +23,35 @@
 //  THE SOFTWARE.
 //
 
-#import "HNHScrollView.h"
+#import "HNHFlippedView.h"
 
-@implementation HNHScrollView
+@implementation HNHFlippedView
 
-- (void)drawRect:(NSRect)dirtyRect {
+- (id)initWithFrame:(NSRect)frameRect {
+  self = [super initWithFrame:frameRect];
+  if(self) {
+    _actFlipped = YES;
+  }
+  return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+  self = [super initWithCoder:aDecoder];
+  if(self) {
+    _actFlipped = YES;
+  }
+  return self;
+}
+
+- (BOOL)isFlipped {
+  return _actFlipped;
+}
+
+- (void)setActFlipped:(BOOL)actFlipped {
+  if(_actFlipped != actFlipped) {
+    _actFlipped = actFlipped;
+    [self setNeedsDisplay:YES];
+  }
 }
 
 @end

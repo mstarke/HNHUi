@@ -1,5 +1,5 @@
 //
-//  HNHScrollView.m
+//  HNHFlippedView.h
 //
 //  Created by Michael Starke on 16.06.13.
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
@@ -23,11 +23,14 @@
 //  THE SOFTWARE.
 //
 
-#import "HNHScrollView.h"
+#import <Cocoa/Cocoa.h>
 
-@implementation HNHScrollView
+/*
+ Simple view to act as a flipped view.
+ Is usefull for custom documentViews in NSScrollView
+ */
+@interface HNHFlippedView : NSView
 
-- (void)drawRect:(NSRect)dirtyRect {
-}
+@property (assign,nonatomic) BOOL actFlipped;
 
 @end
