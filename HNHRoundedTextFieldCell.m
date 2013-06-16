@@ -72,7 +72,7 @@
   [shadow setShadowBlurRadius:1];
   [shadow set];
   
-  [strokePath setClip];
+  [strokePath addClip];
   [strokePath stroke];
   
   [shadow release];
