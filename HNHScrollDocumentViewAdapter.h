@@ -1,5 +1,5 @@
 //
-//  HNHFlippedView.m
+//  HNHScrollDocumentViewAdapter.h
 //
 //  Created by Michael Starke on 16.06.13.
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
@@ -23,35 +23,14 @@
 //  THE SOFTWARE.
 //
 
-#import "HNHFlippedView.h"
+#import <Cocoa/Cocoa.h>
 
-@implementation HNHFlippedView
+/*
+ Adapter View to use Autolayout inside of NSScrollView
+ */
+@interface HNHScrollDocumentViewAdapter : NSView
 
-- (id)initWithFrame:(NSRect)frameRect {
-  self = [super initWithFrame:frameRect];
-  if(self) {
-    _actFlipped = YES;
-  }
-  return self;
-}
-
-- (id)initWithCoder:(NSCoder *)aDecoder {
-  self = [super initWithCoder:aDecoder];
-  if(self) {
-    _actFlipped = YES;
-  }
-  return self;
-}
-
-- (BOOL)isFlipped {
-  return _actFlipped;
-}
-
-- (void)setActFlipped:(BOOL)actFlipped {
-  if(_actFlipped != actFlipped) {
-    _actFlipped = actFlipped;
-    [self setNeedsDisplay:YES];
-  }
-}
+@property (assign,nonatomic) BOOL actFlipped;
+@property (assign,nonatomic) IBOutlet NSView *documentView;
 
 @end
