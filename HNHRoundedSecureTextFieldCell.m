@@ -62,6 +62,12 @@
   return self;
 }
 
+- (void)dealloc {
+  [_buttonCell release];
+  [_secureCell release];
+  [super dealloc];
+}
+
 - (void)drawInteriorWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
   if([controlView respondsToSelector:@selector(currentEditor)]) {
     if(![(id)controlView currentEditor]) {
