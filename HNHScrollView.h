@@ -1,7 +1,7 @@
 //
 //  HNHScrollView.h
 //
-//  Created by Michael Starke on 16.06.13.
+//  Created by Michael Starke on 28.06.13.
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -25,6 +25,10 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface HNHScrollView : NSScrollView
+/* Scrollview that show a line if the view is clipped at the top/bottom border */
+@interface HNHScrollView : NSScrollView {
+  BOOL _bottomClipped;
+  BOOL _topClipped;
+}
 
 @end
