@@ -29,6 +29,8 @@
 @interface HNHScrollView : NSScrollView {
   BOOL _bottomClipped;
   BOOL _topClipped;
+  NSGradient *_lineGradient;
+  NSShadow *_borderShadow;
 }
 
 @end
