@@ -26,8 +26,11 @@
 #define BUTTON_WIDTH 25
 
 #import "HNHRoundedSecureTextFieldCell.h"
+#import "HNHSecureTextView.h"
 
-@interface HNHRoundedSecureTextFieldCell ()
+@interface HNHRoundedSecureTextFieldCell () {
+  id _fieldEditor;
+}
 
 /* ButtonCell used for Rendering and handling actions */
 @property (nonatomic, retain) NSButtonCell *buttonCell;
@@ -45,7 +48,7 @@
 - (id)init {
   self = [super init];
   if(self) {
-    _isObfuscated = YES;
+    _displayType = HNHSecureTextFieldAlwaysHide;
     _buttonCell = [self _allocButtonCell];
     _secureCell = [self _allocSecureCell];
   }
@@ -55,16 +58,34 @@
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if(self ) {
-    _isObfuscated = YES;
-    _buttonCell = [self _allocButtonCell];
-    _secureCell = [self _allocSecureCell];
+    if([aDecoder isKindOfClass:[NSKeyedUnarchiver class]]) {
+      _displayType = [aDecoder decodeIntegerForKey:@"displayType"];
+      _buttonCell = [aDecoder decodeObjectForKey:@"buttonCell"];
+      _secureCell = [aDecoder decodeObjectForKey:@"secureCell"];
+    }
+    if(!_buttonCell) {
+      _buttonCell = [self _allocButtonCell];
+    }
+    if(!_secureCell) {
+      _secureCell = [self _allocSecureCell];
+    }
+    
   }
   return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+  if([aCoder isKindOfClass:[NSKeyedUnarchiver class]]) {
+    [aCoder encodeInteger:_displayType forKey:@"displayType"];
+    [aCoder encodeObject:_buttonCell forKey:@"buttonCell"];
+    [aCoder encodeObject:_secureCell forKey:@"secureCell"];
+  }
 }
 
 - (void)dealloc {
   [_buttonCell release];
   [_secureCell release];
+  [_fieldEditor release];
   [super dealloc];
 }
 
@@ -75,16 +96,23 @@
       [self.buttonCell drawWithFrame:[self _buttonCellForFrame:cellFrame] inView:controlView];
     }
   }
-  if(_isObfuscated) {
-    [self.secureCell setTitle:[self title]];
-    [self.secureCell drawInteriorWithFrame:[self _textCellForFrame:cellFrame] inView:controlView];
-  }
-  else {
-    [super drawInteriorWithFrame:[self _textCellForFrame:cellFrame] inView:controlView];
+  /* Decide when to display what */
+  switch(_displayType) {
+    case HNHSecureTextFieldClearTextWhileEdit:
+      [super drawInteriorWithFrame:[self _textCellForFrame:cellFrame] inView:controlView];
+      break;
+      
+    case HNHSecureTextFieldAlwaysHide:
+    default:
+      [self.secureCell setTitle:[self title] ? [self title] : @""];
+      [self.secureCell drawInteriorWithFrame:[self _textCellForFrame:cellFrame] inView:controlView];
+      break;
   }
 }
 
-#pragma mark Tracking
+#pragma mark -
+#pragma mark TODO
+
 - (void)addTrackingAreasForView:(NSView *)controlView inRect:(NSRect)cellFrame withUserInfo:(NSDictionary *)userInfo mouseLocation:(NSPoint)mouseLocation {
   NSRect infoButtonRect = [self _buttonCellForFrame:cellFrame];
   
@@ -115,6 +143,7 @@
   return NSCellHitNone;
 }
 
+#pragma mark -
 #pragma mark Helper
 - (NSSecureTextFieldCell *)_allocSecureCell {
   NSSecureTextFieldCell *secureCell = [[NSSecureTextFieldCell alloc] init];

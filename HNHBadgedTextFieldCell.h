@@ -13,7 +13,7 @@
 //  GC-enabled code revised by Stefan Vogt http://byteproject.net
 //
 
-#import <Cocoa/Cocoa.h>
+#import <AppKit/NSTextFieldCell.h>
 
 @interface HNHBadgedTextFieldCell : NSTextFieldCell
 

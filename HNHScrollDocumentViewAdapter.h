@@ -23,7 +23,7 @@
 //  THE SOFTWARE.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <AppKit/NSView.h>
 
 /*
  Adapter View to use Autolayout inside of NSScrollView

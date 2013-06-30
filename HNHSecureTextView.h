@@ -1,8 +1,10 @@
 //
-//  HNHRoundedSecureTextFieldCell.h
+//  HNHSecureTextView.h
 //
-//  Created by Michael Starke on 07.06.13.
-//  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
+//  Created by Michael Starke on 29.06.13.
+//
+//  Code take from: NSSecureTextView.h
+//  Copyright (c) 2006-2007 Christopher J. W. Lloyd
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -11,33 +13,24 @@
 //  copies of the Software, and to permit persons to whom the Software is
 //  furnished to do so, subject to the following conditions:
 //
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
+//  The above copyright notice and this permission notice shall be included in all
+//  copies or substantial portions of the Software.
 //
 //  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 //  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 //  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 //  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//  SOFTWARE.
 //
+//  Original - Christopher Lloyd <cjwl@objc.net>
+// Original - Christopher Lloyd <cjwl@objc.net>
 
-#import "HNHRoundedTextFieldCell.h"
+#import <AppKit/NSTextView.h>
 
-typedef NS_ENUM(NSUInteger, HNHSecureTextFieldDisplayType) {
-  HNHSecureTextFieldAlwaysHide,
-  HNHSecureTextFieldClearTextWhileEdit
-};
+@interface HNHSecureTextView : NSTextView
 
-/*
- Rounded TextFieldCell that displays a button
- to toggle between obfuscated (echoed) and normal display
- of the textvalue
- */
-@interface HNHRoundedSecureTextFieldCell : HNHRoundedTextFieldCell
-
-@property (nonatomic, assign) HNHSecureTextFieldDisplayType displayType;
-
+-(void)setEchosBullets:(BOOL)echoBullets;
 
 @end

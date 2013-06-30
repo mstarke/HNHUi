@@ -24,7 +24,7 @@
 //
 
 
-#import <Cocoa/Cocoa.h>
+#import <AppKit/NSTableHeaderCell.h>
 
 @interface HNHTableHeaderCell : NSTableHeaderCell
 

@@ -23,7 +23,7 @@
 //  THE SOFTWARE.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <AppKit/NSLevelIndicatorCell.h>
 
 @interface HNHLevelIndicatorCell : NSLevelIndicatorCell
 
