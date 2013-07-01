@@ -23,20 +23,16 @@
 //  THE SOFTWARE.
 //
 
-#import "HNHRoundedTextFieldCell.h"
+#import <AppKit/NSSecureTextField.h>
 
 typedef NS_ENUM(NSUInteger, HNHSecureTextFieldDisplayType) {
   HNHSecureTextFieldAlwaysHide,
   HNHSecureTextFieldClearTextWhileEdit
 };
 
-/*
- Rounded TextFieldCell that displays a button
- to toggle between obfuscated (echoed) and normal display
- of the textvalue
- */
-@interface HNHRoundedSecureTextFieldCell : HNHRoundedTextFieldCell
+@interface HNHRoundedSecureTextFieldCell : NSSecureTextFieldCell
 
+@property (assign) BOOL drawHighlight;
 @property (nonatomic, assign) HNHSecureTextFieldDisplayType displayType;
 
 

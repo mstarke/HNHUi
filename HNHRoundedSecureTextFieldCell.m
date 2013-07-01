@@ -26,7 +26,7 @@
 #define BUTTON_WIDTH 25
 
 #import "HNHRoundedSecureTextFieldCell.h"
-#import "HNHSecureTextView.h"
+#import "HNHRoundendTextFieldCellHelper.h"
 
 @interface HNHRoundedSecureTextFieldCell () {
   id _fieldEditor;
@@ -34,12 +34,10 @@
 
 /* ButtonCell used for Rendering and handling actions */
 @property (nonatomic, retain) NSButtonCell *buttonCell;
-@property (nonatomic, retain) NSSecureTextFieldCell *secureCell;
 
 - (NSRect)_buttonCellForFrame:(NSRect)cellFrame;
 - (NSRect)_textCellForFrame:(NSRect)cellFrame;
 - (NSButtonCell *)_allocButtonCell;
-- (NSSecureTextFieldCell *)_allocSecureCell;
 
 @end
 
@@ -48,9 +46,9 @@
 - (id)init {
   self = [super init];
   if(self) {
+    _drawHighlight = NO;
     _displayType = HNHSecureTextFieldAlwaysHide;
     _buttonCell = [self _allocButtonCell];
-    _secureCell = [self _allocSecureCell];
   }
   return self;
 }
@@ -61,15 +59,10 @@
     if([aDecoder isKindOfClass:[NSKeyedUnarchiver class]]) {
       _displayType = [aDecoder decodeIntegerForKey:@"displayType"];
       _buttonCell = [aDecoder decodeObjectForKey:@"buttonCell"];
-      _secureCell = [aDecoder decodeObjectForKey:@"secureCell"];
     }
     if(!_buttonCell) {
       _buttonCell = [self _allocButtonCell];
     }
-    if(!_secureCell) {
-      _secureCell = [self _allocSecureCell];
-    }
-    
   }
   return self;
 }
@@ -78,15 +71,18 @@
   if([aCoder isKindOfClass:[NSKeyedUnarchiver class]]) {
     [aCoder encodeInteger:_displayType forKey:@"displayType"];
     [aCoder encodeObject:_buttonCell forKey:@"buttonCell"];
-    [aCoder encodeObject:_secureCell forKey:@"secureCell"];
   }
 }
 
 - (void)dealloc {
   [_buttonCell release];
-  [_secureCell release];
   [_fieldEditor release];
   [super dealloc];
+}
+
+- (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
+  [HNHRoundendTextFieldCellHelper drawWithFrame:cellFrame enabled:[self isEnabled] withHighlight:_drawHighlight];
+  [self drawInteriorWithFrame:cellFrame inView:controlView];
 }
 
 - (void)drawInteriorWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
@@ -99,15 +95,21 @@
   /* Decide when to display what */
   switch(_displayType) {
     case HNHSecureTextFieldClearTextWhileEdit:
-      [super drawInteriorWithFrame:[self _textCellForFrame:cellFrame] inView:controlView];
-      break;
-      
     case HNHSecureTextFieldAlwaysHide:
     default:
-      [self.secureCell setTitle:[self title] ? [self title] : @""];
-      [self.secureCell drawInteriorWithFrame:[self _textCellForFrame:cellFrame] inView:controlView];
+      [super drawInteriorWithFrame:[self _textCellForFrame:cellFrame] inView:controlView];
       break;
   }
+}
+
+/* Set the focusRing to the bezel shape */
+- (void)drawFocusRingMaskWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
+  [[HNHRoundendTextFieldCellHelper bezelpathForRect:cellFrame withHightlight:_drawHighlight] fill];
+}
+
+/* We need to pass NO otherwise the roundend corners get rendering artifacts */
+- (BOOL)drawsBackground {
+  return NO;
 }
 
 #pragma mark -
@@ -145,17 +147,6 @@
 
 #pragma mark -
 #pragma mark Helper
-- (NSSecureTextFieldCell *)_allocSecureCell {
-  NSSecureTextFieldCell *secureCell = [[NSSecureTextFieldCell alloc] init];
-  [secureCell setFont:[self font]];
-  [secureCell setAlignment:[self alignment]];
-  [secureCell setControlSize:[self controlSize]];
-  [secureCell setBezelStyle:[self bezelStyle]];
-  [secureCell setBordered:[self isBordered]];
-  [secureCell setBezeled:[self isBezeled]];
-  return secureCell;
-}
-
 - (NSButtonCell *)_allocButtonCell {
   NSButtonCell *buttonCell = [[NSButtonCell alloc] init];
   [buttonCell setImage:[NSImage imageNamed:NSImageNameQuickLookTemplate ]];

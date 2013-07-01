@@ -24,15 +24,7 @@
 //
 
 #import "HNHRoundedTextFieldCell.h"
-
-#define CORNER_RADIUS 4.0
-
-@interface HNHRoundedTextFieldCell ()
-
-/* Creates the bezel path */
-- (NSBezierPath *)bezelpathForRect:(NSRect)aRect;
-
-@end
+#import "HNHRoundendTextFieldCellHelper.h"
 
 @implementation HNHRoundedTextFieldCell
 
@@ -44,49 +36,14 @@
   return self;
 }
 
-- (NSBezierPath *)bezelpathForRect:(NSRect)aRect {
-  aRect = NSInsetRect(aRect, 0.5, 0.5);
-  if(_drawHighlight) {
-    aRect.size.height -= 1;
-  }
-  return[NSBezierPath bezierPathWithRoundedRect:aRect xRadius:CORNER_RADIUS yRadius:CORNER_RADIUS];
-}
-
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
-  NSBezierPath *strokePath = [self bezelpathForRect:cellFrame];
-  [([self isEnabled] ? [NSColor colorWithCalibratedWhite:0.55 alpha:1] : [NSColor colorWithCalibratedWhite:0.75 alpha:1]) setStroke];
-  
-  [NSGraphicsContext saveGraphicsState];
-  NSShadow *shadow = [[NSShadow alloc] init];
-  [shadow setShadowOffset:NSMakeSize(0, -1)];
-  if(_drawHighlight) {
-    [shadow setShadowColor:[NSColor colorWithCalibratedWhite:1 alpha:1]];
-    [shadow setShadowBlurRadius:1];
-    [shadow setShadowColor:[NSColor whiteColor]];
-    [shadow set];
-  }
-  [[NSColor whiteColor] setFill];
-  [strokePath fill];
-  
-  [shadow setShadowColor:[NSColor colorWithCalibratedWhite:0.9 alpha:1]];
-  [shadow setShadowBlurRadius:1];
-  [shadow set];
-  
-  [strokePath addClip];
-  [strokePath stroke];
-  
-  [shadow release];
-  
-  [NSGraphicsContext restoreGraphicsState];
-  
-  
-  [strokePath stroke];
+  [HNHRoundendTextFieldCellHelper drawWithFrame:cellFrame enabled:[self isEnabled] withHighlight:_drawHighlight];
   [self drawInteriorWithFrame:cellFrame inView:controlView];
 }
 
 /* Set the focusRing to the bezel shape */
 - (void)drawFocusRingMaskWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
-  [[self bezelpathForRect:cellFrame ] fill];
+  [[HNHRoundendTextFieldCellHelper bezelpathForRect:cellFrame withHightlight:_drawHighlight] fill];
 }
 
 /* We need to pass NO otherwise the roundend corners get rendering artifacts */
