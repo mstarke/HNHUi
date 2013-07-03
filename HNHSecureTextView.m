@@ -30,20 +30,24 @@
 #import "HNHSecureTextView.h"
 #import "HNHSecureLayoutManager.h"
 
+#if ! __has_feature(objc_arc)
+#warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
+#endif
+
 @implementation HNHSecureTextView
 
 -initWithFrame:(NSRect)frame {
   NSLayoutManager       *removeManager;
-  HNHSecureLayoutManager *secureManager=[[HNHSecureLayoutManager new] autorelease];
+  HNHSecureLayoutManager *secureManager=[[HNHSecureLayoutManager alloc] init];
   
-  [super initWithFrame:frame];
-  
-  removeManager=[self layoutManager];
-  
-  [[self textStorage] addLayoutManager:secureManager];
-  [secureManager addTextContainer:[self textContainer]];
-  [[self textStorage] removeLayoutManager:removeManager];
-  
+  self = [super initWithFrame:frame];
+  if(self) {
+    removeManager=[self layoutManager];
+    
+    [[self textStorage] addLayoutManager:secureManager];
+    [secureManager addTextContainer:[self textContainer]];
+    [[self textStorage] removeLayoutManager:removeManager];
+  }
   return self;
 }
 

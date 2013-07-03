@@ -25,7 +25,6 @@
 //  SOFTWARE.
 //
 //  Original - Christopher Lloyd <cjwl@objc.net>
-// Original - Christopher Lloyd <cjwl@objc.net>
 
 #import <AppKit/NSTextView.h>
 

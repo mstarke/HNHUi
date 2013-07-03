@@ -23,17 +23,22 @@
 //  THE SOFTWARE.
 //
 
-#define BUTTON_WIDTH 25
-
 #import "HNHRoundedSecureTextFieldCell.h"
 #import "HNHRoundendTextFieldCellHelper.h"
+
+#if ! __has_feature(objc_arc)
+#warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
+#endif
+
+#define BUTTON_WIDTH 25
+
 
 @interface HNHRoundedSecureTextFieldCell () {
   id _fieldEditor;
 }
 
 /* ButtonCell used for Rendering and handling actions */
-@property (nonatomic, retain) NSButtonCell *buttonCell;
+@property (nonatomic, strong) NSButtonCell *buttonCell;
 
 - (NSRect)_buttonCellForFrame:(NSRect)cellFrame;
 - (NSRect)_textCellForFrame:(NSRect)cellFrame;
@@ -72,12 +77,6 @@
     [aCoder encodeInteger:_displayType forKey:@"displayType"];
     [aCoder encodeObject:_buttonCell forKey:@"buttonCell"];
   }
-}
-
-- (void)dealloc {
-  [_buttonCell release];
-  [_fieldEditor release];
-  [super dealloc];
 }
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
@@ -129,7 +128,6 @@
   // We make the view the owner, and it delegates the calls back to the cell after it is properly setup for the corresponding row/column in the outlineview
   NSTrackingArea *area = [[NSTrackingArea alloc] initWithRect:infoButtonRect options:options owner:controlView userInfo:userInfo];
   [controlView addTrackingArea:area];
-  [area release];
 }
 
 - (NSUInteger)hitTestForEvent:(NSEvent *)event inRect:(NSRect)cellFrame ofView:(NSView *)controlView {

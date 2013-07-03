@@ -22,7 +22,13 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 //
+
 #import "HNHShadowBox.h"
+
+#if ! __has_feature(objc_arc)
+#warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
+#endif
+
 
 NSString *const kHNHBackgroundGradientArchiveKey = @"backgroundGradient";
 NSString *const KHNHBackgroundShadowArchiveKey = @"backgroundShadow";
@@ -48,19 +54,13 @@ NSString *const KHNHBackgroundShadowArchiveKey = @"backgroundShadow";
   _backgroundGradient = [aDecoder decodeObjectForKey:kHNHBackgroundGradientArchiveKey];
   _boxShadow = [aDecoder decodeObjectForKey:KHNHBackgroundShadowArchiveKey];
   if(!_boxShadow || !_backgroundGradient) {
-    /* Release possible valid encodings */
-    [_boxShadow release];
-    [_backgroundGradient release];
+    _boxShadow = nil;
+    _backgroundGradient = nil;
     [self _setupGradients];
   }
   return self;
 }
 
-- (void)dealloc {
-  [_backgroundGradient release];
-  [_boxShadow release];
-  [super dealloc];
-}
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];

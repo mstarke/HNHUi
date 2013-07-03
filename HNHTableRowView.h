@@ -22,6 +22,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 //
+
 #import <AppKit/NSTableRowView.h>
 
 @interface HNHTableRowView : NSTableRowView

@@ -25,11 +25,15 @@
 
 #import "HNHGradientView.h"
 
+#if ! __has_feature(objc_arc)
+#warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
+#endif
+
 @interface HNHGradientView ()
 
 @property (assign, nonatomic) BOOL isRenderedActive;
-@property (retain) NSGradient *activeGradient;
-@property (retain) NSGradient *inactiveGradient;
+@property (strong) NSGradient *activeGradient;
+@property (strong) NSGradient *inactiveGradient;
 
 - (void)_refreshActiveState;
 
@@ -42,8 +46,8 @@
   NSColor *activeBottom = [NSColor colorWithCalibratedWhite:0.7 alpha:1];
   NSColor *inactiveTop = [NSColor colorWithCalibratedWhite:0.9 alpha:1];
   NSColor *inactiveBottom = [NSColor colorWithCalibratedWhite:0.85 alpha:1];
-  NSGradient *activeGradient = [[[NSGradient alloc] initWithColors:@[ activeBottom, activeTop ]] autorelease];
-  NSGradient *inactiveGradient = [[[NSGradient alloc] initWithColors:@[ inactiveBottom, inactiveTop ]] autorelease];
+  NSGradient *activeGradient = [[NSGradient alloc] initWithColors:@[ activeBottom, activeTop ]] ;
+  NSGradient *inactiveGradient = [[NSGradient alloc] initWithColors:@[ inactiveBottom, inactiveTop ]];
   return [self initWithFrame:frameRect activeGradient:activeGradient inactiveGradient:inactiveGradient];
 }
 
@@ -51,16 +55,10 @@
   self = [super initWithFrame:frame];
   if(self) {
     _borderType = HNHNoBorder;
-    _activeGradient = [activeGradient retain];
-    _inactiveGradient = [inactiveGradient retain];
+    _activeGradient = activeGradient;
+    _inactiveGradient = inactiveGradient;
   }
   return self;
-}
-
-- (void)dealloc {
-  self.activeGradient = nil;
-  self.inactiveGradient = nil;
-  [super dealloc];
 }
 
 #pragma mark Drawing

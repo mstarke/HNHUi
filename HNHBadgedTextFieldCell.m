@@ -13,6 +13,9 @@
 //  GC-enabled code revised by Stefan Vogt http://byteproject.net
 //
 
+#import "HNHBadgedTextFieldCell.h"
+#import "HNHBadgedTextField.h"
+
 #define BADGE_HEIGHT 16
 #define BADGE_BACKGROUND_COLOR [NSColor colorWithCalibratedWhite:0.55 alpha:1]
 #define BADGE_HIDDEN_BACKGROUND_COLOR [NSColor lightGrayColor]
@@ -21,8 +24,10 @@
 #define MIN_BADGE_WIDTH 20
 #define BADGE_MARGIN 4
 #define ROW_RIGHT_MARGIN 0
-#import "HNHBadgedTextFieldCell.h"
-#import "HNHBadgedTextField.h"
+
+#if ! __has_feature(objc_arc)
+#warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
+#endif
 
 @interface HNHBadgedTextFieldCell () {
   NSShadow *_badgeShadow;
@@ -44,12 +49,6 @@
     [_badgeShadow setShadowBlurRadius:0];
   }
   return self;
-}
-
-- (void)dealloc
-{
-  [_badgeShadow release];
-  [super dealloc];
 }
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
@@ -117,7 +116,6 @@
 	NSPoint badgeTextPoint = NSMakePoint(NSMidX(badgeFrame)-(stringSize.width/2.0),		//Center in the badge frame
                                        NSMidY(badgeFrame)-(stringSize.height/2.0));	//Center in the badge frame
 	[badgeAttrString drawAtPoint:badgeTextPoint];
-  [badgeAttrString release];
 }
 
 - (NSSize)_sizeOfBadgeForCount:(NSInteger)count
@@ -133,9 +131,7 @@
 	if(width<MIN_BADGE_WIDTH) {
 		width = MIN_BADGE_WIDTH;
 	}
-  
-	[badgeAttrString release];
-  
+    
 	return NSMakeSize(width, BADGE_HEIGHT);
 }
 

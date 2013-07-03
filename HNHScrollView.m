@@ -27,6 +27,10 @@
 
 #import "HNHScrollView.h"
 
+#if ! __has_feature(objc_arc)
+#warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
+#endif
+
 #define GRADIENT_OUTER_COLOR
 #define GRADIENT_INNER_COLOR
 
@@ -53,6 +57,8 @@ NSString *const HNHScrollViewArchiveKeyBorderShadow = @"borderShadow";
       _lineGradient = [aDecoder decodeObjectForKey:HNHScrollViewArchiveKeyLineGradient];
     }
     if(!_lineGradient || _borderShadow) {
+      _lineGradient = nil;
+      _borderShadow = nil;
       [self _setupGradients];
     }
   }
@@ -65,12 +71,6 @@ NSString *const HNHScrollViewArchiveKeyBorderShadow = @"borderShadow";
     [aCoder encodeObject:_borderShadow forKey:HNHScrollViewArchiveKeyBorderShadow];
     [aCoder encodeObject:_lineGradient forKey:HNHScrollViewArchiveKeyLineGradient];
   }
-}
-
-- (void)dealloc {
-  [_lineGradient release];
-  [_borderShadow release];
-  [super dealloc];
 }
 
 - (void)reflectScrolledClipView:(NSClipView *)cView {
@@ -118,11 +118,7 @@ NSString *const HNHScrollViewArchiveKeyBorderShadow = @"borderShadow";
   }
 }
 
-- (void)_setupGradients {
-  /* Make shure we clear out any lingering memory */
-  [_lineGradient release];
-  [_borderShadow release];
-  
+- (void)_setupGradients {  
   NSArray *lineColors = @[ [NSColor colorWithCalibratedWhite:0.0 alpha:0],
                            [NSColor colorWithCalibratedWhite:0.66 alpha:1],
                            [NSColor colorWithCalibratedWhite:0.66 alpha:1],

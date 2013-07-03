@@ -8,6 +8,10 @@
 
 #import "HNHRoundendTextFieldCellHelper.h"
 
+#if ! __has_feature(objc_arc)
+#warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
+#endif
+
 #define CORNER_RADIUS 4.0
 
 @implementation HNHRoundendTextFieldCellHelper
@@ -34,8 +38,6 @@
   
   [strokePath addClip];
   [strokePath stroke];
-  
-  [shadow release];
   
   [NSGraphicsContext restoreGraphicsState];
   [strokePath stroke];

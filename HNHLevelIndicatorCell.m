@@ -25,6 +25,10 @@
 
 #import "HNHLevelIndicatorCell.h"
 
+#if ! __has_feature(objc_arc)
+#warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
+#endif
+
 #define OUTER_RADIUS 8
 #define GRADIENT_STOP 0.8
 
@@ -58,15 +62,6 @@
   }
   return self;
 }
-
-- (void)dealloc {
-  [_backgroundGradient release];
-  [_normalGradient release];
-  [_warningGradient release];
-  [_criticalGradient release];
-  [super dealloc];
-}
-
 
 - (NSBezierPath *)strokePathForRect:(NSRect)rect {
   return [NSBezierPath bezierPathWithRoundedRect:rect xRadius:OUTER_RADIUS yRadius:OUTER_RADIUS];
