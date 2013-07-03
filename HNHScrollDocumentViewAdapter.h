@@ -31,6 +31,6 @@
 @interface HNHScrollDocumentViewAdapter : NSView
 
 @property (assign,nonatomic) BOOL actFlipped;
-@property (assign,nonatomic) IBOutlet NSView *documentView;
+@property (weak,nonatomic) IBOutlet NSView *documentView;
 
 @end
