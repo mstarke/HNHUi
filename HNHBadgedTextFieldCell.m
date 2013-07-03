@@ -123,7 +123,7 @@
 - (NSSize)_sizeOfBadgeForCount:(NSInteger)count
 {
 	NSAttributedString *badgeAttrString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%ld", (long)count]
-                                                                        attributes:[NSDictionary dictionaryWithObjectsAndKeys:BADGE_FONT, NSFontAttributeName, nil]];
+                                                                        attributes:@{NSFontAttributeName: BADGE_FONT}];
   
 	NSSize stringSize = [badgeAttrString size];
   
