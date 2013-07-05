@@ -25,6 +25,7 @@
 
 #import "HNHRoundedSecureTextFieldCell.h"
 #import "HNHRoundendTextFieldCellHelper.h"
+#import <AppKit/NSTextFieldCell.h>
 
 #if ! __has_feature(objc_arc)
 #warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
@@ -35,6 +36,7 @@
 
 @interface HNHRoundedSecureTextFieldCell () {
   id _fieldEditor;
+  NSTextFieldCell *_textFieldCell;
 }
 
 /* ButtonCell used for Rendering and handling actions */
@@ -52,8 +54,9 @@
   self = [super init];
   if(self) {
     _drawHighlight = NO;
-    _displayType = HNHSecureTextFieldAlwaysHide;
+    _displayType = HNHSecureTextFieldClearTextWhileEdit;
     _buttonCell = [self _allocButtonCell];
+    _textFieldCell = [self _allocTextFieldCell];
   }
   return self;
 }
@@ -68,6 +71,7 @@
     if(!_buttonCell) {
       _buttonCell = [self _allocButtonCell];
     }
+    _textFieldCell = [self _allocTextFieldCell];
   }
   return self;
 }
@@ -93,6 +97,11 @@
   }
   /* Decide when to display what */
   switch(_displayType) {
+    case HNHSecureTextFieldAlwaysShow:
+      [_textFieldCell setTitle:[self title]];
+      [_textFieldCell drawInteriorWithFrame:[self _textCellForFrame:cellFrame] inView:controlView];
+      break;
+      
     case HNHSecureTextFieldClearTextWhileEdit:
     case HNHSecureTextFieldAlwaysHide:
     default:
@@ -110,6 +119,22 @@
 - (BOOL)drawsBackground {
   return NO;
 }
+
+//- (NSTextView *)fieldEditorForView:(NSView *)aControlView {
+//  switch(_displayType) {
+//    case HNHSecureTextFieldClearTextWhileEdit:
+//    case HNHSecureTextFieldAlwaysShow:
+//      if(!_fieldEditor) {
+//        _fieldEditor = [[NSTextView alloc] init];
+//        [_fieldEditor setFieldEditor:YES];
+//      }
+//      return _fieldEditor;
+//    case HNHSecureTextFieldAlwaysHide:
+//    default:
+//      return nil;
+//      break;
+//  }
+//}
 
 #pragma mark -
 #pragma mark TODO
@@ -156,6 +181,16 @@
   [buttonCell setBordered:NO];
   [buttonCell setImagePosition:NSImageOnly];
   return buttonCell;
+}
+
+- (NSTextFieldCell *)_allocTextFieldCell {
+  NSTextFieldCell *textFieldCell = [[NSTextFieldCell alloc] init];
+  [textFieldCell setBezelStyle:[self bezelStyle]];
+  [textFieldCell setBackgroundStyle:[self backgroundStyle]];
+  [textFieldCell setFont:[self font]];
+  [textFieldCell setBordered:[self isBordered]];
+  [textFieldCell setBezeled:[self isBezeled]];
+  return textFieldCell;
 }
 
 - (NSRect)_buttonCellForFrame:(NSRect)cellFrame {
