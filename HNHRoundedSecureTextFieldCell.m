@@ -25,6 +25,7 @@
 
 #import "HNHRoundedSecureTextFieldCell.h"
 #import "HNHRoundendTextFieldCellHelper.h"
+#import "HNHSecureTextView.h"
 
 #import <AppKit/NSTextFieldCell.h>
 
@@ -39,7 +40,7 @@
 @end
 
 @interface HNHRoundedSecureTextFieldCell () {
-  id _fieldEditor;
+  HNHSecureTextView *_fieldEditor;
   NSSecureTextFieldCell *_secureTextFieldCell;
 }
 
@@ -100,12 +101,16 @@
       [self.buttonCell setEnabled:[self isEnabled]];
       [self.buttonCell drawWithFrame:[self _buttonCellForFrame:cellFrame] inView:controlView];
     }
+    else {
+      /* If the Filed is active, we do not need to draw our interiour */
+      return;
+    }
   }
   /* Decide when to display what */
   switch(_displayType) {
     case HNHSecureTextFieldClearTextWhileEdit:
     case HNHSecureTextFieldAlwaysHide:
-      [_secureTextFieldCell setTitle:[self title]];
+      [_secureTextFieldCell setStringValue:[self stringValue]];
       [_secureTextFieldCell drawInteriorWithFrame:[self _textCellForFrame:cellFrame] inView:controlView];
       break;
     
@@ -130,6 +135,20 @@
   if(_displayType != displayType) {
     _displayType = displayType;
     [self _updateValueFormatter];
+  }
+}
+
+- (NSTextView *)fieldEditorForView:(NSView *)aControlView {
+  if([aControlView isKindOfClass:[NSTextField class]]) {
+    if(!_fieldEditor) {
+      _fieldEditor = [[HNHSecureTextView alloc] init];
+      [_fieldEditor setFieldEditor:YES];
+    }
+    _fieldEditor.secureInput = (self.displayType == HNHSecureTextFieldAlwaysHide);
+    return _fieldEditor;
+  }
+  else {
+    return nil;
   }
 }
 

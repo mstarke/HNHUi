@@ -34,49 +34,61 @@
 #warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
 #endif
 
+@interface HNHSecureTextView () {
+@private
+  HNHSecureLayoutManager *_layoutManager;
+}
+
+@end
+
 @implementation HNHSecureTextView
 
 -initWithFrame:(NSRect)frame {
-  NSLayoutManager       *removeManager;
-  HNHSecureLayoutManager *secureManager=[[HNHSecureLayoutManager alloc] init];
-  
   self = [super initWithFrame:frame];
   if(self) {
-    removeManager=[self layoutManager];
-    
-    [[self textStorage] addLayoutManager:secureManager];
-    [secureManager addTextContainer:[self textContainer]];
-    [[self textStorage] removeLayoutManager:removeManager];
+    _secureInput = NO;
+    _layoutManager = [[HNHSecureLayoutManager alloc] init];
+    _layoutManager.displayBullets = NO;
+    [[self textContainer] replaceLayoutManager:_layoutManager];
   }
   return self;
 }
 
--(void)setEchosBullets:(BOOL)echoesBullets {
-  //[(HNHSecureLayoutManager *)[self layoutManager] setEchosBullets:echoesBullets];
+- (void)setSecureInput:(BOOL)secureInput {
+  _layoutManager.displayBullets = secureInput;
 }
 
-- (void)enableSecureInput:(BOOL)enable {
-  return;
-}
 
 -(BOOL)writeSelectionToPasteboard:(NSPasteboard *)pboard type:(NSString *)type {
+  if(!_secureInput) {
+    return [super writeSelectionToPasteboard:pboard type:type];
+  }
   return NO;
 }
 
 -(BOOL)writeSelectionToPasteboard:(NSPasteboard *)pboard types:(NSArray *)types {
+  if(!_secureInput) {
+    return [super writeSelectionToPasteboard:pboard types:types];
+  }
   return NO;
 }
 
 -(void)cut:sender {
-  /* disable cut */
+  if(!_secureInput) {
+    [super cut:sender];
+  }
 }
 
 -(void)copy:sender {
-  /* disable copy */
+  if(!_secureInput) {
+    [super copy:sender];
+  }
 }
 
 -(void)paste:sender {
-  /* disable paste */
+  if(!_secureInput) {
+    [super paste:sender];
+  }
 }
 
 @end

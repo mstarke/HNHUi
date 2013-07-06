@@ -31,10 +31,8 @@
 
 #import <AppKit/NSLayoutManager.h>
 
-@interface HNHSecureLayoutManager : NSLayoutManager {
-  BOOL _echosBullets;
-}
+@interface HNHSecureLayoutManager : NSLayoutManager
 
-- (void)setEchosBullets:(BOOL)echoBullets;
-- (void)setBulletCharacter:(unichar )character;
+@property (nonatomic, assign) BOOL displayBullets;
+
 @end

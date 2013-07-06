@@ -26,9 +26,9 @@
 #import <AppKit/NSSecureTextField.h>
 
 typedef NS_ENUM(NSUInteger, HNHSecureTextFieldDisplayType) {
-  HNHSecureTextFieldClearTextWhileEdit, //Default
-  HNHSecureTextFieldAlwaysShow,
-  HNHSecureTextFieldAlwaysHide
+  HNHSecureTextFieldAlwaysHide, // Hide the Text all the time, act like a secure test field
+  HNHSecureTextFieldClearTextWhileEdit, // Show the clear test only, if the editor is active
+  HNHSecureTextFieldAlwaysShow // Display the Text all the time - act like a normal textfield
 };
 
 @interface HNHRoundedSecureTextFieldCell : NSTextFieldCell

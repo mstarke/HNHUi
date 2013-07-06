@@ -37,26 +37,31 @@
 
 @implementation HNHSecureLayoutManager
 
--(void)setEchosBullets:(BOOL)echoBullets {
-  _echosBullets=echoBullets;
+- (id)init {
+  self = [super init];
+  if(self) {
+    _displayBullets = YES;
+  }
+  return self;
 }
 
-- (void)setBulletCharacter:(unichar )character {
+- (void)drawGlyphsForGlyphRange:(NSRange)glyphsToShow atPoint:(NSPoint)origin {
+  [super drawGlyphsForGlyphRange:glyphsToShow atPoint:origin];
   return;
+  /*
+   FIXME: Layout get's broken
+   */
+  if(!_displayBullets) {
+    [super drawGlyphsForGlyphRange:glyphsToShow atPoint:origin];
+    return; // Done
+  }
+  NSLog(@"drawGlyphsForGlyphRange");
+  NSFont *font = [[self textStorage] font];
+  NSGlyph bullet = [font glyphWithName:@"bullet"];
+  for(NSUInteger iIndex = 0; iIndex < glyphsToShow.length; iIndex++) {
+    [self replaceGlyphAtIndex:(iIndex + glyphsToShow.location) withGlyph:bullet];
+  }
+  [super drawGlyphsForGlyphRange:glyphsToShow atPoint:origin];
 }
-
-//-(NSUInteger)getGlyphs:(NSGlyph *)glyphs range:(NSRange)glyphRange {
-//  NSRange characterRange = [self characterRangeForGlyphRange:glyphRange actualGlyphRange:NULL];
-//  //NSGlyph glyphBuffer[characterRange.length];
-//  
-//  NSUInteger glyphCount = [super getGlyphs:glyphs range:glyphRange];
-//  
-//  for(NSUInteger iIndex=0; iIndex<characterRange.length; iIndex++) {
-//    glyphs[iIndex] = _echosBullets ? 0x2022 : ' '; // unicode bullet
-//  }
-//  return glyphCount;
-//}
-
-
 
 @end
