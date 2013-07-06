@@ -35,6 +35,6 @@
   BOOL _echosBullets;
 }
 
--(void)setEchosBullets:(BOOL)echoBullets;
-
+- (void)setEchosBullets:(BOOL)echoBullets;
+- (void)setBulletCharacter:(unichar )character;
 @end

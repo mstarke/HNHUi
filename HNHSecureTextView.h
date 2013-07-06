@@ -31,5 +31,7 @@
 @interface HNHSecureTextView : NSTextView
 
 -(void)setEchosBullets:(BOOL)echoBullets;
+-(void)enableSecureInput:(BOOL)enable;
+
 
 @end

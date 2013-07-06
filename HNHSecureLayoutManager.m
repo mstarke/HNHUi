@@ -41,17 +41,21 @@
   _echosBullets=echoBullets;
 }
 
--(NSUInteger)getGlyphs:(NSGlyph *)glyphs range:(NSRange)glyphRange {
-  NSRange characterRange = [self characterRangeForGlyphRange:glyphRange actualGlyphRange:NULL];
-  //NSGlyph glyphBuffer[characterRange.length];
-  
-  NSUInteger glyphCount = [super getGlyphs:glyphs range:glyphRange];
-  
-  for(NSUInteger iIndex=0; iIndex<characterRange.length; iIndex++) {
-    glyphs[iIndex] = _echosBullets ? 0x2022 : ' '; // unicode bullet
-  }
-  return glyphCount;
+- (void)setBulletCharacter:(unichar )character {
+  return;
 }
+
+//-(NSUInteger)getGlyphs:(NSGlyph *)glyphs range:(NSRange)glyphRange {
+//  NSRange characterRange = [self characterRangeForGlyphRange:glyphRange actualGlyphRange:NULL];
+//  //NSGlyph glyphBuffer[characterRange.length];
+//  
+//  NSUInteger glyphCount = [super getGlyphs:glyphs range:glyphRange];
+//  
+//  for(NSUInteger iIndex=0; iIndex<characterRange.length; iIndex++) {
+//    glyphs[iIndex] = _echosBullets ? 0x2022 : ' '; // unicode bullet
+//  }
+//  return glyphCount;
+//}
 
 
 

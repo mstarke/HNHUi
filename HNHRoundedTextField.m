@@ -38,7 +38,6 @@
 
 - (void)awakeFromNib {
   //NSTextFieldCell *newCell = [[HNHRoundedTextFieldCell alloc] init];
-  
 }
 
 @end

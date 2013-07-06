@@ -29,21 +29,34 @@
 #warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
 #endif
 
+#define DEFAULT_SELECTION_RADIUS 5.0
+
 @implementation HNHTableRowView
 
-- (id)initWithFrame:(NSRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code here.
-    }
-    
-    return self;
+- (void)awakeFromNib {
+  _selectionCornerRadius = DEFAULT_SELECTION_RADIUS;
 }
 
-- (void)drawRect:(NSRect)dirtyRect
-{
-    // Drawing code here.
+- (id)initWithFrame:(NSRect)frameRect {
+  self = [super initWithFrame:frameRect];
+  if(self) {
+    _selectionCornerRadius = DEFAULT_SELECTION_RADIUS;
+  }
+  return self;
+}
+
+- (void)setSelectionCornerRadius:(CGFloat)selectionCornerRadius {
+  if(_selectionCornerRadius != selectionCornerRadius) {
+    _selectionCornerRadius = selectionCornerRadius;
+    /* Optimize by just setting the dirty corners */
+    [self setNeedsDisplay:YES];
+  }
+}
+
+- (void)drawSelectionInRect:(NSRect)dirtyRect {
+  NSBezierPath *clip = [NSBezierPath bezierPathWithRoundedRect:[self bounds] xRadius:_selectionCornerRadius yRadius:_selectionCornerRadius];
+  [clip addClip];
+  [super drawSelectionInRect:dirtyRect];
 }
 
 @end

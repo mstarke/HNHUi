@@ -31,7 +31,7 @@ typedef NS_ENUM(NSUInteger, HNHSecureTextFieldDisplayType) {
   HNHSecureTextFieldAlwaysHide
 };
 
-@interface HNHRoundedSecureTextFieldCell : NSSecureTextFieldCell
+@interface HNHRoundedSecureTextFieldCell : NSTextFieldCell
 
 @property (assign) BOOL drawHighlight;
 @property (nonatomic, assign) HNHSecureTextFieldDisplayType displayType;

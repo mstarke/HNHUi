@@ -27,4 +27,6 @@
 
 @interface HNHTableRowView : NSTableRowView
 
+@property (nonatomic, assign) CGFloat selectionCornerRadius;
+
 @end

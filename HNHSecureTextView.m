@@ -52,7 +52,11 @@
 }
 
 -(void)setEchosBullets:(BOOL)echoesBullets {
-  [(HNHSecureLayoutManager *)[self layoutManager] setEchosBullets:echoesBullets];
+  //[(HNHSecureLayoutManager *)[self layoutManager] setEchosBullets:echoesBullets];
+}
+
+- (void)enableSecureInput:(BOOL)enable {
+  return;
 }
 
 -(BOOL)writeSelectionToPasteboard:(NSPasteboard *)pboard type:(NSString *)type {

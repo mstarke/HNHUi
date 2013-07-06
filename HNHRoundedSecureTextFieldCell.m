@@ -25,6 +25,7 @@
 
 #import "HNHRoundedSecureTextFieldCell.h"
 #import "HNHRoundendTextFieldCellHelper.h"
+
 #import <AppKit/NSTextFieldCell.h>
 
 #if ! __has_feature(objc_arc)
@@ -33,10 +34,13 @@
 
 #define BUTTON_WIDTH 25
 
+@interface NSSecureTextView : NSTextView
+
+@end
 
 @interface HNHRoundedSecureTextFieldCell () {
   id _fieldEditor;
-  NSTextFieldCell *_textFieldCell;
+  NSSecureTextFieldCell *_secureTextFieldCell;
 }
 
 /* ButtonCell used for Rendering and handling actions */
@@ -56,7 +60,8 @@
     _drawHighlight = NO;
     _displayType = HNHSecureTextFieldClearTextWhileEdit;
     _buttonCell = [self _allocButtonCell];
-    _textFieldCell = [self _allocTextFieldCell];
+    _secureTextFieldCell = [self _allocSecureTextFieldCell];
+    [self _updateValueFormatter];
   }
   return self;
 }
@@ -71,7 +76,8 @@
     if(!_buttonCell) {
       _buttonCell = [self _allocButtonCell];
     }
-    _textFieldCell = [self _allocTextFieldCell];
+    _secureTextFieldCell = [self _allocSecureTextFieldCell];
+    [self _updateValueFormatter];
   }
   return self;
 }
@@ -97,13 +103,13 @@
   }
   /* Decide when to display what */
   switch(_displayType) {
-    case HNHSecureTextFieldAlwaysShow:
-      [_textFieldCell setTitle:[self title]];
-      [_textFieldCell drawInteriorWithFrame:[self _textCellForFrame:cellFrame] inView:controlView];
-      break;
-      
     case HNHSecureTextFieldClearTextWhileEdit:
     case HNHSecureTextFieldAlwaysHide:
+      [_secureTextFieldCell setTitle:[self title]];
+      [_secureTextFieldCell drawInteriorWithFrame:[self _textCellForFrame:cellFrame] inView:controlView];
+      break;
+    
+    case HNHSecureTextFieldAlwaysShow:
     default:
       [super drawInteriorWithFrame:[self _textCellForFrame:cellFrame] inView:controlView];
       break;
@@ -120,21 +126,12 @@
   return NO;
 }
 
-//- (NSTextView *)fieldEditorForView:(NSView *)aControlView {
-//  switch(_displayType) {
-//    case HNHSecureTextFieldClearTextWhileEdit:
-//    case HNHSecureTextFieldAlwaysShow:
-//      if(!_fieldEditor) {
-//        _fieldEditor = [[NSTextView alloc] init];
-//        [_fieldEditor setFieldEditor:YES];
-//      }
-//      return _fieldEditor;
-//    case HNHSecureTextFieldAlwaysHide:
-//    default:
-//      return nil;
-//      break;
-//  }
-//}
+- (void)setDisplayType:(HNHSecureTextFieldDisplayType)displayType {
+  if(_displayType != displayType) {
+    _displayType = displayType;
+    [self _updateValueFormatter];
+  }
+}
 
 #pragma mark -
 #pragma mark TODO
@@ -183,13 +180,14 @@
   return buttonCell;
 }
 
-- (NSTextFieldCell *)_allocTextFieldCell {
-  NSTextFieldCell *textFieldCell = [[NSTextFieldCell alloc] init];
+- (NSSecureTextFieldCell *)_allocSecureTextFieldCell {
+  NSSecureTextFieldCell *textFieldCell = [[NSSecureTextFieldCell alloc] init];
   [textFieldCell setBezelStyle:[self bezelStyle]];
   [textFieldCell setBackgroundStyle:[self backgroundStyle]];
   [textFieldCell setFont:[self font]];
   [textFieldCell setBordered:[self isBordered]];
   [textFieldCell setBezeled:[self isBezeled]];
+  [textFieldCell setEchosBullets:YES];
   return textFieldCell;
 }
 
@@ -204,6 +202,18 @@
   NSRect textFrame, buttonFrame;
   NSDivideRect(cellFrame, &buttonFrame, &textFrame, BUTTON_WIDTH, NSMaxXEdge);
   return textFrame;
+}
+
+- (void)_updateValueFormatter {
+  switch(_displayType) {
+    case HNHSecureTextFieldClearTextWhileEdit:
+    case HNHSecureTextFieldAlwaysShow:
+    case HNHSecureTextFieldAlwaysHide:
+      break;
+    default:
+      break;
+  
+  }
 }
 
 @end
