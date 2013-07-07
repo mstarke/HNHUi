@@ -8,6 +8,14 @@
 
 #import <Cocoa/Cocoa.h>
 
+typedef NS_ENUM(NSUInteger, HNHSecureTextFieldDisplayType) {
+  HNHSecureTextFieldAlwaysHide, // Hide the Text all the time, act like a secure test field
+  HNHSecureTextFieldClearTextWhileEdit, // Show the clear test only, if the editor is active
+  HNHSecureTextFieldAlwaysShow // Display the Text all the time - act like a normal textfield
+};
+
 @interface HNHRoundedSecureTextField : NSSecureTextField
+
+@property (nonatomic, assign) HNHSecureTextFieldDisplayType displayType;
 
 @end
