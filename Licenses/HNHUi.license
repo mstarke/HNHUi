@@ -1,8 +1,4 @@
-#HNHUi
-
-Reusable Cocoa UI Components
-
-##License
+HNHUi is licensed unter the The MIT License (MIT)
 
 Copyright (c) 2013 HicknHack Software GmbH
 
@@ -23,10 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-
-##Copyrights
-
-See Licenses for all license files.
-
-HNHBadgeTextFieldCell is extracted Badge drawing form PXSourceList, Copyright © 2011, Alex Rozanski. All rights reserved.
-HNHRoundedSecureTextField is using part of KSPasswordField, Copyright (c) 2012 Karelia Software. All rights reserved.
