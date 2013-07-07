@@ -41,17 +41,38 @@
   return self;
 }
 
+- (NSUInteger)getGlyphsInRange:(NSRange)glyphRange
+                        glyphs:(NSGlyph *)glyphBuffer
+              characterIndexes:(NSUInteger *)charIndexBuffer
+             glyphInscriptions:(NSGlyphInscription *)inscribeBuffer
+                   elasticBits:(BOOL *)elasticBuffer
+                    bidiLevels:(unsigned char *)bidiLevelBuffer {
+  NSUInteger glyphCount =  [super getGlyphsInRange:glyphRange
+                          glyphs:glyphBuffer
+                characterIndexes:charIndexBuffer
+               glyphInscriptions:inscribeBuffer
+                     elasticBits:elasticBuffer
+                      bidiLevels:bidiLevelBuffer];
+  if(_displayBullets) {
+    NSGlyph bullet = [[[self textStorage] font] glyphWithName:@"bullet"];
+    for(NSUInteger iGlyphIndex = 0; iGlyphIndex < glyphCount; iGlyphIndex++ ) {
+      glyphBuffer[iGlyphIndex] = bullet;
+    }
+  }
+  return glyphCount;
+}
+
 - (void)drawGlyphsForGlyphRange:(NSRange)glyphsToShow atPoint:(NSPoint)origin {
-  [super drawGlyphsForGlyphRange:glyphsToShow atPoint:origin];
-  return;
   /*
+   [super drawGlyphsForGlyphRange:glyphsToShow atPoint:origin];
+  return;
+  
    FIXME: Layout get's broken
    */
   if(!_displayBullets) {
     [super drawGlyphsForGlyphRange:glyphsToShow atPoint:origin];
     return; // Done
   }
-  NSLog(@"drawGlyphsForGlyphRange");
   NSFont *font = [[self textStorage] font];
   NSGlyph bullet = [font glyphWithName:@"bullet"];
   for(NSUInteger iIndex = 0; iIndex < glyphsToShow.length; iIndex++) {
