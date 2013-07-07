@@ -25,16 +25,8 @@
 
 #import <AppKit/NSSecureTextField.h>
 
-typedef NS_ENUM(NSUInteger, HNHSecureTextFieldDisplayType) {
-  HNHSecureTextFieldAlwaysHide, // Hide the Text all the time, act like a secure test field
-  HNHSecureTextFieldClearTextWhileEdit, // Show the clear test only, if the editor is active
-  HNHSecureTextFieldAlwaysShow // Display the Text all the time - act like a normal textfield
-};
-
-@interface HNHRoundedSecureTextFieldCell : NSTextFieldCell
+@interface HNHRoundedSecureTextFieldCell : NSSecureTextFieldCell
 
 @property (assign) BOOL drawHighlight;
-@property (nonatomic, assign) HNHSecureTextFieldDisplayType displayType;
-
 
 @end

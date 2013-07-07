@@ -36,8 +36,22 @@
   return [HNHRoundedTextFieldCell class];
 }
 
-- (void)awakeFromNib {
-  //NSTextFieldCell *newCell = [[HNHRoundedTextFieldCell alloc] init];
+- (id)initWithCoder:(NSCoder *)aDecoder {
+  self = [super initWithCoder:aDecoder];
+  if(self) {
+    NSMutableData *data = [[NSMutableData alloc] init];
+    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+    [[self cell] encodeWithCoder:archiver];
+    [archiver finishEncoding];
+    
+    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+    HNHRoundedTextFieldCell *cell = [[HNHRoundedTextFieldCell alloc] initWithCoder:unarchiver];
+    [unarchiver finishDecoding];
+    
+    [self setCell:cell];
+    [self setNeedsDisplay:YES];
+  }
+  return self;
 }
 
 @end

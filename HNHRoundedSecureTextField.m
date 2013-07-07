@@ -24,16 +24,62 @@
 //
 
 #import "HNHRoundedSecureTextField.h"
+#import "HNHRoundedSecureTextFieldCell.h"
+#import "HNHRoundedTextFieldCell.h"
 
 @implementation HNHRoundedSecureTextField
 
++ (Class)cellClass {
+  return [HNHRoundedSecureTextFieldCell class];
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+  self = [super initWithCoder:aDecoder];
+  if(self) {
+    NSMutableData *data = [[NSMutableData alloc] init];
+    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+    [[self cell] encodeWithCoder:archiver];
+    [archiver finishEncoding];
+    
+    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+    HNHRoundedSecureTextFieldCell *cell = [[HNHRoundedSecureTextFieldCell alloc] initWithCoder:unarchiver];
+    [unarchiver finishDecoding];
+    
+    [self setCell:cell];
+    [self setNeedsDisplay:YES];
+    [self setDelegate:self];
+  }
+  return self;
+}
 
 - (void)setDisplayType:(HNHSecureTextFieldDisplayType)displayType {
   if(_displayType == displayType) {
     return; // No change;
   }
+  NSLog(@"newDisplayType: %ld", displayType);
+  HNHSecureTextFieldDisplayType oldType = _displayType;
   _displayType = displayType;
-  //[self swapCellForOneOfClass:(showsText ? [NSTextFieldCell class] : [NSSecureTextFieldCell class])];
+  
+  [self _updateForDisplayTypeChange:oldType newType:displayType];
+  
+}
+- (BOOL)resignFirstResponder {
+  if([self currentEditor]) {
+    if(_displayType == HNHSecureTextFieldClearTextWhileEdit) {
+      [self swapCellForOneOfClass:[HNHRoundedTextFieldCell class]];
+    }
+  }
+  return [super resignFirstResponder];
+}
+
+- (void)controlTextDidEndEditing:(NSNotification *)obj {
+  if(_displayType == HNHSecureTextFieldClearTextWhileEdit) {
+    [self swapCellForOneOfClass:[HNHRoundedSecureTextFieldCell class]];
+  }
+}
+
+- (void)toggleDisplayType:(id)sender {
+  self.displayType = (_displayType + 1) % HNHSecureTextFieldDisplayTypeCount;
 }
 
 - (void)swapCellForOneOfClass:(Class)cellClass;
@@ -56,8 +102,23 @@
   [self setNeedsDisplay:YES];
   
   // Restore selection
-  [self.window makeFirstResponder:self];
+  
+  //[self.window makeFirstResponder:self];
   if (selection) [[self currentEditor] setSelectedRange:[selection rangeValue]];
+}
+
+- (void)_updateForDisplayTypeChange:(HNHSecureTextFieldDisplayType)oldType newType:(HNHSecureTextFieldDisplayType)newType {
+  /*
+   Decide if we are editing or not
+   1. We not editing
+      Swap cells only if the unedited view need swapping
+   
+   2. We are editing
+      Swap cell if editing view needs change
+      View need to swap cell back when editor is finished
+   */
+  if([self currentEditor]) {  
+  }
 }
 
 @end

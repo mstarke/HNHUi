@@ -11,11 +11,14 @@
 typedef NS_ENUM(NSUInteger, HNHSecureTextFieldDisplayType) {
   HNHSecureTextFieldAlwaysHide, // Hide the Text all the time, act like a secure test field
   HNHSecureTextFieldClearTextWhileEdit, // Show the clear test only, if the editor is active
-  HNHSecureTextFieldAlwaysShow // Display the Text all the time - act like a normal textfield
+  HNHSecureTextFieldAlwaysShow, // Display the Text all the time - act like a normal textfield
+  HNHSecureTextFieldDisplayTypeCount // DO NOT USE!
 };
 
-@interface HNHRoundedSecureTextField : NSSecureTextField
+@interface HNHRoundedSecureTextField : NSSecureTextField <NSTextFieldDelegate>
 
 @property (nonatomic, assign) HNHSecureTextFieldDisplayType displayType;
+
+- (IBAction) toggleDisplayType:(id)sender;
 
 @end

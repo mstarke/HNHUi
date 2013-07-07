@@ -33,14 +33,6 @@
 
 @implementation HNHRoundedTextFieldCell
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
-  self = [super initWithCoder:aDecoder];
-  if(self) {
-    _drawHighlight = NO;
-  }
-  return self;
-}
-
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
   [HNHRoundendTextFieldCellHelper drawWithFrame:cellFrame enabled:[self isEnabled] withHighlight:_drawHighlight];
   [self drawInteriorWithFrame:cellFrame inView:controlView];
