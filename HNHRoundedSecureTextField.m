@@ -29,10 +29,6 @@
 
 @implementation HNHRoundedSecureTextField
 
-+ (Class)cellClass {
-  return [HNHRoundedSecureTextFieldCell class];
-}
-
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if(self) {

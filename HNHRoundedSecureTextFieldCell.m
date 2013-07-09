@@ -83,15 +83,15 @@
   [self drawInteriorWithFrame:cellFrame inView:controlView];
 }
 
-- (void)drawInteriorWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
-  if([controlView respondsToSelector:@selector(currentEditor)]) {
-    if(![(id)controlView currentEditor]) {
-      [self.buttonCell setEnabled:[self isEnabled]];
-      [self.buttonCell drawWithFrame:[self _buttonCellForFrame:cellFrame] inView:controlView];
-    }
-  }
-  [super drawInteriorWithFrame:[self _textCellForFrame:cellFrame] inView:controlView];
-}
+//- (void)drawInteriorWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
+//  if([controlView respondsToSelector:@selector(currentEditor)]) {
+//    if(![(id)controlView currentEditor]) {
+//      [self.buttonCell setEnabled:[self isEnabled]];
+//      [self.buttonCell drawWithFrame:[self _buttonCellForFrame:cellFrame] inView:controlView];
+//    }
+//  }
+//  [super drawInteriorWithFrame:[self _textCellForFrame:cellFrame] inView:controlView];
+//}
 
 /* Set the focusRing to the bezel shape */
 - (void)drawFocusRingMaskWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
@@ -106,22 +106,22 @@
 #pragma mark -
 #pragma mark TODO
 
-- (NSUInteger)hitTestForEvent:(NSEvent *)event inRect:(NSRect)cellFrame ofView:(NSView *)controlView {
-  NSPoint point = [controlView convertPoint:[event locationInWindow] fromView:nil];
-  NSRect textRect = [self _textCellForFrame:cellFrame];
-  NSRect buttonRect = [self _buttonCellForFrame:cellFrame];
-  if( NSMouseInRect(point, textRect, [controlView isFlipped])) {
-    return  NSCellHitContentArea | NSCellHitEditableTextArea;
-  }
-  if( NSMouseInRect(point, buttonRect, [controlView isFlipped])) {
-    return NSCellHitContentArea | NSCellHitTrackableArea;
-  }
-  return NSCellHitNone;
-}
-
-- (BOOL)startTrackingAt:(NSPoint)startPoint inView:(NSView *)controlView {
-  return [super startTrackingAt:startPoint inView:controlView];
-}
+//- (NSUInteger)hitTestForEvent:(NSEvent *)event inRect:(NSRect)cellFrame ofView:(NSView *)controlView {
+//  NSPoint point = [controlView convertPoint:[event locationInWindow] fromView:nil];
+//  NSRect textRect = [self _textCellForFrame:cellFrame];
+//  NSRect buttonRect = [self _buttonCellForFrame:cellFrame];
+//  if( NSMouseInRect(point, textRect, [controlView isFlipped])) {
+//    return  NSCellHitContentArea | NSCellHitEditableTextArea;
+//  }
+//  if( NSMouseInRect(point, buttonRect, [controlView isFlipped])) {
+//    return NSCellHitContentArea | NSCellHitTrackableArea;
+//  }
+//  return NSCellHitNone;
+//}
+//
+//- (BOOL)startTrackingAt:(NSPoint)startPoint inView:(NSView *)controlView {
+//  return [super startTrackingAt:startPoint inView:controlView];
+//}
 
 
 #pragma mark -
