@@ -71,11 +71,12 @@
   return self;
 }
 
-//- (void)encodeWithCoder:(NSCoder *)aCoder {
-//  if([aCoder isKindOfClass:[NSKeyedUnarchiver class]]) {
-//    [aCoder encodeObject:_buttonCell forKey:@"buttonCell"];
-//  }
-//}
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+  [super encodeWithCoder:aCoder];
+  if([aCoder isKindOfClass:[NSKeyedUnarchiver class]]) {
+    [aCoder encodeObject:_buttonCell forKey:@"buttonCell"];
+  }
+}
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
   [HNHRoundendTextFieldCellHelper drawWithFrame:cellFrame enabled:[self isEnabled] withHighlight:_drawHighlight];
@@ -104,22 +105,6 @@
 
 #pragma mark -
 #pragma mark TODO
-/* Button handling - load of to Control?
-- (void)addTrackingAreasForView:(NSView *)controlView inRect:(NSRect)cellFrame withUserInfo:(NSDictionary *)userInfo mouseLocation:(NSPoint)mouseLocation {
-  NSRect infoButtonRect = [self _buttonCellForFrame:cellFrame];
-  
-  NSTrackingAreaOptions options = NSTrackingEnabledDuringMouseDrag | NSTrackingMouseEnteredAndExited | NSTrackingActiveAlways;
-  
-  BOOL mouseIsInside = NSMouseInRect(mouseLocation, infoButtonRect, [controlView isFlipped]);
-  if (mouseIsInside) {
-    options |= NSTrackingAssumeInside;
-    [controlView setNeedsDisplayInRect:cellFrame];
-  }
-  
-  // We make the view the owner, and it delegates the calls back to the cell after it is properly setup for the corresponding row/column in the outlineview
-  NSTrackingArea *area = [[NSTrackingArea alloc] initWithRect:infoButtonRect options:options owner:controlView userInfo:userInfo];
-  [controlView addTrackingArea:area];
-}
 
 - (NSUInteger)hitTestForEvent:(NSEvent *)event inRect:(NSRect)cellFrame ofView:(NSView *)controlView {
   NSPoint point = [controlView convertPoint:[event locationInWindow] fromView:nil];
@@ -133,7 +118,11 @@
   }
   return NSCellHitNone;
 }
-*/
+
+- (BOOL)startTrackingAt:(NSPoint)startPoint inView:(NSView *)controlView {
+  return [super startTrackingAt:startPoint inView:controlView];
+}
+
 
 #pragma mark -
 #pragma mark Helper

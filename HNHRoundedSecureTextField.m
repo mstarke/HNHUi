@@ -46,46 +46,28 @@
     [unarchiver finishDecoding];
     
     [self setCell:cell];
+    
     [self setNeedsDisplay:YES];
-    [self setDelegate:self];
   }
   return self;
 }
 
-- (void)setDisplayType:(HNHSecureTextFieldDisplayType)displayType {
-  if(_displayType == displayType) {
-    return; // No change;
-  }
-  NSLog(@"newDisplayType: %ld", displayType);
-  HNHSecureTextFieldDisplayType oldType = _displayType;
-  _displayType = displayType;
-  
-  [self _updateForDisplayTypeChange:oldType newType:displayType];
-  
-}
-- (BOOL)resignFirstResponder {
-  if([self currentEditor]) {
-    if(_displayType == HNHSecureTextFieldClearTextWhileEdit) {
-      [self swapCellForOneOfClass:[HNHRoundedTextFieldCell class]];
-    }
-  }
-  return [super resignFirstResponder];
+- (void)toggleDisplay:(id)sender {
+  self.showPassword = !_showPassword;
 }
 
-- (void)controlTextDidEndEditing:(NSNotification *)obj {
-  if(_displayType == HNHSecureTextFieldClearTextWhileEdit) {
-    [self swapCellForOneOfClass:[HNHRoundedSecureTextFieldCell class]];
+- (void)setShowPassword:(BOOL)showPassword {
+  if(_showPassword != showPassword) {
+    _showPassword = showPassword;
+    [self _toggleCell];
   }
-}
-
-- (void)toggleDisplayType:(id)sender {
-  self.displayType = (_displayType + 1) % HNHSecureTextFieldDisplayTypeCount;
 }
 
 - (void)swapCellForOneOfClass:(Class)cellClass;
 {
   // Rememeber current selection for restoration after the swap
   // -valueForKey: neatly gives nil if no currently selected
+  BOOL isActive = (nil != [self currentEditor]);
   NSValue *selection = [[self currentEditor] valueForKey:@"selectedRange"];
   
   // Seems to me the best way to ensure all properties come along for the ride (e.g. border/editability) is to archive the existing cell
@@ -102,22 +84,18 @@
   [self setNeedsDisplay:YES];
   
   // Restore selection
-  
-  //[self.window makeFirstResponder:self];
+  if(isActive) {
+    [[self window] makeFirstResponder:self];
+  }
   if (selection) [[self currentEditor] setSelectedRange:[selection rangeValue]];
 }
 
-- (void)_updateForDisplayTypeChange:(HNHSecureTextFieldDisplayType)oldType newType:(HNHSecureTextFieldDisplayType)newType {
-  /*
-   Decide if we are editing or not
-   1. We not editing
-      Swap cells only if the unedited view need swapping
-   
-   2. We are editing
-      Swap cell if editing view needs change
-      View need to swap cell back when editor is finished
-   */
-  if([self currentEditor]) {  
+- (void)_toggleCell {
+  if([[self cell] isKindOfClass:[HNHRoundedTextFieldCell class]]) {
+    [self swapCellForOneOfClass:[HNHRoundedSecureTextFieldCell class]];
+  }
+  else {
+    [self swapCellForOneOfClass:[HNHRoundedTextFieldCell class]];
   }
 }
 
