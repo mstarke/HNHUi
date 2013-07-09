@@ -59,7 +59,9 @@
   }
 }
 
-- (void)swapCellForOneOfClass:(Class)cellClass;
+#pragma mark -
+#pragma mark Private
+- (void)_swapCellForOneOfClass:(Class)cellClass;
 {
   // Rememeber current selection for restoration after the swap
   // -valueForKey: neatly gives nil if no currently selected
@@ -88,10 +90,10 @@
 
 - (void)_toggleCell {
   if([[self cell] isKindOfClass:[HNHRoundedTextFieldCell class]]) {
-    [self swapCellForOneOfClass:[HNHRoundedSecureTextFieldCell class]];
+    [self _swapCellForOneOfClass:[HNHRoundedSecureTextFieldCell class]];
   }
   else {
-    [self swapCellForOneOfClass:[HNHRoundedTextFieldCell class]];
+    [self _swapCellForOneOfClass:[HNHRoundedTextFieldCell class]];
   }
 }
 
