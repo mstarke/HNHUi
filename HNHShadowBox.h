@@ -23,7 +23,7 @@
 //  THE SOFTWARE.
 //
 
-#import <AppKit/NSBox.h>
+#import <AppKit/AppKit.h>
 
 @interface HNHShadowBox : NSBox
 

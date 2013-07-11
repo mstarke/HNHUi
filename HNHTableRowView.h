@@ -23,7 +23,7 @@
 //  THE SOFTWARE.
 //
 
-#import <AppKit/NSTableRowView.h>
+#import <AppKit/AppKit.h>
 
 @interface HNHTableRowView : NSTableRowView
 

@@ -23,7 +23,7 @@
 //  THE SOFTWARE.
 //
 
-#import <AppKit/NStextField.h>
+#import <AppKit/AppKit.h>
 
 @interface HNHBadgedTextField : NSTextField
 

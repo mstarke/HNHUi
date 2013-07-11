@@ -23,7 +23,7 @@
 //  THE SOFTWARE.
 //
 
-#import <AppKit/NSTextField.h>
+#import <AppKit/AppKit.h>
 
 @interface HNHRoundedTextField : NSTextField
 

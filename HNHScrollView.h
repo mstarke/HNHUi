@@ -23,7 +23,7 @@
 //  THE SOFTWARE.
 //
 
-#import <AppKit/NSScrollView.h>
+#import <AppKit/AppKit.h>
 
 /* Scrollview that show a line if the view is clipped at the top/bottom border */
 @interface HNHScrollView : NSScrollView {

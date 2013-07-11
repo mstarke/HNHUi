@@ -23,7 +23,7 @@
 //  THE SOFTWARE.
 //
 
-#import <AppKit/NSSecureTextField.h>
+#import <AppKit/AppKit.h>
 
 @interface HNHRoundedSecureTextFieldCell : NSSecureTextFieldCell
 

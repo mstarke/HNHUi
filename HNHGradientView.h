@@ -23,7 +23,7 @@
 //  THE SOFTWARE.
 //
 
-#import <AppKit/NSView.h>
+#import <AppKit/AppKit.h>
 
 
 typedef NS_OPTIONS(NSUInteger, HNHBorderType) {

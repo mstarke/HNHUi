@@ -24,7 +24,7 @@
 //
 
 
-#import <AppKit/NSTableHeaderCell.h>
+#import <AppKit/AppKit.h>
 
 @interface HNHTableHeaderCell : NSTableHeaderCell
 

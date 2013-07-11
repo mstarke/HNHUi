@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <AppKit/AppKit.h>
 
 @interface HNHRoundedSecureTextField : NSSecureTextField <NSTextFieldDelegate>
 

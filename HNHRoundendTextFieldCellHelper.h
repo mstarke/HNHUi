@@ -6,8 +6,7 @@
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
 
-#import <Foundation/NSObject.h>
-#import <AppKit/NSBezierPath.h>
+#import <AppKit/AppKit.h>
 
 @interface HNHRoundendTextFieldCellHelper : NSObject
 

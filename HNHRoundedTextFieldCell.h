@@ -23,7 +23,7 @@
 //  THE SOFTWARE.
 //
 
-#import <AppKit/NSTextFieldCell.h>
+#import <AppKit/AppKit.h>
 
 /*
  Textfieldcell with rounded corners and Highlight at the bottom
