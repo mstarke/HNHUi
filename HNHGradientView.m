@@ -94,6 +94,7 @@
 
 - (void)viewWillMoveToWindow:(NSWindow *)newWindow {
   [self _registerWindow:newWindow];
+  self.isRenderedActive = [newWindow isKeyWindow];
   [super viewWillMoveToWindow:newWindow];
 }
 
