@@ -67,6 +67,7 @@
     if(!_buttonCell) {
       _buttonCell = [self _allocButtonCell];
     }
+    _drawHighlight = NO;
   }
   return self;
 }
