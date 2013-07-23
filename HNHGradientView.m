@@ -32,8 +32,6 @@
 @interface HNHGradientView ()
 
 @property (assign, nonatomic) BOOL isRenderedActive;
-@property (strong) NSGradient *activeGradient;
-@property (strong) NSGradient *inactiveGradient;
 
 - (void)_refreshActiveState;
 
@@ -125,6 +123,20 @@
 - (void)setBorderType:(HNHBorderType)borderType {
   if(_borderType != borderType) {
     _borderType = borderType;
+    [self setNeedsDisplay:YES];
+  }
+}
+
+- (void)setActiveGradient:(NSGradient *)activeGradient {
+  if(_activeGradient != activeGradient) {
+    _activeGradient = activeGradient;
+    [self setNeedsDisplay:YES];
+  }
+}
+
+- (void)setInactiveGradient:(NSGradient *)inactiveGradient {
+  if(_inactiveGradient != inactiveGradient) {
+    _inactiveGradient = inactiveGradient;
     [self setNeedsDisplay:YES];
   }
 }

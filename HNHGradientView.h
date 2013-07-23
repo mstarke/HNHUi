@@ -37,6 +37,8 @@ typedef NS_OPTIONS(NSUInteger, HNHBorderType) {
 @interface HNHGradientView : NSView
 
 @property (nonatomic, assign) HNHBorderType borderType;
+@property (nonatomic, strong) NSGradient *activeGradient;
+@property (nonatomic, strong) NSGradient *inactiveGradient;
 
 - (id)initWithFrame:(NSRect)frame activeGradient:(NSGradient *)activeGradient inactiveGradient:(NSGradient *)inactiveGradient;
 
