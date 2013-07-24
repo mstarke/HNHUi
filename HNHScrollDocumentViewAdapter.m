@@ -44,7 +44,7 @@
   self = [super initWithCoder:aDecoder];
   if(self) {
     _actFlipped = YES;
-    //[self setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self setTranslatesAutoresizingMaskIntoConstraints:NO];
   }
   return self;
 }
@@ -59,26 +59,5 @@
     [self setNeedsDisplay:YES];
   }
 }
-
-- (void)setDocumentView:(NSView *)documentView {
-  if(_documentView != documentView) {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    _documentView = documentView;
-    //NSLog(@"%@",[_documentView constraints]);
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_updateFrame:) name:NSViewFrameDidChangeNotification object:_documentView];
-  }
-}
-
-- (void)_updateFrame:(NSNotification *)notification {
-  //  NSView *subView = [notification object];
-  //if(self == [subView superview]) {
-  //NSLog(@"subframe: %@", NSStringFromRect([subView frame]));
-    //NSRect myFrame = [self frame];
-    //myFrame.size.height = MAX([subView frame].size.height, myFrame.size.height);
-    //NSLog(@"myframe: %@", NSStringFromRect(myFrame));
-    //[self setFrameSize:[subView frame].size];
-    //}
-}
-
 
 @end

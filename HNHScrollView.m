@@ -44,6 +44,7 @@ NSString *const HNHScrollViewArchiveKeyBorderShadow = @"borderShadow";
   self = [super initWithFrame:frameRect];
   if(self) {
     [self _setupGradients];
+    _actAsFlipped = NO;
   }
   return self;
 }
@@ -52,6 +53,7 @@ NSString *const HNHScrollViewArchiveKeyBorderShadow = @"borderShadow";
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if(self) {
+    _actAsFlipped = NO;
     if([aDecoder isKindOfClass:[NSKeyedArchiver class]]) {
       _borderShadow = [aDecoder decodeObjectForKey:HNHScrollViewArchiveKeyBorderShadow];
       _lineGradient = [aDecoder decodeObjectForKey:HNHScrollViewArchiveKeyLineGradient];
@@ -73,6 +75,10 @@ NSString *const HNHScrollViewArchiveKeyBorderShadow = @"borderShadow";
   }
 }
 
+- (BOOL)isFlipped {
+  return _actAsFlipped;
+}
+
 - (void)reflectScrolledClipView:(NSClipView *)cView {
   [super reflectScrolledClipView:cView];
   
@@ -83,6 +89,12 @@ NSString *const HNHScrollViewArchiveKeyBorderShadow = @"borderShadow";
   BOOL oldBottom = _bottomClipped;
   _topClipped = NSMinY(visibleRect) > 0;
   _bottomClipped = NSMaxY(documentRect) > NSMaxY(visibleRect);
+  
+  if([[self documentView] isFlipped]) {
+    BOOL tmp = _topClipped;
+    _topClipped = _bottomClipped;
+    _bottomClipped = tmp;
+  }
   
   if(_topClipped != oldTop || _bottomClipped != oldBottom) {
     [self setNeedsDisplay:YES];

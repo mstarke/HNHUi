@@ -26,11 +26,10 @@
 #import <AppKit/AppKit.h>
 
 /*
- Adapter View to use Autolayout inside of NSScrollView
+ Adapter View to use custom Views in ScrollViews - they need to be flipped
  */
 @interface HNHScrollDocumentViewAdapter : NSView
 
 @property (assign,nonatomic) BOOL actFlipped;
-@property (weak,nonatomic) IBOutlet NSView *documentView;
 
 @end

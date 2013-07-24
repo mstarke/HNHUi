@@ -33,4 +33,6 @@
   NSShadow *_borderShadow;
 }
 
+@property (assign) BOOL actAsFlipped;
+
 @end
