@@ -72,8 +72,9 @@
   CGFloat value = 0.0;
   
   if([controlView respondsToSelector:@selector(doubleValue)]) {
-    
     value = ([(id)controlView doubleValue] - [self minValue])/ ([self maxValue] - [self minValue]);
+    /* Clamp the value */
+    value = MAX(0.0, MIN(1.0, value) );
   }
   
   /* calcualte outline rect */
@@ -99,7 +100,7 @@
    */
   [_backgroundGradient drawInBezierPath:outlinePath angle:90];
   if(value > 0.0) {
-    NSRect pillRect = NSInsetRect(outlineRect, 2, 2);
+    NSRect pillRect = outlineRect; // NSInsetRect(outlineRect, 2, 2);
     pillRect.size.width *= value;
     NSBezierPath *pillPath = [NSBezierPath bezierPathWithRoundedRect:pillRect xRadius:OUTER_RADIUS-1 yRadius:OUTER_RADIUS-1];
     [NORMAL_STROKE_COLOR setStroke];

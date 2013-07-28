@@ -8,7 +8,7 @@
 
 #import <AppKit/AppKit.h>
 
-@interface HNHRoundendTextFieldCellHelper : NSObject
+@interface HNHRoundedTextFieldCellHelper : NSObject
 
 + (void)drawWithFrame:(NSRect)cellFrame enabled:(BOOL)isEnabled withHighlight:(BOOL)highlight;
 + (NSBezierPath *)bezelpathForRect:(NSRect)aRect withHightlight:(BOOL)highlight;

@@ -34,5 +34,6 @@
 }
 
 @property (assign) BOOL actAsFlipped;
-
+@property (assign) BOOL showBottomShadow;
+@property (assign) BOOL showTopShadow;
 @end

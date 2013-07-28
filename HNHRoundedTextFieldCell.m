@@ -24,7 +24,7 @@
 //
 
 #import "HNHRoundedTextFieldCell.h"
-#import "HNHRoundendTextFieldCellHelper.h"
+#import "HNHRoundedTextFieldCellHelper.h"
 
 #if ! __has_feature(objc_arc)
 #warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
@@ -34,13 +34,13 @@
 @implementation HNHRoundedTextFieldCell
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
-  [HNHRoundendTextFieldCellHelper drawWithFrame:cellFrame enabled:[self isEnabled] withHighlight:_drawHighlight];
+  [HNHRoundedTextFieldCellHelper drawWithFrame:cellFrame enabled:[self isEnabled] withHighlight:_drawHighlight];
   [self drawInteriorWithFrame:cellFrame inView:controlView];
 }
 
 /* Set the focusRing to the bezel shape */
 - (void)drawFocusRingMaskWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
-  [[HNHRoundendTextFieldCellHelper bezelpathForRect:cellFrame withHightlight:_drawHighlight] fill];
+  [[HNHRoundedTextFieldCellHelper bezelpathForRect:cellFrame withHightlight:_drawHighlight] fill];
 }
 
 /* We need to pass NO otherwise the roundend corners get rendering artifacts */

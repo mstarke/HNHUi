@@ -45,6 +45,8 @@ NSString *const HNHScrollViewArchiveKeyBorderShadow = @"borderShadow";
   if(self) {
     [self _setupGradients];
     _actAsFlipped = NO;
+    _showBottomShadow = YES;
+    _showTopShadow = YES;
   }
   return self;
 }
@@ -54,6 +56,8 @@ NSString *const HNHScrollViewArchiveKeyBorderShadow = @"borderShadow";
   self = [super initWithCoder:aDecoder];
   if(self) {
     _actAsFlipped = NO;
+    _showBottomShadow = YES;
+    _showTopShadow = YES;
     if([aDecoder isKindOfClass:[NSKeyedArchiver class]]) {
       _borderShadow = [aDecoder decodeObjectForKey:HNHScrollViewArchiveKeyBorderShadow];
       _lineGradient = [aDecoder decodeObjectForKey:HNHScrollViewArchiveKeyLineGradient];
@@ -104,12 +108,15 @@ NSString *const HNHScrollViewArchiveKeyBorderShadow = @"borderShadow";
 - (void)drawRect:(NSRect)dirtyRect {
   NSRect bounds = [self bounds];
   BOOL showShadow = NO;
-  if(_bottomClipped) {
+  BOOL flipped = [[self documentView] isFlipped];
+  BOOL drawTop = _topClipped && ( flipped ? _showBottomShadow : _showTopShadow );
+  BOOL drawBottom = _bottomClipped && ( flipped ? _showTopShadow : _showBottomShadow );
+  if( drawBottom ) {
     NSRect bottomLine = NSMakeRect(0, NSMaxY(bounds) - 1, NSWidth(bounds), 1);
     [_lineGradient drawInRect:bottomLine angle:0];
     showShadow = YES;
   }
-  if(_topClipped) {
+  if( drawTop ) {
     NSRect topLine = NSMakeRect(0, 0, NSWidth(bounds), 1);
     [_lineGradient drawInRect:topLine angle:0];
     showShadow = YES;
@@ -118,11 +125,11 @@ NSString *const HNHScrollViewArchiveKeyBorderShadow = @"borderShadow";
     [NSGraphicsContext saveGraphicsState];
     [_borderShadow set];
     [[NSColor purpleColor] setFill];
-    if(_topClipped) {
+    if(drawTop) {
       NSBezierPath *oval = [NSBezierPath bezierPathWithOvalInRect:NSMakeRect(0, -10, NSWidth(bounds), 10)];
       [oval fill];
     }
-    if(_bottomClipped) {
+    if(drawBottom) {
       NSBezierPath *oval = [NSBezierPath bezierPathWithOvalInRect:NSMakeRect(0, NSMaxY(bounds), NSWidth(bounds), 10)];
       [oval fill];
     }

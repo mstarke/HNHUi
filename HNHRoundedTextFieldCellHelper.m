@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
 
-#import "HNHRoundendTextFieldCellHelper.h"
+#import "HNHRoundedTextFieldCellHelper.h"
 
 #if ! __has_feature(objc_arc)
 #warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
@@ -14,7 +14,7 @@
 
 #define CORNER_RADIUS 4.0
 
-@implementation HNHRoundendTextFieldCellHelper
+@implementation HNHRoundedTextFieldCellHelper
 
 + (void)drawWithFrame:(NSRect)cellFrame enabled:(BOOL)isEnabled withHighlight:(BOOL)highlight {
   NSBezierPath *strokePath = [self bezelpathForRect:cellFrame withHightlight:highlight];

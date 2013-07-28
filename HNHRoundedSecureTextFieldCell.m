@@ -24,7 +24,7 @@
 //
 
 #import "HNHRoundedSecureTextFieldCell.h"
-#import "HNHRoundendTextFieldCellHelper.h"
+#import "HNHRoundedTextFieldCellHelper.h"
 
 #import <AppKit/NSTextFieldCell.h>
 
@@ -80,7 +80,7 @@
 }
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
-  [HNHRoundendTextFieldCellHelper drawWithFrame:cellFrame enabled:[self isEnabled] withHighlight:_drawHighlight];
+  [HNHRoundedTextFieldCellHelper drawWithFrame:cellFrame enabled:[self isEnabled] withHighlight:_drawHighlight];
   [self drawInteriorWithFrame:cellFrame inView:controlView];
 }
 
@@ -96,7 +96,7 @@
 
 /* Set the focusRing to the bezel shape */
 - (void)drawFocusRingMaskWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
-  [[HNHRoundendTextFieldCellHelper bezelpathForRect:cellFrame withHightlight:_drawHighlight] fill];
+  [[HNHRoundedTextFieldCellHelper bezelpathForRect:cellFrame withHightlight:_drawHighlight] fill];
 }
 
 /* We need to pass NO otherwise the roundend corners get rendering artifacts */
