@@ -38,8 +38,17 @@
 #define NORMAL_TOP_COLOR [NSColor colorWithCalibratedRed:0.32 green:0.64 blue:0.01 alpha:1]
 #define NORMAL_MID_COLOR [NSColor colorWithCalibratedRed:0.42 green:0.82 blue:0.02 alpha:1]
 #define NORMAL_BOTTOM_COLOR [NSColor colorWithCalibratedRed:0.25 green:0.5 blue:0.02 alpha:1]
-
 #define NORMAL_STROKE_COLOR [NSColor colorWithCalibratedRed:42.0/255.0 green:100.0/255.0 blue:2.0/255.0 alpha:1]
+
+#define WARNING_TOP_COLOR [NSColor colorWithCalibratedRed:224.0/255.0 green:180.0/255.0 blue:26.0/255.0 alpha:1]
+#define WARNING_MID_COLOR [NSColor colorWithCalibratedRed:238.0/255.0 green:230.0/255.0 blue:21.0/255.0 alpha:1]
+#define WARNING_BOTTOM_COLOR [NSColor colorWithCalibratedRed:231.0/255.0 green:157.0/255.0 blue:13.0/255.0 alpha:1]
+#define WARNING_STROKE_COLOR [NSColor colorWithCalibratedRed:163.0/255.0 green:118.0/255.0 blue:11.0/255.0 alpha:1]
+
+#define CRITICAL_TOP_COLOR [NSColor colorWithCalibratedRed:1.0 green:66.0/255.0 blue:0.0 alpha:1]
+#define CRITICAL_MID_COLOR [NSColor colorWithCalibratedRed:1.0 green:0.82 blue:102.0/255.0 alpha:1]
+#define CRITICAL_BOTTOM_COLOR [NSColor colorWithCalibratedRed:172.0/255.0 green:48.0/255.0 blue:14.0/255.0 alpha:1]
+#define CRITICAL_STROKE_COLOR [NSColor colorWithCalibratedRed:100.0/255.0 green:62.0/255.0 blue:2.0/255.0 alpha:1]
 
 @interface HNHLevelIndicatorCell () {
 @private
@@ -58,6 +67,8 @@
   if(self) {
     _backgroundGradient = [[NSGradient alloc] initWithColors:@[ BACKGROUND_BOTTOM_COLOR, BACKGROUND_TOP_COLOR] ];
     _normalGradient = [[NSGradient alloc] initWithColorsAndLocations:NORMAL_BOTTOM_COLOR, 0.0, NORMAL_MID_COLOR, GRADIENT_STOP, NORMAL_TOP_COLOR, 1.0, nil];
+    _warningGradient = [[NSGradient alloc] initWithColorsAndLocations:WARNING_BOTTOM_COLOR, 0.0, WARNING_MID_COLOR, GRADIENT_STOP, WARNING_TOP_COLOR, 1.0, nil];
+    _criticalGradient = [[NSGradient alloc] initWithColorsAndLocations:CRITICAL_BOTTOM_COLOR, 0.0, CRITICAL_MID_COLOR, GRADIENT_STOP, CRITICAL_TOP_COLOR, 1.0, nil];;
   
   }
   return self;
@@ -98,13 +109,25 @@
   /*
    Draw inside
    */
+  NSGradient *fillGradient = _normalGradient;
+  NSColor *strokeColor = NORMAL_STROKE_COLOR;
+  if([self doubleValue] < [self criticalValue]) {
+    fillGradient = _criticalGradient;
+    strokeColor = CRITICAL_STROKE_COLOR;
+  }
+  else if([self doubleValue] < [self warningValue]) {
+    fillGradient = _warningGradient;
+    strokeColor = WARNING_STROKE_COLOR;
+  }
+  
+  
   [_backgroundGradient drawInBezierPath:outlinePath angle:90];
   if(value > 0.0) {
     NSRect pillRect = outlineRect; // NSInsetRect(outlineRect, 2, 2);
     pillRect.size.width *= value;
     NSBezierPath *pillPath = [NSBezierPath bezierPathWithRoundedRect:pillRect xRadius:OUTER_RADIUS-1 yRadius:OUTER_RADIUS-1];
-    [NORMAL_STROKE_COLOR setStroke];
-    [_normalGradient drawInBezierPath:pillPath angle:90];
+    [strokeColor setStroke];
+    [fillGradient drawInBezierPath:pillPath angle:90];
     [pillPath stroke];
   }
 }

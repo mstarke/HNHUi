@@ -10,17 +10,25 @@
 
 @implementation HNHContextButtonSegmentedCell
 
-- (SEL)action {
-  NSView *control = [self controlView];
-  [NSEvent mouseLocation];
-  NSPoint location = [control convertPointFromBacking:[NSEvent mouseLocation]];
-  NSLog(@"%@", NSStringFromPoint(location));
-  //  if ([self tagForSegment:[self selectedSegment]] == -1) {
-//    return nil;
+- (BOOL)startTrackingAt:(NSPoint)startPoint inView:(NSView *)controlView {
+//  NSInteger segment = [self selectedSegment];
+//  if(segment == 1) {
+//        NSEvent *event = [NSEvent mouseEventWithType:NSLeftMouseUp
+//                                            location:startPoint
+//                                       modifierFlags:0
+//                                           timestamp:[NSDate timeIntervalSinceReferenceDate]
+//                                        windowNumber:[[controlView window] windowNumber]
+//                                             context:[[controlView window] graphicsContext]
+//                                         eventNumber:0
+//                                          clickCount:1
+//                                            pressure:0];
+//    [NSMenu popUpContextMenu:[self menuForSegment:1] withEvent:event forView:controlView];
+//    return YES;
 //  }
-//  else {
-    return [super action];
-  //}
+  return [super startTrackingAt:startPoint inView:controlView];
+}
+- (void)stopTracking:(NSPoint)lastPoint at:(NSPoint)stopPoint inView:(NSView *)controlView mouseIsUp:(BOOL)flag {
+  [super stopTracking:lastPoint at:stopPoint inView:controlView mouseIsUp:flag];
 }
 
 @end

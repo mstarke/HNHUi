@@ -1,5 +1,5 @@
 //
-//  HNHContextButtonSegmentedCell.h
+//  HNHColorWell.h
 //  MacPass
 //
 //  Created by Michael Starke on 30.07.13.
@@ -8,6 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface HNHContextButtonSegmentedCell : NSSegmentedCell
-@property (nonatomic, readonly) NSInteger clickedSegment;
+@interface HNHColorWell : NSColorWell
+
 @end
