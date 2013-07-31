@@ -23,8 +23,6 @@
 //  THE SOFTWARE.
 //
 
-
-
 #import "HNHScrollView.h"
 
 #if ! __has_feature(objc_arc)

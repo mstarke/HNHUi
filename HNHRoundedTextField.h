@@ -25,6 +25,18 @@
 
 #import <AppKit/AppKit.h>
 
+typedef void (^copyAction)(NSTextField *);
+/**
+ *	A Textfield that has a rounded apearance
+ *  Furthermore it has the abilty to copy the text
+ *  If it's nonselectable and non-editable
+ *  It dispalys a button inside the cell to inform the user,
+ *  that the content can be copied via click
+ */
 @interface HNHRoundedTextField : NSTextField
+
+@property (nonatomic, readonly) BOOL isMouseOver;
+@property (nonatomic, readonly) BOOL isMouseDown;
+@property (nonatomic, copy) copyAction copyActionBlock;
 
 @end

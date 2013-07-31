@@ -25,8 +25,9 @@
 
 #import "HNHRoundedSecureTextFieldCell.h"
 #import "HNHRoundedTextFieldCellHelper.h"
+#import "HNHRoundedSecureTextField.h"
 
-#import <AppKit/NSTextFieldCell.h>
+#import <AppKit/AppKit.h>
 
 #if ! __has_feature(objc_arc)
 #warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
@@ -35,15 +36,15 @@
 #define BUTTON_WIDTH 25
 
 @interface HNHRoundedSecureTextFieldCell () {
-  NSButtonCell *_buttonCell;
+  //NSButtonCell *_buttonCell;
 }
 
 /* ButtonCell used for Rendering and handling actions */
-@property (nonatomic, strong) NSButtonCell *buttonCell;
+//@property (nonatomic, strong) NSButtonCell *buttonCell;
 
-- (NSRect)_buttonCellForFrame:(NSRect)cellFrame;
-- (NSRect)_textCellForFrame:(NSRect)cellFrame;
-- (NSButtonCell *)_allocButtonCell;
+//- (NSRect)_buttonCellForFrame:(NSRect)cellFrame;
+//- (NSRect)_textCellForFrame:(NSRect)cellFrame;
+//- (NSButtonCell *)_allocButtonCell;
 
 @end
 
@@ -53,7 +54,7 @@
   self = [super init];
   if(self) {
     _drawHighlight = NO;
-    _buttonCell = [self _allocButtonCell];
+    //_buttonCell = [self _allocButtonCell];
   }
   return self;
 }
@@ -61,38 +62,53 @@
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if(self) {
-    if([aDecoder isKindOfClass:[NSKeyedUnarchiver class]]) {
-      _buttonCell = [aDecoder decodeObjectForKey:@"buttonCell"];
-    }
-    if(!_buttonCell) {
-      _buttonCell = [self _allocButtonCell];
-    }
+//    if([aDecoder isKindOfClass:[NSKeyedUnarchiver class]]) {
+//      _buttonCell = [aDecoder decodeObjectForKey:@"buttonCell"];
+//    }
+//    if(!_buttonCell) {
+//      _buttonCell = [self _allocButtonCell];
+//    }
     _drawHighlight = NO;
   }
   return self;
 }
 
-- (void)encodeWithCoder:(NSCoder *)aCoder {
-  [super encodeWithCoder:aCoder];
-  if([aCoder isKindOfClass:[NSKeyedUnarchiver class]]) {
-    [aCoder encodeObject:_buttonCell forKey:@"buttonCell"];
-  }
-}
+//- (void)encodeWithCoder:(NSCoder *)aCoder {
+//  [super encodeWithCoder:aCoder];
+//  if([aCoder isKindOfClass:[NSKeyedUnarchiver class]]) {
+//    [aCoder encodeObject:_buttonCell forKey:@"buttonCell"];
+//  }
+//}
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
   [HNHRoundedTextFieldCellHelper drawWithFrame:cellFrame enabled:[self isEnabled] withHighlight:_drawHighlight];
   [self drawInteriorWithFrame:cellFrame inView:controlView];
 }
 
-//- (void)drawInteriorWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
-//  if([controlView respondsToSelector:@selector(currentEditor)]) {
-//    if(![(id)controlView currentEditor]) {
-//      [self.buttonCell setEnabled:[self isEnabled]];
-//      [self.buttonCell drawWithFrame:[self _buttonCellForFrame:cellFrame] inView:controlView];
-//    }
-//  }
-//  [super drawInteriorWithFrame:[self _textCellForFrame:cellFrame] inView:controlView];
-//}
+
+
+- (void)drawInteriorWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
+  [super drawInteriorWithFrame:cellFrame inView:controlView];
+  if([controlView isKindOfClass:[HNHRoundedSecureTextField class]]) {
+    HNHRoundedSecureTextField *textField = (HNHRoundedSecureTextField *)controlView;
+    if(![textField currentEditor] && textField.isMouseOver) {
+      [HNHRoundedTextFieldCellHelper drawCopyButtonWithFrame:cellFrame mouseDown:textField.isMouseDown controlView:controlView];
+    }
+  }
+  /*
+   Code that was used to draw the Eye.
+   Possible to use this bit again to fire
+   the toggle password display
+   
+  if([controlView respondsToSelector:@selector(currentEditor)]) {
+    if(![(id)controlView currentEditor]) {
+      [self.buttonCell setEnabled:[self isEnabled]];
+      [self.buttonCell drawWithFrame:[self _buttonCellForFrame:cellFrame] inView:controlView];
+    }
+  }
+  [super drawInteriorWithFrame:[self _textCellForFrame:cellFrame] inView:controlView];
+   */
+}
 
 /* Set the focusRing to the bezel shape */
 - (void)drawFocusRingMaskWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
@@ -105,28 +121,8 @@
 }
 
 #pragma mark -
-#pragma mark TODO
-
-//- (NSUInteger)hitTestForEvent:(NSEvent *)event inRect:(NSRect)cellFrame ofView:(NSView *)controlView {
-//  NSPoint point = [controlView convertPoint:[event locationInWindow] fromView:nil];
-//  NSRect textRect = [self _textCellForFrame:cellFrame];
-//  NSRect buttonRect = [self _buttonCellForFrame:cellFrame];
-//  if( NSMouseInRect(point, textRect, [controlView isFlipped])) {
-//    return  NSCellHitContentArea | NSCellHitEditableTextArea;
-//  }
-//  if( NSMouseInRect(point, buttonRect, [controlView isFlipped])) {
-//    return NSCellHitContentArea | NSCellHitTrackableArea;
-//  }
-//  return NSCellHitNone;
-//}
-//
-//- (BOOL)startTrackingAt:(NSPoint)startPoint inView:(NSView *)controlView {
-//  return [super startTrackingAt:startPoint inView:controlView];
-//}
-
-
-#pragma mark -
 #pragma mark Helper
+/*
 - (NSButtonCell *)_allocButtonCell NS_RETURNS_RETAINED {
   NSButtonCell *buttonCell = [[NSButtonCell alloc] init];
   [buttonCell setImage:[NSImage imageNamed:NSImageNameQuickLookTemplate ]];
@@ -152,5 +148,6 @@
   NSDivideRect(cellFrame, &buttonFrame, &textFrame, BUTTON_WIDTH, NSMaxXEdge);
   return textFrame;
 }
+*/
 
 @end

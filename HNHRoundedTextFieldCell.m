@@ -25,6 +25,7 @@
 
 #import "HNHRoundedTextFieldCell.h"
 #import "HNHRoundedTextFieldCellHelper.h"
+#import "HNHRoundedTextField.h"
 
 #if ! __has_feature(objc_arc)
 #warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
@@ -38,6 +39,16 @@
   [self drawInteriorWithFrame:cellFrame inView:controlView];
 }
 
+- (void)drawInteriorWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
+  [super drawInteriorWithFrame:cellFrame inView:controlView];
+  if([controlView isKindOfClass:[HNHRoundedTextField class]]) {
+    HNHRoundedTextField *textField = (HNHRoundedTextField *)controlView;
+    if(![textField currentEditor] && textField.isMouseOver) {
+      [HNHRoundedTextFieldCellHelper drawCopyButtonWithFrame:cellFrame mouseDown:textField.isMouseDown controlView:controlView];
+    }
+  }
+}
+
 /* Set the focusRing to the bezel shape */
 - (void)drawFocusRingMaskWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
   [[HNHRoundedTextFieldCellHelper bezelpathForRect:cellFrame withHightlight:_drawHighlight] fill];
@@ -47,5 +58,6 @@
 - (BOOL)drawsBackground {
   return NO;
 }
+
 
 @end

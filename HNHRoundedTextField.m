@@ -30,6 +30,13 @@
 #warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
 #endif
 
+
+@interface HNHRoundedTextField () {
+@private
+  NSTrackingArea *_trackingArea;
+}
+@end
+
 @implementation HNHRoundedTextField
 
 + (Class)cellClass {
@@ -39,6 +46,7 @@
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if(self) {
+    _isMouseOver = NO;
     NSMutableData *data = [[NSMutableData alloc] init];
     NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
     [[self cell] encodeWithCoder:archiver];
@@ -52,6 +60,61 @@
     [self setNeedsDisplay:YES];
   }
   return self;
+}
+
+- (void)setEditable:(BOOL)flag {
+  [super setEditable:flag];
+  [self _updateTrackingArea];
+}
+
+- (void)mouseEntered:(NSEvent *)theEvent {
+  _isMouseOver = YES;
+  [self setNeedsDisplay];
+}
+
+- (void)mouseExited:(NSEvent *)theEvent {
+  _isMouseOver = NO;
+  _isMouseDown = NO;
+  [self setNeedsDisplay];
+}
+
+- (void)mouseDown:(NSEvent *)theEvent {
+  _isMouseDown = YES;
+  [self setNeedsDisplay];
+}
+
+- (void)mouseUp:(NSEvent *)theEvent {
+  _isMouseDown = NO;
+  [self setNeedsDisplay];
+  if(self.copyActionBlock) {
+    self.copyActionBlock(self);
+  }
+}
+
+- (void)viewWillMoveToWindow:(NSWindow *)newWindow {
+  if(_trackingArea) {
+    [self removeTrackingArea:_trackingArea];
+  }
+}
+
+- (void)viewDidMoveToWindow {
+  [self _updateTrackingArea];
+}
+
+- (void)setFrame:(NSRect)frameRect {
+  [super setFrame:frameRect];
+  [self _updateTrackingArea];
+}
+
+- (void)_updateTrackingArea {
+  if(_trackingArea) {
+    [self removeTrackingArea:_trackingArea];
+    _trackingArea = nil;
+  }
+  if(![self isEditable] && ![self isSelectable]) {
+    _trackingArea = [[NSTrackingArea alloc] initWithRect:NSZeroRect options:NSTrackingMouseEnteredAndExited|NSTrackingInVisibleRect|NSTrackingActiveAlways owner:self userInfo:nil];
+    [self addTrackingArea:_trackingArea];
+  }
 }
 
 @end
