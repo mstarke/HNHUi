@@ -27,6 +27,21 @@
 
 @implementation HNHColorWell
 
+static BOOL oldAlphSate = NO;
+
+- (void)activate:(BOOL)exclusive {
+  NSColorPanel *panel = [NSColorPanel sharedColorPanel];
+  oldAlphSate = [panel showsAlpha];
+  [panel setShowsAlpha:YES];
+  [super activate:exclusive];
+}
+
+- (void)deactivate {
+  NSColorPanel *panel = [NSColorPanel sharedColorPanel];;
+  [super deactivate];
+  [panel setShowsAlpha:oldAlphSate];
+}
+
 //- (void)drawRect:(NSRect)dirtyRect {
 //  [[NSColor blueColor] set];
 //  NSRectFill([self frame]);
