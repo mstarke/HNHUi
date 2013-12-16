@@ -112,7 +112,10 @@
     _trackingArea = nil;
   }
   if(![self isEditable] && ![self isSelectable]) {
-    _trackingArea = [[NSTrackingArea alloc] initWithRect:NSZeroRect options:NSTrackingMouseEnteredAndExited|NSTrackingInVisibleRect|NSTrackingActiveAlways owner:self userInfo:nil];
+    _trackingArea = [[NSTrackingArea alloc] initWithRect:NSZeroRect
+                                                 options:NSTrackingMouseEnteredAndExited|NSTrackingInVisibleRect|NSTrackingActiveAlways
+                                                   owner:self
+                                                userInfo:nil];
     [self addTrackingArea:_trackingArea];
   }
 }

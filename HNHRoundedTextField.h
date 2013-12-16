@@ -24,8 +24,6 @@
 //
 
 #import <AppKit/AppKit.h>
-
-typedef void (^copyAction)(NSTextField *);
 /**
  *	A Textfield that has a rounded apearance
  *  Furthermore it has the abilty to copy the text
@@ -37,6 +35,6 @@ typedef void (^copyAction)(NSTextField *);
 
 @property (nonatomic, readonly) BOOL isMouseOver;
 @property (nonatomic, readonly) BOOL isMouseDown;
-@property (nonatomic, copy) copyAction copyActionBlock;
+@property (nonatomic, copy) void (^copyActionBlock)(NSTextField *);
 
 @end
