@@ -28,5 +28,6 @@ THE SOFTWARE.
 
 See Licenses for all license files.
 
-HNHBadgeTextFieldCell is extracted Badge drawing form PXSourceList, Copyright © 2011, Alex Rozanski. All rights reserved.
-HNHRoundedSecureTextField is using part of KSPasswordField, Copyright (c) 2012 Karelia Software. All rights reserved.
+HNHBadgeTextFieldCell is extracted Badge drawing form PXSourceList, Copyright (c) 2011, Alex Rozanski. Licensed under BSD. All rights reserved.
+HNHRoundedSecureTextField is using part of KSPasswordField, Copyright (c) 2012 Karelia Software. Licensed under BSD. All rights reserved.
+NSWindow+Shake is extracted from Poison, Copyright (c) Sebastian Bergstein. Licensed under GPLv3. All rights reseverd
