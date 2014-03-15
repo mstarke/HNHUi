@@ -69,15 +69,19 @@
   NSGradient *gradient = self.isRenderedActive ? self.activeGradient : self.inactiveGradient;
   [gradient drawInRect:bounds angle:90];
 
+  NSRect borderTopRect = NSMakeRect(NSMinX(bounds), NSMaxY(bounds) - 1, NSWidth(bounds), 1);
   if(self.borderType & HNHBorderTop) {
-    /* Border at top nees border and highlight */
     [[NSColor grayColor] set];
-    NSRect strokeRect = NSMakeRect(NSMinX(bounds), NSMaxY(bounds) - 1, NSWidth(bounds), 1);
-    NSRectFill(strokeRect);
-    [[NSColor colorWithCalibratedWhite:1 alpha:1] set];
-    NSRectFill(NSOffsetRect(strokeRect, 0, -1));
-    
+    NSRectFill(borderTopRect);
+    if(self.borderType & HNHBorderHighlight) {
+      borderTopRect = NSOffsetRect(borderTopRect, 0, -1);
+    }
   }
+  if(self.borderType & HNHBorderHighlight) {
+    [[NSColor colorWithCalibratedWhite:1 alpha:1] set];
+    NSRectFill(borderTopRect);
+  }
+
   if(self.borderType & HNHBorderBottom) {
     /* Border at bottom needs no highlight */
     [[NSColor grayColor] set];

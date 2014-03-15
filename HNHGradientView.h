@@ -29,7 +29,9 @@
 typedef NS_OPTIONS(NSUInteger, HNHBorderType) {
   HNHNoBorder     = 0,
   HNHBorderTop    = ( 1<<0 ),
-  HNHBorderBottom = ( 1<<1 )
+  HNHBorderBottom = ( 1<<1 ),
+  HNHBorderHighlight = (1<<2), // Only used with HNHBordrTop, otherwise ignored
+  HNHBorderTopAndBottom = HNHBorderTop | HNHBorderBottom
 };
 /*
  A view just displaying a gradient
