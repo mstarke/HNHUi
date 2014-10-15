@@ -126,12 +126,7 @@
 	NSSize stringSize = [badgeAttrString size];
   
 	//Calculate the width needed to display the text or the minimum width if it's smaller
-	CGFloat width = stringSize.width+(2*BADGE_MARGIN);
-  
-	if(width<MIN_BADGE_WIDTH) {
-		width = MIN_BADGE_WIDTH;
-	}
-    
+	CGFloat width = MAX(stringSize.width+(2*BADGE_MARGIN), MIN_BADGE_WIDTH);
 	return NSMakeSize(width, BADGE_HEIGHT);
 }
 
