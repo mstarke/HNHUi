@@ -29,9 +29,9 @@
 #warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
 #endif
 
-@interface HNHBadgedTextFieldCell () {
-  NSShadow *_badgeShadow;
-}
+@interface HNHBadgedTextFieldCell ()
+
+@property (strong) NSShadow *badgeShadow;
 
 - (void)_drawBadgeWithCount:(NSInteger)count inFrame:(NSRect)badgeFrame;
 - (NSSize)_sizeOfBadgeForCount:(NSInteger)count;
@@ -44,9 +44,9 @@
   self = [super initWithCoder:aDecoder];
   if(self) {
     _badgeShadow = [[NSShadow alloc] init];
-    [_badgeShadow setShadowColor:[NSColor whiteColor]];
-    [_badgeShadow setShadowOffset:NSMakeSize(0, -1)];
-    [_badgeShadow setShadowBlurRadius:0];
+    _badgeShadow.shadowColor = [NSColor whiteColor];
+    _badgeShadow.shadowOffset = NSMakeSize(0, -1);
+    _badgeShadow.shadowBlurRadius = 0;
   }
   return self;
 }
@@ -65,8 +65,8 @@
     NSSize badgeSize = [self _sizeOfBadgeForCount:count];
     NSRect badgeFrame = NSMakeRect(NSMaxX(cellFrame) - badgeSize.width - ROW_RIGHT_MARGIN,
                                    NSMidY(cellFrame) - floor(badgeSize.height/2.0),
-                                   badgeSize.width + _badgeShadow.shadowOffset.width,
-                                   badgeSize.height + _badgeShadow.shadowOffset.height);
+                                   badgeSize.width + self.badgeShadow.shadowOffset.width,
+                                   badgeSize.height + self.badgeShadow.shadowOffset.height);
     
     [self _drawBadgeWithCount:count inFrame:badgeFrame];
     NSRect clippedInterior = NSMakeRect(NSMinX(cellFrame), NSMinY(cellFrame), NSWidth(cellFrame) - NSWidth(badgeFrame), NSHeight(cellFrame));
@@ -83,8 +83,8 @@
                                                             yRadius:(BADGE_HEIGHT/2.0)];
   
 	//Get window and control state to determine colours used
-	BOOL isVisible = [[NSApp mainWindow] isVisible];
-  BOOL isSelected = ([self backgroundStyle] != NSBackgroundStyleLight && [self backgroundStyle] != NSBackgroundStyleLowered);
+  BOOL isVisible = [NSApp mainWindow].isVisible;
+  BOOL isSelected = (self.backgroundStyle != NSBackgroundStyleLight && self.backgroundStyle != NSBackgroundStyleLowered);
 	//Set the attributes based on the row state
   
 	NSColor *backgroundColor;
@@ -101,7 +101,7 @@
   
   if(isSelected) {
     [NSGraphicsContext saveGraphicsState]; // Only save/restore if needed
-    [_badgeShadow set];
+    [self.badgeShadow set];
   }
   [backgroundColor set];
 	[badgePath fill];
@@ -111,7 +111,7 @@
 	//Draw the badge text
 	NSAttributedString *badgeAttrString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%ld", (long)count]
                                                                         attributes:attributes];
-	NSSize stringSize = [badgeAttrString size];
+  NSSize stringSize = badgeAttrString.size;
 	NSPoint badgeTextPoint = NSMakePoint(NSMidX(badgeFrame)-(stringSize.width/2.0),		//Center in the badge frame
                                        NSMidY(badgeFrame)-(stringSize.height/2.0));	//Center in the badge frame
 	[badgeAttrString drawAtPoint:badgeTextPoint];
@@ -121,7 +121,7 @@
 	NSAttributedString *badgeAttrString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%ld", (long)count]
                                                                         attributes:@{NSFontAttributeName: BADGE_FONT}];
   
-	NSSize stringSize = [badgeAttrString size];
+	NSSize stringSize = badgeAttrString.size;
   
 	//Calculate the width needed to display the text or the minimum width if it's smaller
 	CGFloat width = MAX(stringSize.width+(2*BADGE_MARGIN), MIN_BADGE_WIDTH);
