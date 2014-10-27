@@ -77,8 +77,7 @@
   }
 }
 
-- (void)_drawBadgeWithCount:(NSInteger)count inFrame:(NSRect)badgeFrame;
-{
+- (void)_drawBadgeWithCount:(NSInteger)count inFrame:(NSRect)badgeFrame; {
 	NSBezierPath *badgePath = [NSBezierPath bezierPathWithRoundedRect:badgeFrame
                                                             xRadius:(BADGE_HEIGHT/2.0)
                                                             yRadius:(BADGE_HEIGHT/2.0)];
@@ -118,8 +117,7 @@
 	[badgeAttrString drawAtPoint:badgeTextPoint];
 }
 
-- (NSSize)_sizeOfBadgeForCount:(NSInteger)count
-{
+- (NSSize)_sizeOfBadgeForCount:(NSInteger)count {
 	NSAttributedString *badgeAttrString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%ld", (long)count]
                                                                         attributes:@{NSFontAttributeName: BADGE_FONT}];
   
