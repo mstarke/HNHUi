@@ -119,6 +119,8 @@ NSString *const HNHScrollViewArchiveKeyBorderShadow = @"borderShadow";
     [_lineGradient drawInRect:topLine angle:0];
     showShadow = YES;
   }
+  BOOL isRuningOnYosemiteOrNewer = floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_9;
+  showShadow &= !isRuningOnYosemiteOrNewer;
   if(showShadow) {
     [NSGraphicsContext saveGraphicsState];
     [_borderShadow set];
