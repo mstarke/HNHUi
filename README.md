@@ -4,7 +4,7 @@ Reusable Cocoa UI Components
 
 ##License
 
-Copyright (c) 2013 HicknHack Software GmbH
+Copyright (c) 2013-2014 Michael Starke, HicknHack Software GmbH
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
