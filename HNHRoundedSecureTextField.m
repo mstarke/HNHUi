@@ -73,6 +73,9 @@
   // Rememeber current selection for restoration after the swap
   // -valueForKey: neatly gives nil if no currently selected
   BOOL isActive = (nil != [self currentEditor]);
+  if(isActive) {
+    [self.window makeFirstResponder:nil]; // move the first responder away so the editing is finished
+  }
   NSValue *selection = [[self currentEditor] valueForKey:@"selectedRange"];
   
   // Seems to me the best way to ensure all properties come along for the ride (e.g. border/editability) is to archive the existing cell
