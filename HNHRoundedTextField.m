@@ -35,6 +35,10 @@
 @private
   NSTrackingArea *_trackingArea;
 }
+@property (nonatomic) BOOL isMouseOver;
+@property (nonatomic) BOOL isMouseDown;
+@property (nonatomic, readonly) BOOL requiresTrackingArea;
+
 @end
 
 @implementation HNHRoundedTextField
@@ -46,7 +50,8 @@
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if(self) {
-    _isMouseOver = NO;
+    _mouseDown = NO;
+    _mouseOver = NO;
     NSMutableData *data = [[NSMutableData alloc] init];
     NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
     [[self cell] encodeWithCoder:archiver];
@@ -67,25 +72,48 @@
   [self _updateTrackingArea];
 }
 
+#pragma mark properties
+- (void)setMouseDown:(BOOL)mouseDown {
+  if(_mouseDown != mouseDown) {
+    _mouseDown = mouseDown;
+    self.needsDisplay = YES;
+  }
+}
+
+- (void)setMouseOver:(BOOL)mouseOver {
+  if(_mouseOver != mouseOver) {
+    _mouseOver = mouseOver;
+    self.needsDisplay = YES;
+  }
+}
+
+- (void)setCopyActionBlock:(void (^)(NSTextField *))copyActionBlock {
+  _copyActionBlock = [copyActionBlock copy];
+  [self _updateTrackingArea];
+}
+
+- (BOOL)requiresTrackingArea {
+  /* We only need to track if we got an action or are not editable */
+  return !self.isEditable && self.copyActionBlock;
+}
+
+#pragma mark mouse events
+
 - (void)mouseEntered:(NSEvent *)theEvent {
-  _isMouseOver = YES;
-  [self setNeedsDisplay];
+  self.mouseOver = YES;
 }
 
 - (void)mouseExited:(NSEvent *)theEvent {
-  _isMouseOver = NO;
-  _isMouseDown = NO;
-  [self setNeedsDisplay];
+  self.mouseDown = NO;
+  self.mouseOver = NO;
 }
 
 - (void)mouseDown:(NSEvent *)theEvent {
-  _isMouseDown = YES;
-  [self setNeedsDisplay];
+  self.mouseDown = YES;
 }
 
 - (void)mouseUp:(NSEvent *)theEvent {
-  _isMouseDown = NO;
-  [self setNeedsDisplay];
+  self.mouseDown = NO;
   if(self.copyActionBlock) {
     self.copyActionBlock(self);
   }
@@ -102,7 +130,7 @@
 }
 
 - (void)setFrame:(NSRect)frameRect {
-  [super setFrame:frameRect];
+  super.frame = frameRect;
   [self _updateTrackingArea];
 }
 
@@ -111,7 +139,7 @@
     [self removeTrackingArea:_trackingArea];
     _trackingArea = nil;
   }
-  if(![self isEditable]/* && ![self isSelectable]*/) {
+  if(self.requiresTrackingArea) {
     _trackingArea = [[NSTrackingArea alloc] initWithRect:NSZeroRect
                                                  options:NSTrackingMouseEnteredAndExited|NSTrackingInVisibleRect|NSTrackingActiveAlways
                                                    owner:self

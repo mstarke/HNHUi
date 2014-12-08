@@ -33,8 +33,8 @@
  */
 @interface HNHRoundedTextField : NSTextField
 
-@property (nonatomic, readonly) BOOL isMouseOver;
-@property (nonatomic, readonly) BOOL isMouseDown;
+@property (nonatomic, readonly, getter=isMouseOver) BOOL mouseOver;
+@property (nonatomic, readonly, getter=isMouseDown) BOOL mouseDown;
 @property (nonatomic, copy) void (^copyActionBlock)(NSTextField *);
 
 @end
