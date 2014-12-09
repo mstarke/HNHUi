@@ -76,7 +76,7 @@
   if(isActive) {
     [self.window makeFirstResponder:nil]; // move the first responder away so the editing is finished
   }
-  NSValue *selection = [[self currentEditor] valueForKey:@"selectedRange"];
+  NSRange selectionRange =  [self currentEditor].selectedRange;
   
   // Seems to me the best way to ensure all properties come along for the ride (e.g. border/editability) is to archive the existing cell
   NSMutableData *data = [[NSMutableData alloc] init];
@@ -95,7 +95,9 @@
   if(isActive) {
     [[self window] makeFirstResponder:self];
   }
-  if (selection) [[self currentEditor] setSelectedRange:[selection rangeValue]];
+  if(selectionRange.location != NSNotFound && selectionRange.length > 0) {
+    [self currentEditor].selectedRange = selectionRange;
+  }
 }
 
 - (void)_toggleCell {
