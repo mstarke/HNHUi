@@ -24,4 +24,6 @@ FOUNDATION_EXTERN BOOL HNHBoolForState(NSInteger state);
 
 FOUNDATION_EXTERN void HNHSetStateFromBool(id stateItem, BOOL isOn);
 
+FOUNDATION_EXTERN BOOL HNHIsRunningOnYosemiteOrNewer();
+
 #endif

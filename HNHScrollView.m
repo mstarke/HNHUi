@@ -24,6 +24,7 @@
 //
 
 #import "HNHScrollView.h"
+#import "HNHCommon.h"
 
 #if ! __has_feature(objc_arc)
 #warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
@@ -119,7 +120,7 @@ NSString *const HNHScrollViewArchiveKeyBorderShadow = @"borderShadow";
     [_lineGradient drawInRect:topLine angle:0];
     showShadow = YES;
   }
-  BOOL isRuningOnYosemiteOrNewer = floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_9;
+  BOOL isRuningOnYosemiteOrNewer = HNHIsRunningOnYosemiteOrNewer();
   showShadow &= !isRuningOnYosemiteOrNewer;
   if(showShadow) {
     [NSGraphicsContext saveGraphicsState];
