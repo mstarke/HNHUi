@@ -24,12 +24,15 @@
 //
 
 #import "HNHGradientView.h"
+#import "HNHCommon.h"
 
 #if ! __has_feature(objc_arc)
 #warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
 #endif
 
-@interface HNHGradientView ()
+@interface HNHGradientView () {
+  BOOL _isRunningYosemiteOrNewer;
+}
 
 @property (assign, nonatomic) BOOL isRenderedActive;
 
@@ -40,18 +43,33 @@
 @implementation HNHGradientView
 
 - (id)initWithFrame:(NSRect)frameRect {
-  NSColor *activeTop = [NSColor colorWithCalibratedWhite:0.85 alpha:1];
-  NSColor *activeBottom = [NSColor colorWithCalibratedWhite:0.7 alpha:1];
-  NSColor *inactiveTop = [NSColor colorWithCalibratedWhite:0.9 alpha:1];
-  NSColor *inactiveBottom = [NSColor colorWithCalibratedWhite:0.85 alpha:1];
-  NSGradient *activeGradient = [[NSGradient alloc] initWithColors:@[ activeBottom, activeTop ]] ;
-  NSGradient *inactiveGradient = [[NSGradient alloc] initWithColors:@[ inactiveBottom, inactiveTop ]];
+  NSColor *activeTop, *activeBottom, *inactiveTop, *inactiveBottom;
+  NSGradient *activeGradient, *inactiveGradient;
+  
+  /* As of Yosemite, we want supple gradients and lighter colors */
+  if(HNHIsRunningOnYosemiteOrNewer()) {
+    activeTop = [NSColor colorWithCalibratedWhite:0.89 alpha:1];
+    activeBottom = [NSColor colorWithCalibratedWhite:0.85 alpha:1];
+    inactiveTop = [NSColor colorWithCalibratedWhite:0.96 alpha:1];
+    inactiveBottom = [NSColor colorWithCalibratedWhite:0.96 alpha:1];
+    activeGradient = [[NSGradient alloc] initWithColors:@[ activeBottom, activeTop ]] ;
+    inactiveGradient = [[NSGradient alloc] initWithColors:@[ inactiveBottom, inactiveTop ]];
+  }
+  else {
+    activeTop = [NSColor colorWithCalibratedWhite:0.85 alpha:1];
+    activeBottom = [NSColor colorWithCalibratedWhite:0.7 alpha:1];
+    inactiveTop = [NSColor colorWithCalibratedWhite:0.9 alpha:1];
+    inactiveBottom = [NSColor colorWithCalibratedWhite:0.85 alpha:1];
+    activeGradient = [[NSGradient alloc] initWithColors:@[ activeBottom, activeTop ]] ;
+    inactiveGradient = [[NSGradient alloc] initWithColors:@[ inactiveBottom, inactiveTop ]];
+  }
   return [self initWithFrame:frameRect activeGradient:activeGradient inactiveGradient:inactiveGradient];
 }
 
 - (id)initWithFrame:(NSRect)frame activeGradient:(NSGradient *)activeGradient inactiveGradient:(NSGradient *)inactiveGradient {
   self = [super initWithFrame:frame];
   if(self) {
+    _isRunningYosemiteOrNewer = HNHIsRunningOnYosemiteOrNewer();
     _borderType = HNHNoBorder;
     _activeGradient = activeGradient;
     _inactiveGradient = inactiveGradient;
@@ -68,23 +86,33 @@
   NSRect bounds = [self bounds];
   NSGradient *gradient = self.isRenderedActive ? self.activeGradient : self.inactiveGradient;
   [gradient drawInRect:bounds angle:90];
-
+  
   NSRect borderTopRect = NSMakeRect(NSMinX(bounds), NSMaxY(bounds) - 1, NSWidth(bounds), 1);
   if(self.borderType & HNHBorderTop) {
-    [[NSColor grayColor] set];
+    if(_isRunningYosemiteOrNewer) {
+      [[NSColor colorWithCalibratedWhite:0.69 alpha:1] set];
+    }
+    else {
+      [[NSColor grayColor] set];
+    }
     NSRectFill(borderTopRect);
     if(self.borderType & HNHBorderHighlight) {
       borderTopRect = NSOffsetRect(borderTopRect, 0, -1);
     }
   }
-  if(self.borderType & HNHBorderHighlight) {
+  if((self.borderType & HNHBorderHighlight) && !_isRunningYosemiteOrNewer) {
     [[NSColor colorWithCalibratedWhite:1 alpha:1] set];
     NSRectFill(borderTopRect);
   }
-
+  
   if(self.borderType & HNHBorderBottom) {
     /* Border at bottom needs no highlight */
-    [[NSColor grayColor] set];
+    if(_isRunningYosemiteOrNewer) {
+      [[NSColor colorWithCalibratedWhite:0.69 alpha:1] set];
+    }
+    else {
+      [[NSColor grayColor] set];
+    }
     NSRect strokeRect = NSMakeRect(NSMinX(bounds), NSMinY(bounds), NSWidth(bounds), 1);
     NSRectFill(strokeRect);
   }
