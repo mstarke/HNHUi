@@ -48,7 +48,7 @@
 - (void)setSelectionCornerRadius:(CGFloat)selectionCornerRadius {
   if(_selectionCornerRadius != selectionCornerRadius) {
     _selectionCornerRadius = selectionCornerRadius;
-    /* Optimize by just setting the dirty corners */
+    /* TODO: Optimize by just setting the dirty corners */
     [self setNeedsDisplay:YES];
   }
 }
