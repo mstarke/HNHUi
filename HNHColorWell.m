@@ -32,7 +32,7 @@ static BOOL oldAlphSate = NO;
 - (void)activate:(BOOL)exclusive {
   NSColorPanel *panel = [NSColorPanel sharedColorPanel];
   oldAlphSate = panel.showsAlpha;
-  pane.showsAlpha = YES;
+  panel.showsAlpha = YES;
   [super activate:exclusive];
 }
 
