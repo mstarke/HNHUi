@@ -40,7 +40,7 @@
 
 @implementation HNHBadgedTextFieldCell
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if(self) {
     _badgeShadow = [[NSShadow alloc] init];
@@ -83,7 +83,7 @@
                                                             yRadius:(BADGE_HEIGHT/2.0)];
   
 	//Get window and control state to determine colours used
-  BOOL isVisible = [NSApp mainWindow].isVisible;
+  BOOL isVisible = NSApp.mainWindow.isVisible;
   BOOL isSelected = (self.backgroundStyle != NSBackgroundStyleLight && self.backgroundStyle != NSBackgroundStyleLowered);
 	//Set the attributes based on the row state
   

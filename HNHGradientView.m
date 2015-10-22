@@ -42,7 +42,7 @@
 
 @implementation HNHGradientView
 
-- (id)initWithFrame:(NSRect)frameRect {
+- (instancetype)initWithFrame:(NSRect)frameRect {
   NSColor *activeTop, *activeBottom, *inactiveTop, *inactiveBottom;
   NSGradient *activeGradient, *inactiveGradient;
   
@@ -66,7 +66,7 @@
   return [self initWithFrame:frameRect activeGradient:activeGradient inactiveGradient:inactiveGradient];
 }
 
-- (id)initWithFrame:(NSRect)frame activeGradient:(NSGradient *)activeGradient inactiveGradient:(NSGradient *)inactiveGradient {
+- (instancetype)initWithFrame:(NSRect)frame activeGradient:(NSGradient *)activeGradient inactiveGradient:(NSGradient *)inactiveGradient {
   self = [super initWithFrame:frame];
   if(self) {
     _isRunningYosemiteOrNewer = HNHIsRunningOnYosemiteOrNewer();
@@ -83,7 +83,7 @@
   /*
    We draw a Gradient, so make sure we always redraw the full view
    */
-  NSRect bounds = [self bounds];
+  NSRect bounds = self.bounds;
   NSGradient *gradient = self.isRenderedActive ? self.activeGradient : self.inactiveGradient;
   [gradient drawInRect:bounds angle:90];
   
@@ -124,15 +124,15 @@
 
 - (void)viewWillMoveToWindow:(NSWindow *)newWindow {
   [self _registerWindow:newWindow];
-  self.isRenderedActive = [newWindow isKeyWindow];
+  self.isRenderedActive = newWindow.keyWindow;
   [super viewWillMoveToWindow:newWindow];
 }
 
 #pragma mark State Refresh
 - (void)_registerWindow:(NSWindow *)newWindow {
-  if([self window]) {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowDidBecomeKeyNotification object:[self window]];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowDidResignKeyNotification object:[self window]];
+  if(self.window) {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowDidBecomeKeyNotification object:self.window];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowDidResignKeyNotification object:self.window];
   }
   if(newWindow) {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_refreshActiveState) name:NSWindowDidBecomeKeyNotification object:newWindow];
@@ -141,35 +141,35 @@
 }
 
 - (void)_refreshActiveState {
-  self.isRenderedActive = [[self window] isKeyWindow];
+  self.isRenderedActive = self.window.keyWindow;
 }
 
 # pragma mark Custom Properties
 - (void)setIsRenderedActive:(BOOL)isRenderedActive {
   if(_isRenderedActive != isRenderedActive) {
     _isRenderedActive = isRenderedActive;
-    [self setNeedsDisplay:YES];
+    self.needsDisplay = YES;
   }
 }
 
 - (void)setBorderType:(HNHBorderType)borderType {
   if(_borderType != borderType) {
     _borderType = borderType;
-    [self setNeedsDisplay:YES];
+    self.needsDisplay = YES;
   }
 }
 
 - (void)setActiveGradient:(NSGradient *)activeGradient {
   if(_activeGradient != activeGradient) {
     _activeGradient = activeGradient;
-    [self setNeedsDisplay:YES];
+    self.needsDisplay = YES;
   }
 }
 
 - (void)setInactiveGradient:(NSGradient *)inactiveGradient {
   if(_inactiveGradient != inactiveGradient) {
     _inactiveGradient = inactiveGradient;
-    [self setNeedsDisplay:YES];
+    self.needsDisplay = YES;
   }
 }
 

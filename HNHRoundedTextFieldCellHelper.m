@@ -41,11 +41,11 @@
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
     cell = [[NSButtonCell alloc] init];
-    [cell setBezelStyle:NSRoundRectBezelStyle];
+    cell.bezelStyle = NSRoundRectBezelStyle;
     [cell setButtonType:NSMomentaryPushButton];
-    [cell setControlSize:NSSmallControlSize];
-    [cell setTitle:@"Copy"];
-    [cell setBordered:YES];
+    cell.controlSize = NSSmallControlSize;
+    cell.title = @"Copy";
+    cell.bordered = YES;
   });
   return cell;
 }
@@ -56,18 +56,18 @@
   
   [NSGraphicsContext saveGraphicsState];
   NSShadow *shadow = [[NSShadow alloc] init];
-  [shadow setShadowOffset:NSMakeSize(0, -1)];
+  shadow.shadowOffset = NSMakeSize(0, -1);
   if(highlight) {
-    [shadow setShadowColor:[NSColor colorWithCalibratedWhite:1 alpha:1]];
-    [shadow setShadowBlurRadius:1];
-    [shadow setShadowColor:[NSColor whiteColor]];
+    shadow.shadowColor = [NSColor colorWithCalibratedWhite:1 alpha:1];
+    shadow.shadowBlurRadius = 1;
+    shadow.shadowColor = [NSColor whiteColor];
     [shadow set];
   }
   [[NSColor whiteColor] setFill];
   [strokePath fill];
   
-  [shadow setShadowColor:[NSColor colorWithCalibratedWhite:0.9 alpha:1]];
-  [shadow setShadowBlurRadius:1];
+  shadow.shadowColor = [NSColor colorWithCalibratedWhite:0.9 alpha:1];
+  shadow.shadowBlurRadius = 1;
   [shadow set];
   
   [strokePath addClip];
@@ -96,8 +96,8 @@
   CGFloat width = MIN( NSWidth(cellFrame) - BUTTON_MARGIN, BUTTON_WIDTH + BUTTON_MARGIN);
   NSRect buttonRect = NSMakeRect(NSMaxX(cellFrame) - width, NSMinY(cellFrame), width - BUTTON_MARGIN, NSHeight(cellFrame));
 
-  [cell setState:mouseDown ? NSOnState : NSOffState];
-  [cell setHighlighted:mouseDown];
+  cell.state = mouseDown ? NSOnState : NSOffState;
+  cell.highlighted = mouseDown;
   [cell drawWithFrame:buttonRect inView:view];
 }
 

@@ -50,7 +50,7 @@
 
 @implementation HNHRoundedSecureTextFieldCell
 
-- (id)init {
+- (instancetype)init {
   self = [super init];
   if(self) {
     _drawHighlight = NO;
@@ -59,7 +59,7 @@
   return self;
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if(self) {
 //    if([aDecoder isKindOfClass:[NSKeyedUnarchiver class]]) {
@@ -81,7 +81,7 @@
 //}
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
-  [HNHRoundedTextFieldCellHelper drawWithFrame:cellFrame enabled:[self isEnabled] withHighlight:_drawHighlight];
+  [HNHRoundedTextFieldCellHelper drawWithFrame:cellFrame enabled:self.enabled withHighlight:_drawHighlight];
   [self drawInteriorWithFrame:cellFrame inView:controlView];
 }
 

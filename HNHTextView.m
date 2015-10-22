@@ -58,7 +58,7 @@
 }
 
 - (void)setFrame:(NSRect)frameRect {
-  [super setFrame:frameRect];
+  super.frame = frameRect;
   [self _updateTrackingArea];
 }
 
@@ -67,7 +67,7 @@
     [self removeTrackingArea:_trackingArea];
     _trackingArea = nil;
   }
-  if(![self isEditable] && ![self isSelectable]) {
+  if(!self.editable && !self.selectable) {
     _trackingArea = [[NSTrackingArea alloc] initWithRect:NSZeroRect
                                                  options:NSTrackingMouseEnteredAndExited|NSTrackingInVisibleRect|NSTrackingActiveAlways
                                                    owner:self

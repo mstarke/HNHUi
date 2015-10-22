@@ -37,7 +37,7 @@
   _selectionCornerRadius = DEFAULT_SELECTION_RADIUS;
 }
 
-- (id)initWithFrame:(NSRect)frameRect {
+- (instancetype)initWithFrame:(NSRect)frameRect {
   self = [super initWithFrame:frameRect];
   if(self) {
     _selectionCornerRadius = DEFAULT_SELECTION_RADIUS;
@@ -49,12 +49,12 @@
   if(_selectionCornerRadius != selectionCornerRadius) {
     _selectionCornerRadius = selectionCornerRadius;
     /* TODO: Optimize by just setting the dirty corners */
-    [self setNeedsDisplay:YES];
+    self.needsDisplay = YES;
   }
 }
 
 - (void)drawSelectionInRect:(NSRect)dirtyRect {
-  NSBezierPath *clip = [NSBezierPath bezierPathWithRoundedRect:[self bounds] xRadius:_selectionCornerRadius yRadius:_selectionCornerRadius];
+  NSBezierPath *clip = [NSBezierPath bezierPathWithRoundedRect:self.bounds xRadius:_selectionCornerRadius yRadius:_selectionCornerRadius];
   [clip addClip];
   [super drawSelectionInRect:dirtyRect];
 }
