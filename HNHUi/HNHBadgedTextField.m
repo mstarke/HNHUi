@@ -32,7 +32,7 @@
 
 @implementation HNHBadgedTextField
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if(self) {
     _count = NSNotFound;
@@ -41,7 +41,7 @@
   return self;
 }
 
-- (id)initWithFrame:(NSRect)frameRect {
+- (instancetype)initWithFrame:(NSRect)frameRect {
   self = [super initWithFrame:frameRect];
   if(self) {
     _count = NSNotFound;
@@ -53,14 +53,14 @@
 - (void)setCount:(NSInteger)count {
   if(_count != count) {
     _count = count;
-    [self setNeedsDisplay:YES];
+    self.needsDisplay = YES;
   }
 }
 
 - (void)setShowEmptyBadge:(BOOL)showEmptyBadge {
   if(_showEmptyBadge != showEmptyBadge) {
     _showEmptyBadge = showEmptyBadge;
-    [self setNeedsDisplay:YES];
+    self.needsDisplay = YES;
   }
 }
 

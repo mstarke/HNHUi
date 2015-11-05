@@ -41,7 +41,7 @@ NSString *const KHNHBackgroundShadowArchiveKey = @"backgroundShadow";
 
 @implementation HNHShadowBox
 
-- (id)initWithFrame:(NSRect)frameRect {
+- (instancetype)initWithFrame:(NSRect)frameRect {
   self = [super initWithFrame:frameRect];
   if(self) {
     [self _setupGradients];
@@ -49,7 +49,7 @@ NSString *const KHNHBackgroundShadowArchiveKey = @"backgroundShadow";
   return self;
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   _backgroundGradient = [aDecoder decodeObjectForKey:kHNHBackgroundGradientArchiveKey];
   _boxShadow = [aDecoder decodeObjectForKey:KHNHBackgroundShadowArchiveKey];
@@ -75,17 +75,17 @@ NSString *const KHNHBackgroundShadowArchiveKey = @"backgroundShadow";
 - (void)drawRect:(NSRect)dirtyRect {
   [NSGraphicsContext saveGraphicsState];
   [_boxShadow set];
-  NSRect drawRect = NSInsetRect([self bounds], [_boxShadow shadowBlurRadius], [_boxShadow shadowBlurRadius]);
+  NSRect drawRect = NSInsetRect(self.bounds, _boxShadow.shadowBlurRadius, _boxShadow.shadowBlurRadius);
   drawRect.origin.y += 1;
-  [[self fillColor] setFill];
+  [self.fillColor setFill];
   [[self _strokePathForRect:drawRect] fill];
   //[_backgroundGradient drawInBezierPath:[self _fillPathForRect:drawRect] angle:90];
   [NSGraphicsContext restoreGraphicsState];
-  if( [self borderWidth] > 0 ) {
+  if( self.borderWidth > 0 ) {
     NSBezierPath *path = [self _strokePathForRect:drawRect];
-    [[self borderColor] setFill];
-    [path setLineWidth:[self borderWidth]];
-    [[self borderColor] setStroke];
+    [self.borderColor setFill];
+    path.lineWidth = self.borderWidth;
+    [self.borderColor setStroke];
     [path stroke];
   }
 }
@@ -94,18 +94,18 @@ NSString *const KHNHBackgroundShadowArchiveKey = @"backgroundShadow";
 - (void)_setupGradients {
   _backgroundGradient = [[NSGradient alloc] initWithColors:@[[NSColor colorWithCalibratedWhite:0.95 alpha:1], [NSColor whiteColor]]];
   _boxShadow = [[NSShadow alloc] init];
-  [_boxShadow setShadowBlurRadius:1];
-  [_boxShadow setShadowOffset:NSMakeSize(0, -1)];
-  [_boxShadow setShadowColor:[NSColor colorWithCalibratedWhite:0.7 alpha:1]];
+  _boxShadow.shadowBlurRadius = 1;
+  _boxShadow.shadowOffset = NSMakeSize(0, -1);
+  _boxShadow.shadowColor = [NSColor colorWithCalibratedWhite:0.7 alpha:1];
 }
 
 - (NSBezierPath *)_fillPathForRect:(NSRect)rect {
 
-  return [NSBezierPath bezierPathWithRoundedRect:rect xRadius:[self cornerRadius] yRadius:[self cornerRadius]];
+  return [NSBezierPath bezierPathWithRoundedRect:rect xRadius:self.cornerRadius yRadius:self.cornerRadius];
 }
 
 - (NSBezierPath *)_strokePathForRect:(NSRect)rect {
-  NSRect insetRect = NSInsetRect(rect,[self borderWidth]/2, [self borderWidth]/2);
-  return [NSBezierPath bezierPathWithRoundedRect:insetRect xRadius:[self cornerRadius] yRadius:[self cornerRadius]];
+  NSRect insetRect = NSInsetRect(rect,self.borderWidth/2, self.borderWidth/2);
+  return [NSBezierPath bezierPathWithRoundedRect:insetRect xRadius:self.cornerRadius yRadius:self.cornerRadius];
 }
 @end

@@ -31,20 +31,20 @@
 
 @implementation HNHScrollDocumentViewAdapter
 
-- (id)initWithFrame:(NSRect)frameRect {
+- (instancetype)initWithFrame:(NSRect)frameRect {
   self = [super initWithFrame:frameRect];
   if(self) {
     _actFlipped = YES;
-    [self setTranslatesAutoresizingMaskIntoConstraints:NO];
+    self.translatesAutoresizingMaskIntoConstraints = NO;
   }
   return self;
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if(self) {
     _actFlipped = YES;
-    [self setTranslatesAutoresizingMaskIntoConstraints:NO];
+    self.translatesAutoresizingMaskIntoConstraints = NO;
   }
   return self;
 }
@@ -56,7 +56,7 @@
 - (void)setActFlipped:(BOOL)actFlipped {
   if(_actFlipped != actFlipped) {
     _actFlipped = actFlipped;
-    [self setNeedsDisplay:YES];
+    self.needsDisplay = YES;
   }
 }
 

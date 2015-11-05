@@ -32,7 +32,7 @@
 @implementation HNHSeparator
 
 - (void)drawRect:(NSRect)dirtyRect {
-  NSRect bounds = [self bounds];
+  NSRect bounds = self.bounds;
   
   [[NSColor lightGrayColor] set];
   NSRectFill(NSMakeRect(0, 1, NSWidth(bounds), 1));

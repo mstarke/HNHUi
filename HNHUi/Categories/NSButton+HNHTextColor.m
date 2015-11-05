@@ -30,22 +30,22 @@
 @implementation NSButton (HNHTextColor)
 
 - (NSColor *)textColor {
-  NSUInteger titleLength = [[self attributedTitle] length];
+  NSUInteger titleLength = self.attributedTitle.length;
   NSRange range = NSMakeRange(0, MIN(titleLength, 1));
-  NSDictionary *attributes = [[self attributedTitle] fontAttributesInRange:range];
+  NSDictionary *attributes = [self.attributedTitle fontAttributesInRange:range];
   if (attributes) {
-    return [attributes objectForKey:NSForegroundColorAttributeName];
+    return attributes[NSForegroundColorAttributeName];
   }
   return [NSColor controlTextColor];
 }
 
 - (void)setTextColor:(NSColor *)textColor {
-  NSMutableAttributedString *attributedTitle = [[NSMutableAttributedString alloc] initWithAttributedString:[self attributedTitle]];
-  NSUInteger titleLength = [attributedTitle length];
+  NSMutableAttributedString *attributedTitle = [[NSMutableAttributedString alloc] initWithAttributedString:self.attributedTitle];
+  NSUInteger titleLength = attributedTitle.length;
   NSRange range = NSMakeRange(0, titleLength);
   [attributedTitle addAttribute:NSForegroundColorAttributeName value:textColor range:range];
   [attributedTitle fixAttributesInRange:range];
-  [self setAttributedTitle:attributedTitle];
+  self.attributedTitle = attributedTitle;
 }
 
 @end

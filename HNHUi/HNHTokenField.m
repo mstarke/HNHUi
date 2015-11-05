@@ -28,19 +28,19 @@
 
 @implementation HNHTokenField
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if(self) {
     NSMutableData *data = [[NSMutableData alloc] init];
     NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-    [[self cell] encodeWithCoder:archiver];
+    [self.cell encodeWithCoder:archiver];
     [archiver finishEncoding];
     
     NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
     HNHTokenFieldCell *newCell = [[HNHTokenFieldCell alloc] initWithCoder:unarchiver];
     [unarchiver finishDecoding];
     
-    [self setCell:newCell];
+    self.cell = newCell;
   }
   return self;
 }

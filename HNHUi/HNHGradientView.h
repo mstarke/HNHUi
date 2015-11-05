@@ -42,6 +42,6 @@ typedef NS_OPTIONS(NSUInteger, HNHBorderType) {
 @property (nonatomic, strong) NSGradient *activeGradient;
 @property (nonatomic, strong) NSGradient *inactiveGradient;
 
-- (id)initWithFrame:(NSRect)frame activeGradient:(NSGradient *)activeGradient inactiveGradient:(NSGradient *)inactiveGradient;
+- (instancetype)initWithFrame:(NSRect)frame activeGradient:(NSGradient *)activeGradient inactiveGradient:(NSGradient *)inactiveGradient;
 
 @end

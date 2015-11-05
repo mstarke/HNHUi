@@ -62,7 +62,7 @@
 
 @implementation HNHLevelIndicatorCell
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if(self) {
     _backgroundGradient = [[NSGradient alloc] initWithColors:@[ BACKGROUND_BOTTOM_COLOR, BACKGROUND_TOP_COLOR] ];
@@ -83,7 +83,7 @@
   CGFloat value = 0.0;
   
   if([controlView respondsToSelector:@selector(doubleValue)]) {
-    value = ([(id)controlView doubleValue] - [self minValue])/ ([self maxValue] - [self minValue]);
+    value = ([(id)controlView doubleValue] - self.minValue)/ (self.maxValue - self.minValue);
     /* Clamp the value */
     value = MAX(0.0, MIN(1.0, value) );
   }
@@ -111,11 +111,11 @@
    */
   NSGradient *fillGradient = _normalGradient;
   NSColor *strokeColor = NORMAL_STROKE_COLOR;
-  if([self doubleValue] < [self criticalValue]) {
+  if(self.doubleValue < self.criticalValue) {
     fillGradient = _criticalGradient;
     strokeColor = CRITICAL_STROKE_COLOR;
   }
-  else if([self doubleValue] < [self warningValue]) {
+  else if(self.doubleValue < self.warningValue) {
     fillGradient = _warningGradient;
     strokeColor = WARNING_STROKE_COLOR;
   }

@@ -39,7 +39,7 @@ NSString *const HNHScrollViewArchiveKeyBorderShadow = @"borderShadow";
 @implementation HNHScrollView
 
 /* Initalizerser */
-- (id)initWithFrame:(NSRect)frameRect {
+- (instancetype)initWithFrame:(NSRect)frameRect {
   self = [super initWithFrame:frameRect];
   if(self) {
     [self _setupGradients];
@@ -51,7 +51,7 @@ NSString *const HNHScrollViewArchiveKeyBorderShadow = @"borderShadow";
 }
 
 /* Make shure, if we are loaded from NIBs that we have consistante data */
-- (id)initWithCoder:(NSCoder *)aDecoder {
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if(self) {
     _actAsFlipped = NO;
@@ -86,14 +86,14 @@ NSString *const HNHScrollViewArchiveKeyBorderShadow = @"borderShadow";
   [super reflectScrolledClipView:cView];
   
   
-  NSRect documentRect = [[self documentView] frame];
-  NSRect visibleRect = [self documentVisibleRect];
+  NSRect documentRect = [self.documentView frame];
+  NSRect visibleRect = self.documentVisibleRect;
   BOOL oldTop = _topClipped;
   BOOL oldBottom = _bottomClipped;
   _topClipped = NSMinY(visibleRect) > 0;
   _bottomClipped = NSMaxY(documentRect) > NSMaxY(visibleRect);
   
-  if([[self documentView] isFlipped]) {
+  if([self.documentView isFlipped]) {
     BOOL tmp = _topClipped;
     _topClipped = _bottomClipped;
     _bottomClipped = tmp;
@@ -105,9 +105,9 @@ NSString *const HNHScrollViewArchiveKeyBorderShadow = @"borderShadow";
 }
 
 - (void)drawRect:(NSRect)dirtyRect {
-  NSRect bounds = [self bounds];
+  NSRect bounds = self.bounds;
   BOOL showShadow = NO;
-  BOOL flipped = [[self documentView] isFlipped];
+  BOOL flipped = [self.documentView isFlipped];
   BOOL drawTop = _topClipped && ( flipped ? _showBottomShadow : _showTopShadow );
   BOOL drawBottom = _bottomClipped && ( flipped ? _showTopShadow : _showBottomShadow );
   if( drawBottom ) {
@@ -147,9 +147,9 @@ NSString *const HNHScrollViewArchiveKeyBorderShadow = @"borderShadow";
   _lineGradient = [[NSGradient alloc] initWithColors:lineColors atLocations:lineLocations colorSpace:[NSColorSpace deviceGrayColorSpace]];
   
   _borderShadow = [[NSShadow alloc] init];
-  [_borderShadow setShadowBlurRadius:6];
-  [_borderShadow setShadowColor:[NSColor colorWithCalibratedWhite:0.0 alpha:0.7]];
-  [_borderShadow setShadowOffset:NSMakeSize(0, 0)];
+  _borderShadow.shadowBlurRadius = 6;
+  _borderShadow.shadowColor = [NSColor colorWithCalibratedWhite:0.0 alpha:0.7];
+  _borderShadow.shadowOffset = NSMakeSize(0, 0);
 }
 
 @end

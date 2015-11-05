@@ -34,23 +34,23 @@
 
 @implementation HNHRoundedSecureTextField
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if(self) {
     NSMutableData *data = [[NSMutableData alloc] init];
     NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-    [[self cell] encodeWithCoder:archiver];
+    [self.cell encodeWithCoder:archiver];
     [archiver finishEncoding];
     
     NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
     HNHRoundedSecureTextFieldCell *cell = [[HNHRoundedSecureTextFieldCell alloc] initWithCoder:unarchiver];
     [unarchiver finishDecoding];
     
-    [self setCell:cell];
+    self.cell = cell;
     _isMouseDown = NO;
     _isMouseOver = NO;
     
-    [self setNeedsDisplay:YES];
+    self.needsDisplay = YES;
   }
   return self;
 }
@@ -81,19 +81,19 @@
   // Seems to me the best way to ensure all properties come along for the ride (e.g. border/editability) is to archive the existing cell
   NSMutableData *data = [[NSMutableData alloc] init];
   NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-  [[self cell] encodeWithCoder:archiver];
+  [self.cell encodeWithCoder:archiver];
   [archiver finishEncoding];
   
   NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
   NSTextFieldCell *cell = [[cellClass alloc] initWithCoder:unarchiver];
   [unarchiver finishDecoding];
   
-  [self setCell:cell];
-  [self setNeedsDisplay:YES];
+  self.cell = cell;
+  self.needsDisplay = YES;
   
   // Restore selection
   if(isActive) {
-    [[self window] makeFirstResponder:self];
+    [self.window makeFirstResponder:self];
   }
   if(selectionRange.location != NSNotFound && selectionRange.length > 0) {
     [self currentEditor].selectedRange = selectionRange;
@@ -101,7 +101,7 @@
 }
 
 - (void)_toggleCell {
-  if([[self cell] isKindOfClass:[HNHRoundedTextFieldCell class]]) {
+  if([self.cell isKindOfClass:[HNHRoundedTextFieldCell class]]) {
     [self _swapCellForOneOfClass:[HNHRoundedSecureTextFieldCell class]];
   }
   else {
@@ -110,29 +110,29 @@
 }
 
 - (void)setEditable:(BOOL)flag {
-  [super setEditable:flag];
+  super.editable = flag;
   [self _updateTrackingArea];
 }
 
 - (void)mouseEntered:(NSEvent *)theEvent {
   _isMouseOver = YES;
-  [self setNeedsDisplay];
+  self.needsDisplay = YES;
 }
 
 - (void)mouseExited:(NSEvent *)theEvent {
   _isMouseOver = NO;
   _isMouseDown = NO;
-  [self setNeedsDisplay];
+  self.needsDisplay = YES;
 }
 
 - (void)mouseDown:(NSEvent *)theEvent {
   _isMouseDown = YES;
-  [self setNeedsDisplay];
+  self.needsDisplay = YES;
 }
 
 - (void)mouseUp:(NSEvent *)theEvent {
   _isMouseDown = NO;
-  [self setNeedsDisplay];
+  self.needsDisplay = YES;
 }
 
 - (void)viewWillMoveToWindow:(NSWindow *)newWindow {
@@ -146,7 +146,7 @@
 }
 
 - (void)setFrame:(NSRect)frameRect {
-  [super setFrame:frameRect];
+  super.frame = frameRect;
   [self _updateTrackingArea];
 }
 
@@ -155,7 +155,7 @@
     [self removeTrackingArea:_trackingArea];
     _trackingArea = nil;
   }
-  if(![self isEditable] && ![self isSelectable]) {
+  if(!self.editable && !self.selectable) {
     _trackingArea = [[NSTrackingArea alloc] initWithRect:NSZeroRect options:NSTrackingMouseEnteredAndExited|NSTrackingInVisibleRect|NSTrackingActiveAlways owner:self userInfo:nil];
     [self addTrackingArea:_trackingArea];
   }

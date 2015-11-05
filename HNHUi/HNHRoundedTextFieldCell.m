@@ -35,7 +35,7 @@
 @implementation HNHRoundedTextFieldCell
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
-  [HNHRoundedTextFieldCellHelper drawWithFrame:cellFrame enabled:[self isEnabled] withHighlight:_drawHighlight];
+  [HNHRoundedTextFieldCellHelper drawWithFrame:cellFrame enabled:self.enabled withHighlight:_drawHighlight];
   [self drawInteriorWithFrame:cellFrame inView:controlView];
 }
 

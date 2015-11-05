@@ -47,28 +47,28 @@
   return [HNHRoundedTextFieldCell class];
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if(self) {
     _mouseDown = NO;
     _mouseOver = NO;
     NSMutableData *data = [[NSMutableData alloc] init];
     NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-    [[self cell] encodeWithCoder:archiver];
+    [self.cell encodeWithCoder:archiver];
     [archiver finishEncoding];
     
     NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
     HNHRoundedTextFieldCell *cell = [[HNHRoundedTextFieldCell alloc] initWithCoder:unarchiver];
     [unarchiver finishDecoding];
     
-    [self setCell:cell];
-    [self setNeedsDisplay:YES];
+    self.cell = cell;
+    self.needsDisplay = YES;
   }
   return self;
 }
 
 - (void)setEditable:(BOOL)flag {
-  [super setEditable:flag];
+  super.editable = flag;
   [self _updateTrackingArea];
 }
 

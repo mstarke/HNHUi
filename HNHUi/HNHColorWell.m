@@ -31,15 +31,15 @@ static BOOL oldAlphSate = NO;
 
 - (void)activate:(BOOL)exclusive {
   NSColorPanel *panel = [NSColorPanel sharedColorPanel];
-  oldAlphSate = [panel showsAlpha];
-  [panel setShowsAlpha:YES];
+  oldAlphSate = panel.showsAlpha;
+  panel.showsAlpha = YES;
   [super activate:exclusive];
 }
 
 - (void)deactivate {
   NSColorPanel *panel = [NSColorPanel sharedColorPanel];;
   [super deactivate];
-  [panel setShowsAlpha:oldAlphSate];
+  panel.showsAlpha = oldAlphSate;
 }
 
 //- (void)drawRect:(NSRect)dirtyRect {
