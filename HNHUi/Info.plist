@@ -19,7 +19,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<string>UNKNOWN</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2015 HicknHack Software GmbH. All rights reserved.</string>
 	<key>NSPrincipalClass</key>
