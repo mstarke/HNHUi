@@ -54,7 +54,7 @@
 		4CAEF2671B661891005C6592 /* HNHUITokenField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEF23B1B661891005C6592 /* HNHUITokenField.m */; };
 		4CAEF2681B661891005C6592 /* HNHUITokenFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CAEF23C1B661891005C6592 /* HNHUITokenFieldCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4CAEF2691B661891005C6592 /* HNHUITokenFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEF23D1B661891005C6592 /* HNHUITokenFieldCell.m */; };
-		4CC281841C0F645800B9174D /* HNHUISheetWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CC281821C0F645800B9174D /* HNHUISheetWindowController.h */; };
+		4CC281841C0F645800B9174D /* HNHUISheetWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CC281821C0F645800B9174D /* HNHUISheetWindowController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4CC281851C0F645800B9174D /* HNHUISheetWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC281831C0F645800B9174D /* HNHUISheetWindowController.m */; };
 /* End PBXBuildFile section */
 
@@ -282,7 +282,6 @@
 				4CAEF2541B661891005C6592 /* HNHUIRoundedTextFieldCell.h in Headers */,
 				4CAEF2461B661891005C6592 /* HNHUIColorWell.h in Headers */,
 				4CAEF25C1B661891005C6592 /* HNHUISeparator.h in Headers */,
-				4CC281841C0F645800B9174D /* HNHUISheetWindowController.h in Headers */,
 				4CAEF2501B661891005C6592 /* HNHUIRoundedSecureTextFieldCell.h in Headers */,
 				4CAEF2481B661891005C6592 /* HNHUICommon.h in Headers */,
 				4CAEF2421B661891005C6592 /* HNHUIBadgedTextField.h in Headers */,
@@ -294,6 +293,7 @@
 				4CAEF25A1B661891005C6592 /* HNHUIScrollView.h in Headers */,
 				4CAEF24A1B661891005C6592 /* HNHUIGradientView.h in Headers */,
 				4CAEF2401B661891005C6592 /* NSWindow+HNHUIShake.h in Headers */,
+				4CC281841C0F645800B9174D /* HNHUISheetWindowController.h in Headers */,
 				4CAEF2641B661891005C6592 /* HNHUITextView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
