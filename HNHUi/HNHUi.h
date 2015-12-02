@@ -32,6 +32,7 @@ FOUNDATION_EXPORT const unsigned char HNHUiVersionString[];
 #import "HNHUIScrollView.h"
 #import "HNHUISeparator.h"
 #import "HNHUIShadowBox.h"
+#import "HNHUISheetWindowController.h"
 #import "HNHUITableHeaderCell.h"
 #import "HNHUITableRowView.h"
 #import "HNHUITextView.h"
