@@ -30,6 +30,11 @@
 
 - (void)dismissSheet:(NSInteger)returnCode {
   self.isDirty = YES;
-  [NSApp endSheet:super.window returnCode:returnCode];
+  if([super.window respondsToSelector:@selector(sheetParent)]) {
+    [super.window.sheetParent endSheet:super.window returnCode:returnCode];
+  }
+  else {
+    [NSApp endSheet:super.window returnCode:returnCode];
+  }
 }
 @end

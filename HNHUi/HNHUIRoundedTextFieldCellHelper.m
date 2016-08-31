@@ -42,7 +42,7 @@
   dispatch_once(&onceToken, ^{
     cell = [[NSButtonCell alloc] init];
     cell.bezelStyle = NSRoundRectBezelStyle;
-    [cell setButtonType:NSMomentaryPushButton];
+    [cell setButtonType:NSMomentaryLightButton];
     cell.controlSize = NSSmallControlSize;
     cell.title = @"Copy";
     cell.bordered = YES;
