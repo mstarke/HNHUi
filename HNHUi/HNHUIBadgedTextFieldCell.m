@@ -41,7 +41,7 @@
   self = [super initWithCoder:aDecoder];
   if(self) {
     _badgeShadow = [[NSShadow alloc] init];
-    _badgeShadow.shadowColor = [NSColor whiteColor];
+    _badgeShadow.shadowColor = NSColor.whiteColor;
     _badgeShadow.shadowOffset = NSMakeSize(0, -1);
     _badgeShadow.shadowBlurRadius = 0;
   }
