@@ -33,9 +33,6 @@
 #define GRADIENT_OUTER_COLOR
 #define GRADIENT_INNER_COLOR
 
-NSString *const HNHScrollViewArchiveKeyLineGradient = @"lineGradient";
-NSString *const HNHScrollViewArchiveKeyBorderShadow = @"borderShadow";
-
 @interface HNHUIScrollView ()
 
 @property BOOL bottomClipped;
@@ -66,9 +63,9 @@ NSString *const HNHScrollViewArchiveKeyBorderShadow = @"borderShadow";
     _actAsFlipped = NO;
     _showBottomShadow = YES;
     _showTopShadow = YES;
-    if([aDecoder isKindOfClass:[NSKeyedArchiver class]]) {
-      _borderShadow = [aDecoder decodeObjectForKey:HNHScrollViewArchiveKeyBorderShadow];
-      _lineGradient = [aDecoder decodeObjectForKey:HNHScrollViewArchiveKeyLineGradient];
+    if([aDecoder isKindOfClass:NSKeyedArchiver.class]) {
+      _borderShadow = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(borderShadow))];
+      _lineGradient = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(lineGradient))];
     }
     if(!self.lineGradient || self.borderShadow) {
       _lineGradient = nil;
@@ -81,9 +78,9 @@ NSString *const HNHScrollViewArchiveKeyBorderShadow = @"borderShadow";
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];
-  if([aCoder isKindOfClass:[NSKeyedArchiver class]]) {
-    [aCoder encodeObject:self.borderShadow forKey:HNHScrollViewArchiveKeyBorderShadow];
-    [aCoder encodeObject:self.lineGradient forKey:HNHScrollViewArchiveKeyLineGradient];
+  if([aCoder isKindOfClass:NSKeyedArchiver.class]) {
+    [aCoder encodeObject:self.borderShadow forKey:NSStringFromSelector(@selector(borderShadow))];
+    [aCoder encodeObject:self.lineGradient forKey:NSStringFromSelector(@selector(lineGradient))];
   }
 }
 
@@ -95,7 +92,7 @@ NSString *const HNHScrollViewArchiveKeyBorderShadow = @"borderShadow";
   [super reflectScrolledClipView:cView];
   
   
-  NSRect documentRect = [self.documentView frame];
+  NSRect documentRect = self.documentView.frame;
   NSRect visibleRect = self.documentVisibleRect;
   BOOL oldTop = self.topClipped;
   BOOL oldBottom = self.bottomClipped;
@@ -116,9 +113,8 @@ NSString *const HNHScrollViewArchiveKeyBorderShadow = @"borderShadow";
 - (void)drawRect:(NSRect)dirtyRect {
   NSRect bounds = self.bounds;
   BOOL showShadow = NO;
-  BOOL flipped = [self.documentView isFlipped];
-  BOOL drawTop = _topClipped && ( flipped ? _showBottomShadow : _showTopShadow );
-  BOOL drawBottom = _bottomClipped && ( flipped ? _showTopShadow : _showBottomShadow );
+  BOOL drawTop = _topClipped && ( self.documentView.flipped ? _showBottomShadow : _showTopShadow );
+  BOOL drawBottom = _bottomClipped && ( self.documentView.flipped ? _showTopShadow : _showBottomShadow );
   if( drawBottom ) {
     NSRect bottomLine = NSMakeRect(0, NSMaxY(bounds) - 1, NSWidth(bounds), 1);
     [self.lineGradient drawInRect:bottomLine angle:0];
