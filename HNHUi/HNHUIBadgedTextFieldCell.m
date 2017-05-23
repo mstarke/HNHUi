@@ -33,9 +33,6 @@
 
 @property (strong) NSShadow *badgeShadow;
 
-- (void)_drawBadgeWithCount:(NSInteger)count inFrame:(NSRect)badgeFrame;
-- (NSSize)_sizeOfBadgeForCount:(NSInteger)count;
-
 @end
 
 @implementation HNHUIBadgedTextFieldCell
