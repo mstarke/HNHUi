@@ -65,7 +65,7 @@
                                    badgeSize.width + self.badgeShadow.shadowOffset.width,
                                    badgeSize.height + self.badgeShadow.shadowOffset.height);
     
-    [self _drawBadgeWithCount:count inFrame:badgeFrame];
+    [self _drawBadgeWithCount:count inFrame:badgeFrame ofView:controlView];
     NSRect clippedInterior = NSMakeRect(NSMinX(cellFrame), NSMinY(cellFrame), NSWidth(cellFrame) - NSWidth(badgeFrame), NSHeight(cellFrame));
     [self drawInteriorWithFrame:clippedInterior inView:controlView];
   }
@@ -74,13 +74,13 @@
   }
 }
 
-- (void)_drawBadgeWithCount:(NSInteger)count inFrame:(NSRect)badgeFrame; {
+- (void)_drawBadgeWithCount:(NSInteger)count inFrame:(NSRect)badgeFrame ofView:(NSView *)view; {
 	NSBezierPath *badgePath = [NSBezierPath bezierPathWithRoundedRect:badgeFrame
                                                             xRadius:(BADGE_HEIGHT/2.0)
                                                             yRadius:(BADGE_HEIGHT/2.0)];
   
 	//Get window and control state to determine colours used
-  BOOL isVisible = NSApp.mainWindow.isVisible;
+  BOOL isVisible = view.window.isKeyWindow;
   BOOL isSelected = (self.backgroundStyle != NSBackgroundStyleLight && self.backgroundStyle != NSBackgroundStyleLowered);
 	//Set the attributes based on the row state
   
