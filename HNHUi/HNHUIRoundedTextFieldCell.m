@@ -26,11 +26,16 @@
 #import "HNHUIRoundedTextFieldCell.h"
 #import "HNHUIRoundedTextFieldCellHelper.h"
 #import "HNHUIRoundedTextField.h"
+#import "HNHUITextView.h"
 
 #if ! __has_feature(objc_arc)
 #warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
 #endif
 
+@interface HNHUIRoundedTextFieldCell ()
+
+@property (strong) HNHUITextView *fieldEditor;
+@end
 
 @implementation HNHUIRoundedTextFieldCell
 
@@ -59,5 +64,17 @@
   return NO;
 }
 
+- (NSMenu *)menuForEvent:(NSEvent *)event inRect:(NSRect)cellFrame ofView:(NSView *)view {
+  NSLog(@"%@ %@", self.className, NSStringFromSelector(_cmd));
+  return [super menuForEvent:event inRect:cellFrame ofView:view];
+}
+
+- (NSTextView *)fieldEditorForView:(NSView *)controlView {
+  if(nil == self.fieldEditor) {
+    self.fieldEditor = [[HNHUITextView alloc] init];
+    self.fieldEditor.fieldEditor = YES;
+  }
+  return self.fieldEditor;
+}
 
 @end

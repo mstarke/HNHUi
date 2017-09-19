@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C7264AD1F7136C10068F66B /* HNHUITextFieldDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C7264AC1F7136C10068F66B /* HNHUITextFieldDelegate.h */; };
+		4C7264B61F7139160068F66B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7264B51F7139160068F66B /* AppDelegate.m */; };
+		4C7264B91F7139160068F66B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7264B81F7139160068F66B /* main.m */; };
+		4C7264BC1F7139160068F66B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7264BB1F7139160068F66B /* ViewController.m */; };
+		4C7264BE1F7139160068F66B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C7264BD1F7139160068F66B /* Assets.xcassets */; };
+		4C7264C11F7139170068F66B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C7264BF1F7139170068F66B /* Main.storyboard */; };
+		4C7264C61F71392B0068F66B /* HNHUi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CAEF1F51B661743005C6592 /* HNHUi.framework */; };
 		4CAEF1FB1B661743005C6592 /* HNHUi.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CAEF1FA1B661743005C6592 /* HNHUi.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4CAEF2011B661743005C6592 /* HNHUi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CAEF1F51B661743005C6592 /* HNHUi.framework */; };
 		4CAEF2081B661743005C6592 /* HNHUiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEF2071B661743005C6592 /* HNHUiTests.m */; };
@@ -69,6 +76,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4C7264AC1F7136C10068F66B /* HNHUITextFieldDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHUITextFieldDelegate.h; sourceTree = "<group>"; };
+		4C7264B21F7139160068F66B /* HNHUiExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HNHUiExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C7264B41F7139160068F66B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		4C7264B51F7139160068F66B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		4C7264B81F7139160068F66B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4C7264BA1F7139160068F66B /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		4C7264BB1F7139160068F66B /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		4C7264BD1F7139160068F66B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4C7264C01F7139170068F66B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		4C7264C21F7139170068F66B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CAEF1F51B661743005C6592 /* HNHUi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HNHUi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CAEF1F91B661743005C6592 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CAEF1FA1B661743005C6592 /* HNHUi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HNHUi.h; sourceTree = "<group>"; };
@@ -124,6 +141,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4C7264AF1F7139160068F66B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C7264C61F71392B0068F66B /* HNHUi.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4CAEF1F11B661743005C6592 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -142,11 +167,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C7264B31F7139160068F66B /* HNHUiExample */ = {
+			isa = PBXGroup;
+			children = (
+				4C7264B41F7139160068F66B /* AppDelegate.h */,
+				4C7264B51F7139160068F66B /* AppDelegate.m */,
+				4C7264BA1F7139160068F66B /* ViewController.h */,
+				4C7264BB1F7139160068F66B /* ViewController.m */,
+				4C7264BD1F7139160068F66B /* Assets.xcassets */,
+				4C7264BF1F7139170068F66B /* Main.storyboard */,
+				4C7264C21F7139170068F66B /* Info.plist */,
+				4C7264B71F7139160068F66B /* Supporting Files */,
+			);
+			path = HNHUiExample;
+			sourceTree = "<group>";
+		};
+		4C7264B71F7139160068F66B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4C7264B81F7139160068F66B /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		4CAEF1EB1B661743005C6592 = {
 			isa = PBXGroup;
 			children = (
 				4CAEF1F71B661743005C6592 /* HNHUi */,
 				4CAEF2041B661743005C6592 /* HNHUiTests */,
+				4C7264B31F7139160068F66B /* HNHUiExample */,
 				4CAEF1F61B661743005C6592 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -156,6 +205,7 @@
 			children = (
 				4CAEF1F51B661743005C6592 /* HNHUi.framework */,
 				4CAEF2001B661743005C6592 /* HNHUiTests.xctest */,
+				4C7264B21F7139160068F66B /* HNHUiExample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -249,6 +299,7 @@
 				4CAEF2291B661891005C6592 /* HNHUIRoundedTextFieldCell.m */,
 				4CAEF22A1B661891005C6592 /* HNHUIRoundedTextFieldCellHelper.h */,
 				4CAEF22B1B661891005C6592 /* HNHUIRoundedTextFieldCellHelper.m */,
+				4C7264AC1F7136C10068F66B /* HNHUITextFieldDelegate.h */,
 			);
 			name = TextField;
 			sourceTree = "<group>";
@@ -271,6 +322,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C7264AD1F7136C10068F66B /* HNHUITextFieldDelegate.h in Headers */,
 				4CAEF24E1B661891005C6592 /* HNHUIRoundedSecureTextField.h in Headers */,
 				4CAEF2561B661891005C6592 /* HNHUIRoundedTextFieldCellHelper.h in Headers */,
 				4CAEF24C1B661891005C6592 /* HNHUILevelIndicatorCell.h in Headers */,
@@ -301,6 +353,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		4C7264B11F7139160068F66B /* HNHUiExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4C7264C31F7139170068F66B /* Build configuration list for PBXNativeTarget "HNHUiExample" */;
+			buildPhases = (
+				4C7264AE1F7139160068F66B /* Sources */,
+				4C7264AF1F7139160068F66B /* Frameworks */,
+				4C7264B01F7139160068F66B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HNHUiExample;
+			productName = HNHUiExample;
+			productReference = 4C7264B21F7139160068F66B /* HNHUiExample.app */;
+			productType = "com.apple.product-type.application";
+		};
 		4CAEF1F41B661743005C6592 /* HNHUi */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4CAEF20B1B661743005C6592 /* Build configuration list for PBXNativeTarget "HNHUi" */;
@@ -348,6 +417,10 @@
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "HicknHack Software GmbH";
 				TargetAttributes = {
+					4C7264B11F7139160068F66B = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+					};
 					4CAEF1F41B661743005C6592 = {
 						CreatedOnToolsVersion = 6.4;
 					};
@@ -362,6 +435,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 4CAEF1EB1B661743005C6592;
 			productRefGroup = 4CAEF1F61B661743005C6592 /* Products */;
@@ -370,11 +444,21 @@
 			targets = (
 				4CAEF1F41B661743005C6592 /* HNHUi */,
 				4CAEF1FF1B661743005C6592 /* HNHUiTests */,
+				4C7264B11F7139160068F66B /* HNHUiExample */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4C7264B01F7139160068F66B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C7264BE1F7139160068F66B /* Assets.xcassets in Resources */,
+				4C7264C11F7139170068F66B /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4CAEF1F31B661743005C6592 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -409,6 +493,16 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4C7264AE1F7139160068F66B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C7264BC1F7139160068F66B /* ViewController.m in Sources */,
+				4C7264B91F7139160068F66B /* main.m in Sources */,
+				4C7264B61F7139160068F66B /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4CAEF1F01B661743005C6592 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -457,7 +551,52 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		4C7264BF1F7139170068F66B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C7264C01F7139170068F66B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		4C7264C41F7139170068F66B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = HNHUiExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hicknhacksoftware.HNHUiExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		4C7264C51F7139170068F66B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = HNHUiExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hicknhacksoftware.HNHUiExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		4CAEF2091B661743005C6592 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -623,6 +762,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4C7264C31F7139170068F66B /* Build configuration list for PBXNativeTarget "HNHUiExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C7264C41F7139170068F66B /* Debug */,
+				4C7264C51F7139170068F66B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		4CAEF1EF1B661743005C6592 /* Build configuration list for PBXProject "HNHUi" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

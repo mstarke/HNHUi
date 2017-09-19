@@ -8,43 +8,39 @@
 
 #import "HNHUITextView.h"
 
-@interface HNHUITextView () {
+@interface HNHUITextView ()
+/*
+ {
   NSTrackingArea *_trackingArea;
   BOOL _isMouseOver;
   BOOL _isMouseDown;
 }
+ */
 
 @end
 
 @implementation HNHUITextView
 
+/*
 - (void)drawRect:(NSRect)dirtyRect {
   [super drawRect:dirtyRect];
 }
 
 - (void)mouseEntered:(NSEvent *)theEvent {
   _isMouseOver = YES;
-  //[self setNeedsDisplay];
 }
 
 - (void)mouseExited:(NSEvent *)theEvent {
   _isMouseOver = NO;
   _isMouseDown = NO;
-  //[self setNeedsDisplay];
 }
 
 - (void)mouseDown:(NSEvent *)theEvent {
   _isMouseDown = YES;
-  //[self setNeedsDisplay];
 }
 
 - (void)mouseUp:(NSEvent *)theEvent {
   _isMouseDown = NO;
-  /*[self setNeedsDisplay];
-  if(self.copyActionBlock) {
-    self.copyActionBlock(self);
-  }
-   */
 }
 
 - (void)viewWillMoveToWindow:(NSWindow *)newWindow {
@@ -75,5 +71,19 @@
     [self addTrackingArea:_trackingArea];
   }
 }
+*/
+
+- (void)copy:(id)sender {
+  NSLog(@"%@ %@ sender:%@", self.className, NSStringFromSelector(_cmd), [sender className]);
+  //[super copy:sender];
+}
+
+- (NSMenu *)menuForEvent:(NSEvent *)event {
+  NSLog(@"%@ %@ event:%@", self.className, NSStringFromSelector(_cmd), event.className);
+  NSMenu *menu = [super menuForEvent:event];
+  return menu;
+}
+
+
 
 @end
