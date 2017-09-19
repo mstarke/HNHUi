@@ -75,7 +75,7 @@
 
 - (void)copy:(id)sender {
   NSLog(@"%@ %@ sender:%@", self.className, NSStringFromSelector(_cmd), [sender className]);
-  //[super copy:sender];
+  [super copy:sender];
 }
 
 - (NSMenu *)menuForEvent:(NSEvent *)event {

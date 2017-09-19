@@ -23,5 +23,14 @@
   // Update the view, if already loaded.
 }
 
+- (BOOL)textView:(NSTextView *)textView doCommandBySelector:(SEL)commandSelector {
+  NSLog(@"%@ %@", NSStringFromSelector(_cmd), NSStringFromSelector(commandSelector));
+  return YES;
+}
+
+- (void)doCommandBySelector:(SEL)selector {
+  NSLog(@"%@ %@", NSStringFromSelector(_cmd), NSStringFromSelector(selector));
+  [super doCommandBySelector:selector];
+}
 
 @end

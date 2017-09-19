@@ -7,8 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-@protocol HNHUITextFieldDelegate <NSObject>
+
+@class HNHUITextView;
+
+@protocol HNNUITextViewDelegate <NSObject>
 
 @optional
-- (BOOL)textField:(NSTextField *)textField performAction:(SEL)action;
+
+- (BOOL)textView:(HNHUITextView *)textView performAction:(SEL)action;
+
 @end

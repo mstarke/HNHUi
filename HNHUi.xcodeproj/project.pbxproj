@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4C7264AD1F7136C10068F66B /* HNHUITextFieldDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C7264AC1F7136C10068F66B /* HNHUITextFieldDelegate.h */; };
+		4C7264AD1F7136C10068F66B /* HNNUITextViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C7264AC1F7136C10068F66B /* HNNUITextViewDelegate.h */; };
 		4C7264B61F7139160068F66B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7264B51F7139160068F66B /* AppDelegate.m */; };
 		4C7264B91F7139160068F66B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7264B81F7139160068F66B /* main.m */; };
 		4C7264BC1F7139160068F66B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7264BB1F7139160068F66B /* ViewController.m */; };
@@ -76,7 +76,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4C7264AC1F7136C10068F66B /* HNHUITextFieldDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHUITextFieldDelegate.h; sourceTree = "<group>"; };
+		4C7264AC1F7136C10068F66B /* HNNUITextViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNNUITextViewDelegate.h; sourceTree = "<group>"; };
 		4C7264B21F7139160068F66B /* HNHUiExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HNHUiExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C7264B41F7139160068F66B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4C7264B51F7139160068F66B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -194,8 +194,8 @@
 			isa = PBXGroup;
 			children = (
 				4CAEF1F71B661743005C6592 /* HNHUi */,
-				4CAEF2041B661743005C6592 /* HNHUiTests */,
 				4C7264B31F7139160068F66B /* HNHUiExample */,
+				4CAEF2041B661743005C6592 /* HNHUiTests */,
 				4CAEF1F61B661743005C6592 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -216,7 +216,7 @@
 				4CAEF1FA1B661743005C6592 /* HNHUi.h */,
 				4CAEF2111B661891005C6592 /* Categories */,
 				4CC281871C0F65C600B9174D /* ScrollView */,
-				4CC281861C0F647100B9174D /* TextField */,
+				4CC281861C0F647100B9174D /* Text */,
 				4CAEF21A1B661891005C6592 /* HNHUIColorWell.h */,
 				4CAEF21B1B661891005C6592 /* HNHUIColorWell.m */,
 				4CAEF21C1B661891005C6592 /* HNHUICommon.h */,
@@ -235,8 +235,6 @@
 				4CAEF2351B661891005C6592 /* HNHUITableHeaderCell.m */,
 				4CAEF2361B661891005C6592 /* HNHUITableRowView.h */,
 				4CAEF2371B661891005C6592 /* HNHUITableRowView.m */,
-				4CAEF2381B661891005C6592 /* HNHUITextView.h */,
-				4CAEF2391B661891005C6592 /* HNHUITextView.m */,
 				4CAEF23A1B661891005C6592 /* HNHUITokenField.h */,
 				4CAEF23B1B661891005C6592 /* HNHUITokenField.m */,
 				4CAEF23C1B661891005C6592 /* HNHUITokenFieldCell.h */,
@@ -282,7 +280,7 @@
 			path = Categories;
 			sourceTree = "<group>";
 		};
-		4CC281861C0F647100B9174D /* TextField */ = {
+		4CC281861C0F647100B9174D /* Text */ = {
 			isa = PBXGroup;
 			children = (
 				4CAEF2161B661891005C6592 /* HNHUIBadgedTextField.h */,
@@ -299,9 +297,11 @@
 				4CAEF2291B661891005C6592 /* HNHUIRoundedTextFieldCell.m */,
 				4CAEF22A1B661891005C6592 /* HNHUIRoundedTextFieldCellHelper.h */,
 				4CAEF22B1B661891005C6592 /* HNHUIRoundedTextFieldCellHelper.m */,
-				4C7264AC1F7136C10068F66B /* HNHUITextFieldDelegate.h */,
+				4C7264AC1F7136C10068F66B /* HNNUITextViewDelegate.h */,
+				4CAEF2381B661891005C6592 /* HNHUITextView.h */,
+				4CAEF2391B661891005C6592 /* HNHUITextView.m */,
 			);
-			name = TextField;
+			name = Text;
 			sourceTree = "<group>";
 		};
 		4CC281871C0F65C600B9174D /* ScrollView */ = {
@@ -322,7 +322,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C7264AD1F7136C10068F66B /* HNHUITextFieldDelegate.h in Headers */,
+				4C7264AD1F7136C10068F66B /* HNNUITextViewDelegate.h in Headers */,
 				4CAEF24E1B661891005C6592 /* HNHUIRoundedSecureTextField.h in Headers */,
 				4CAEF2561B661891005C6592 /* HNHUIRoundedTextFieldCellHelper.h in Headers */,
 				4CAEF24C1B661891005C6592 /* HNHUILevelIndicatorCell.h in Headers */,
