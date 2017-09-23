@@ -42,6 +42,6 @@ void HNHUISetStateFromBool(id stateItem, BOOL isOn) {
   }
 }
 
-BOOL HNHUIIsRunningOnYosemiteOrNewer() {
+BOOL HNHUIIsRunningOnYosemiteOrNewer(void) {
   return floor(NSAppKitVersionNumber) >= NSAppKitVersionNumber10_10;
 }
