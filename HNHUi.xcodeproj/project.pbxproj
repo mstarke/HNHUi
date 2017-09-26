@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4C7264AD1F7136C10068F66B /* HNNUITextViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C7264AC1F7136C10068F66B /* HNNUITextViewDelegate.h */; };
 		4C7264B61F7139160068F66B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7264B51F7139160068F66B /* AppDelegate.m */; };
 		4C7264B91F7139160068F66B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7264B81F7139160068F66B /* main.m */; };
 		4C7264BC1F7139160068F66B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7264BB1F7139160068F66B /* ViewController.m */; };
@@ -76,7 +75,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4C7264AC1F7136C10068F66B /* HNNUITextViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNNUITextViewDelegate.h; sourceTree = "<group>"; };
 		4C7264B21F7139160068F66B /* HNHUiExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HNHUiExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C7264B41F7139160068F66B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4C7264B51F7139160068F66B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -297,7 +295,6 @@
 				4CAEF2291B661891005C6592 /* HNHUIRoundedTextFieldCell.m */,
 				4CAEF22A1B661891005C6592 /* HNHUIRoundedTextFieldCellHelper.h */,
 				4CAEF22B1B661891005C6592 /* HNHUIRoundedTextFieldCellHelper.m */,
-				4C7264AC1F7136C10068F66B /* HNNUITextViewDelegate.h */,
 				4CAEF2381B661891005C6592 /* HNHUITextView.h */,
 				4CAEF2391B661891005C6592 /* HNHUITextView.m */,
 			);
@@ -322,7 +319,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C7264AD1F7136C10068F66B /* HNNUITextViewDelegate.h in Headers */,
 				4CAEF24E1B661891005C6592 /* HNHUIRoundedSecureTextField.h in Headers */,
 				4CAEF2561B661891005C6592 /* HNHUIRoundedTextFieldCellHelper.h in Headers */,
 				4CAEF24C1B661891005C6592 /* HNHUILevelIndicatorCell.h in Headers */,
@@ -414,7 +410,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = HNHUI;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "HicknHack Software GmbH";
 				TargetAttributes = {
 					4C7264B11F7139160068F66B = {
@@ -574,7 +570,6 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = HNHUiExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hicknhacksoftware.HNHUiExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -591,7 +586,6 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = HNHUiExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hicknhacksoftware.HNHUiExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -605,14 +599,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -636,7 +636,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -653,14 +653,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -677,7 +683,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -698,6 +704,7 @@
 				INFOPLIST_FILE = HNHUi/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hicknhacksoftware.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -718,6 +725,7 @@
 				INFOPLIST_FILE = HNHUi/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hicknhacksoftware.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -769,6 +777,7 @@
 				4C7264C51F7139170068F66B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4CAEF1EF1B661743005C6592 /* Build configuration list for PBXProject "HNHUi" */ = {
 			isa = XCConfigurationList;

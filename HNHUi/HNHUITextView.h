@@ -8,7 +8,16 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface HNHUITextView : NSTextView
+@class HNHUITextView;
 
+@protocol HNHUITextViewDelegate <NSTextViewDelegate>
+@optional
+- (BOOL)textView:(NSTextView *)textView performAction:(SEL)action;
+@end
+
+/**
+ Custom TextView vented as field editor to enable customization of cut, copy and paste actions
+ */
+@interface HNHUITextView : NSTextView
 
 @end

@@ -25,13 +25,13 @@
 
 #import "HNHUIRoundedTextField.h"
 #import "HNHUIRoundedTextFieldCell.h"
+#import "HNHUITextView.h"
 
 #if ! __has_feature(objc_arc)
 #warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
 #endif
 
-
-@interface HNHUIRoundedTextField ()
+@interface HNHUIRoundedTextField () <HNHUITextViewDelegate>
 
 @property (strong, nullable) NSTrackingArea *trackingArea;
 @property (nonatomic) BOOL mouseOver;
@@ -68,13 +68,22 @@
   }
   return self;
 }
+/* vent HNHUITextView delegation to HNHUITextFieldDelegate */
+- (BOOL)textView:(NSTextView *)textView performAction:(SEL)action {
+  if([[self.delegate class] conformsToProtocol:@protocol(HNHUITextFieldDelegate)]) {
+    if([self.delegate respondsToSelector:@selector(textField:textView:performAction:)]) {
+      return [((id<HNHUITextFieldDelegate>)self.delegate) textField:self textView:textView performAction:action];
+    }
+  }
+  return YES;
+}
 
+#pragma mark properties
 - (void)setEditable:(BOOL)flag {
   super.editable = flag;
   [self _updateTrackingArea];
 }
 
-#pragma mark properties
 - (void)setMouseDown:(BOOL)mouseDown {
   if(_mouseDown != mouseDown) {
     _mouseDown = mouseDown;
@@ -136,28 +145,27 @@
   [self _updateTrackingArea];
 }
 
-- (NSMenu *)textView:(NSTextView *)view menu:(NSMenu *)menu forEvent:(NSEvent *)event atIndex:(NSUInteger)charIndex {
-  NSLog(@"%@", NSStringFromSelector(_cmd));
-  NSLog(@"%@", menu.itemArray);
-  for(NSMenuItem *item in menu.itemArray) {
-    if([self _allowsMenuForAction:item.action]) {
-      continue;
-    }
-    [menu removeItem:item];
-  }
-  return menu;
-}
+//- (NSMenu *)textView:(NSTextView *)view menu:(NSMenu *)menu forEvent:(NSEvent *)event atIndex:(NSUInteger)charIndex {
+//  NSLog(@"%@", NSStringFromSelector(_cmd));
+//  NSLog(@"%@", menu.itemArray);
+//  for(NSMenuItem *item in menu.itemArray) {
+//    if([self _allowsMenuForAction:item.action]) {
+//      continue;
+//    }
+//    [menu removeItem:item];
+//  }
+//  return menu;
+//}
 
-
-- (BOOL)_allowsMenuForAction:(SEL)selector {
-  if(@selector(cut:) == selector ||
-     @selector(copy:) == selector ||
-     @selector(paste:) == selector ||
-     @selector(selectAll:) == selector) {
-    return YES;
-  }
-  return NO;
-}
+//- (BOOL)_allowsMenuForAction:(SEL)selector {
+//  if(@selector(cut:) == selector ||
+//     @selector(copy:) == selector ||
+//     @selector(paste:) == selector ||
+//     @selector(selectAll:) == selector) {
+//    return YES;
+//  }
+//  return NO;
+//}
 
 
 /* TODO: move over to updateTrackingAreas? */

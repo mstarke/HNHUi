@@ -25,12 +25,15 @@
 
 #import <AppKit/AppKit.h>
 /**
- *	A Textfield that has a rounded apearance
- *  Furthermore it has the abilty to copy the text
- *  If it's nonselectable and non-editable
- *  It dispalys a button inside the cell to inform the user,
- *  that the content can be copied via click
+ A Textfield with rounded apearance
+ 
+ Addionally it allows to customize it's copy and paste actions of it's field editor via the HNHUITextFieldDelegate protocol
  */
+@protocol HNHUITextFieldDelegate <NSTextFieldDelegate>
+@optional
+- (BOOL)textField:(NSTextField *)textField textView:(NSTextView *)textView performAction:(SEL)action;
+@end
+
 @interface HNHUIRoundedTextField : NSTextField
 
 @property (nonatomic, readonly, getter=isMouseOver) BOOL mouseOver;
