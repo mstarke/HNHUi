@@ -26,6 +26,7 @@
 #import "HNHUIRoundedSecureTextFieldCell.h"
 #import "HNHUIRoundedTextFieldCellHelper.h"
 #import "HNHUIRoundedSecureTextField.h"
+#import "HNHUISecureTextView.h"
 
 #import <AppKit/AppKit.h>
 
@@ -39,6 +40,7 @@
   //NSButtonCell *_buttonCell;
 }
 
+//@property (strong) HNHUISecureTextView *fieldEditor;
 /* ButtonCell used for Rendering and handling actions */
 //@property (nonatomic, strong) NSButtonCell *buttonCell;
 
@@ -119,6 +121,16 @@
 - (BOOL)drawsBackground {
   return NO;
 }
+
+/*
+- (NSTextView *)fieldEditorForView:(NSView *)controlView {
+  if(nil == self.fieldEditor) {
+    self.fieldEditor = [[HNHUISecureTextView alloc] init];
+    self.fieldEditor.fieldEditor = YES;
+  }
+  return self.fieldEditor;
+}
+*/
 
 #pragma mark -
 #pragma mark Helper

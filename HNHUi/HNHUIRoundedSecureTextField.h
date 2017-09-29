@@ -25,7 +25,7 @@
 
 #import <AppKit/AppKit.h>
 
-@interface HNHUIRoundedSecureTextField : NSSecureTextField <NSTextFieldDelegate>
+@interface HNHUIRoundedSecureTextField : NSSecureTextField
 
 @property (nonatomic, assign) BOOL showPassword;
 @property (nonatomic, readonly) BOOL isMouseOver;

@@ -16,11 +16,17 @@
   // Do any additional setup after loading the view.
 }
 
-
-- (void)setRepresentedObject:(id)representedObject {
-  [super setRepresentedObject:representedObject];
-
-  // Update the view, if already loaded.
+- (NSMenu *)textField:(NSTextField *)textField textView:(NSTextView *)view menu:(NSMenu *)menu {
+  for(NSMenuItem *item in menu.itemArray) {
+    if(item.action == @selector(cut:) ||
+       item.action == @selector(paste:) ||
+       item.action == @selector(copy:) ||
+       item.action == @selector(selectAll:)) {
+      continue;
+    }
+    [menu removeItem:item];
+  }
+  return menu;
 }
 
 - (BOOL)textField:(NSTextField *)textField textView:(NSTextView *)textView performAction:(SEL)action {

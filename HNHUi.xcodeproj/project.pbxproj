@@ -62,6 +62,8 @@
 		4CAEF2691B661891005C6592 /* HNHUITokenFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEF23D1B661891005C6592 /* HNHUITokenFieldCell.m */; };
 		4CC281841C0F645800B9174D /* HNHUISheetWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CC281821C0F645800B9174D /* HNHUISheetWindowController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4CC281851C0F645800B9174D /* HNHUISheetWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC281831C0F645800B9174D /* HNHUISheetWindowController.m */; };
+		4CF5CEC51F7B02F800F67964 /* HNHUISecureTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CF5CEC31F7B02F800F67964 /* HNHUISecureTextView.h */; };
+		4CF5CEC61F7B02F800F67964 /* HNHUISecureTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF5CEC41F7B02F800F67964 /* HNHUISecureTextView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,6 +138,8 @@
 		4CAEF23D1B661891005C6592 /* HNHUITokenFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHUITokenFieldCell.m; sourceTree = "<group>"; };
 		4CC281821C0F645800B9174D /* HNHUISheetWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHUISheetWindowController.h; sourceTree = "<group>"; };
 		4CC281831C0F645800B9174D /* HNHUISheetWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHUISheetWindowController.m; sourceTree = "<group>"; };
+		4CF5CEC31F7B02F800F67964 /* HNHUISecureTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HNHUISecureTextView.h; sourceTree = "<group>"; };
+		4CF5CEC41F7B02F800F67964 /* HNHUISecureTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HNHUISecureTextView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -297,6 +301,8 @@
 				4CAEF22B1B661891005C6592 /* HNHUIRoundedTextFieldCellHelper.m */,
 				4CAEF2381B661891005C6592 /* HNHUITextView.h */,
 				4CAEF2391B661891005C6592 /* HNHUITextView.m */,
+				4CF5CEC31F7B02F800F67964 /* HNHUISecureTextView.h */,
+				4CF5CEC41F7B02F800F67964 /* HNHUISecureTextView.m */,
 			);
 			name = Text;
 			sourceTree = "<group>";
@@ -332,6 +338,7 @@
 				4CAEF25C1B661891005C6592 /* HNHUISeparator.h in Headers */,
 				4CAEF2501B661891005C6592 /* HNHUIRoundedSecureTextFieldCell.h in Headers */,
 				4CAEF2481B661891005C6592 /* HNHUICommon.h in Headers */,
+				4CF5CEC51F7B02F800F67964 /* HNHUISecureTextView.h in Headers */,
 				4CAEF2421B661891005C6592 /* HNHUIBadgedTextField.h in Headers */,
 				4CAEF2621B661891005C6592 /* HNHUITableRowView.h in Headers */,
 				4CAEF1FB1B661743005C6592 /* HNHUi.h in Headers */,
@@ -514,6 +521,7 @@
 				4CAEF2551B661891005C6592 /* HNHUIRoundedTextFieldCell.m in Sources */,
 				4CAEF2691B661891005C6592 /* HNHUITokenFieldCell.m in Sources */,
 				4CAEF2471B661891005C6592 /* HNHUIColorWell.m in Sources */,
+				4CF5CEC61F7B02F800F67964 /* HNHUISecureTextView.m in Sources */,
 				4CAEF25D1B661891005C6592 /* HNHUISeparator.m in Sources */,
 				4CAEF2651B661891005C6592 /* HNHUITextView.m in Sources */,
 				4CAEF25F1B661891005C6592 /* HNHUIShadowBox.m in Sources */,

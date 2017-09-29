@@ -33,7 +33,6 @@
 #endif
 
 @interface HNHUIRoundedTextFieldCell ()
-
 @property (strong) HNHUITextView *fieldEditor;
 @end
 

@@ -145,27 +145,12 @@
   [self _updateTrackingArea];
 }
 
-//- (NSMenu *)textView:(NSTextView *)view menu:(NSMenu *)menu forEvent:(NSEvent *)event atIndex:(NSUInteger)charIndex {
-//  NSLog(@"%@", NSStringFromSelector(_cmd));
-//  NSLog(@"%@", menu.itemArray);
-//  for(NSMenuItem *item in menu.itemArray) {
-//    if([self _allowsMenuForAction:item.action]) {
-//      continue;
-//    }
-//    [menu removeItem:item];
-//  }
-//  return menu;
-//}
-
-//- (BOOL)_allowsMenuForAction:(SEL)selector {
-//  if(@selector(cut:) == selector ||
-//     @selector(copy:) == selector ||
-//     @selector(paste:) == selector ||
-//     @selector(selectAll:) == selector) {
-//    return YES;
-//  }
-//  return NO;
-//}
+- (NSMenu *)textView:(NSTextView *)view menu:(NSMenu *)menu forEvent:(NSEvent *)event atIndex:(NSUInteger)charIndex {
+  if([self.delegate respondsToSelector:@selector(textField:textView:menu:)]) {
+    return [((id<HNHUITextFieldDelegate>)self.delegate) textField:self textView:view menu:menu];
+  }
+  return menu;
+}
 
 
 /* TODO: move over to updateTrackingAreas? */

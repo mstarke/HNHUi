@@ -26,12 +26,13 @@
 #import <AppKit/AppKit.h>
 /**
  A Textfield with rounded apearance
- 
- Addionally it allows to customize it's copy and paste actions of it's field editor via the HNHUITextFieldDelegate protocol
  */
 @protocol HNHUITextFieldDelegate <NSTextFieldDelegate>
 @optional
+// called for an action that the fieldEditor for this control want to perform. Return NO if you want to prefent default behaviour
 - (BOOL)textField:(NSTextField *)textField textView:(NSTextView *)textView performAction:(SEL)action;
+// called whenever a menu on the fieldeditor is opened to allow for customization of the menu via the delegate
+- (NSMenu *)textField:(NSTextField *)textField textView:(NSTextView *)view menu:(NSMenu *)menu;
 @end
 
 @interface HNHUIRoundedTextField : NSTextField

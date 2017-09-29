@@ -66,12 +66,6 @@
   }
 }
 
-- (NSMenu *)textView:(NSTextView *)view menu:(NSMenu *)menu forEvent:(NSEvent *)event atIndex:(NSUInteger)charIndex {
-  NSLog(@"%@", NSStringFromSelector(_cmd));
-  NSLog(@"%@", menu.itemArray);
-  return menu;
-}
-
 #pragma mark -
 #pragma mark Private
 - (void)_swapCellForOneOfClass:(Class)cellClass;
