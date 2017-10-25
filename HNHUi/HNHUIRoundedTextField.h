@@ -29,7 +29,7 @@
  */
 @protocol HNHUITextFieldDelegate <NSTextFieldDelegate>
 @optional
-// called for an action that the fieldEditor for this control want to perform. Return NO if you want to prefent default behaviour
+// called for an action that the fieldEditor for this control want to perform. Return NO if you want to prevent default behaviour
 - (BOOL)textField:(NSTextField *)textField textView:(NSTextView *)textView performAction:(SEL)action;
 // called whenever a menu on the fieldeditor is opened to allow for customization of the menu via the delegate
 - (NSMenu *)textField:(NSTextField *)textField textView:(NSTextView *)view menu:(NSMenu *)menu;

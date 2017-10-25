@@ -20,7 +20,7 @@ static CGFloat const _kShakeDuration = 0.4;
 - (void)shakeWindow:(void (^)(void))completionHandler {
   self.animations = @{@"frameOrigin": [self _shakeAnimation:self.frame]};
   [self.animator setFrameOrigin:self.frame.origin];
-  if (completionHandler) {
+  if(completionHandler) {
     double delayInSeconds = _kShakeDuration;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
