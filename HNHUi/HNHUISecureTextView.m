@@ -11,15 +11,48 @@
 @implementation HNHUISecureTextView
 
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
-  BOOL valid = [super validateMenuItem:menuItem];
   if(menuItem.action == @selector(copy:)) {
-    valid = YES;
+    for(NSValue *rangeValue in self.selectedRanges) {
+      if(rangeValue.rangeValue.length > 0) {
+        return YES; 
+      }
+    }
   }
-  return valid;
+  return [super validateMenuItem:menuItem];
+}
+
+- (void)cut:(id)sender {
+  if([self _shouldPerformAction:_cmd]) {
+    [super cut:sender];
+  }
+}
+
+- (void)paste:(id)sender {
+  if([self _shouldPerformAction:_cmd]) {
+    [super paste:sender];
+  }
 }
 
 - (void)copy:(id)sender {
-  [super copy:sender];
+  if([self _shouldPerformAction:_cmd]) {
+    [super copy:sender];
+  }
+}
+
+- (NSMenu *)menuForEvent:(NSEvent *)event {
+  if([self.delegate respondsToSelector:@selector(textView:menu:forEvent:atIndex:)]) {
+    return [self.delegate textView:self menu:[super menuForEvent:event] forEvent:event atIndex:[self characterIndexForPoint:[NSEvent mouseLocation]]];
+  }
+  return [super menuForEvent:event];
+}
+
+- (BOOL)_shouldPerformAction:(SEL)action {
+  if(self.delegate && [[self.delegate class] conformsToProtocol:@protocol(HNHUITextViewDelegate)]) {
+    if([self.delegate respondsToSelector:@selector(textView:performAction:)]) {
+      return [((id<HNHUITextViewDelegate>)self.delegate) textView:self performAction:action];
+    }
+  }
+  return YES;
 }
 
 @end

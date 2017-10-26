@@ -25,6 +25,8 @@
 #import "HNHUIRoundedSecureTextField.h"
 #import "HNHUIRoundedSecureTextFieldCell.h"
 #import "HNHUIRoundedTextFieldCell.h"
+#import "HNHUITextView.h"
+#import "HNHUIRoundedTextField.h"
 
 @interface HNHUIRoundedSecureTextField () {
   NSTrackingArea *_trackingArea;
@@ -64,6 +66,20 @@
     _showPassword = showPassword;
     [self _toggleCell];
   }
+}
+
+- (BOOL)wantsUpdateLayer {
+  return NO;
+}
+
+/* vent HNHUISecureTextView delegation to HNHUITextFieldDelegate */
+- (BOOL)textView:(NSTextView *)textView performAction:(SEL)action {
+  if([[self.delegate class] conformsToProtocol:@protocol(HNHUITextFieldDelegate)]) {
+    if([self.delegate respondsToSelector:@selector(textField:textView:performAction:)]) {
+      return [((id<HNHUITextFieldDelegate>)self.delegate) textField:self textView:textView performAction:action];
+    }
+  }
+  return YES;
 }
 
 #pragma mark -
@@ -108,6 +124,14 @@
     [self _swapCellForOneOfClass:[HNHUIRoundedTextFieldCell class]];
   }
 }
+
+- (NSMenu *)textView:(NSTextView *)view menu:(NSMenu *)menu forEvent:(NSEvent *)event atIndex:(NSUInteger)charIndex {
+  if([self.delegate respondsToSelector:@selector(textField:textView:menu:)]) {
+    return [((id<HNHUITextFieldDelegate>)self.delegate) textField:self textView:view menu:menu];
+  }
+  return menu;
+}
+
 
 - (void)setEditable:(BOOL)flag {
   super.editable = flag;

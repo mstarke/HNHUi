@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
+#import "HNHUITextView.h"
 /* declare NSSecureTextView to silence compiler warnings */
 @interface NSSecureTextView : NSTextView
 @end

@@ -40,7 +40,7 @@
   //NSButtonCell *_buttonCell;
 }
 
-//@property (strong) HNHUISecureTextView *fieldEditor;
+@property (strong) HNHUISecureTextView *fieldEditor;
 /* ButtonCell used for Rendering and handling actions */
 //@property (nonatomic, strong) NSButtonCell *buttonCell;
 
@@ -122,7 +122,7 @@
   return NO;
 }
 
-/*
+
 - (NSTextView *)fieldEditorForView:(NSView *)controlView {
   if(nil == self.fieldEditor) {
     self.fieldEditor = [[HNHUISecureTextView alloc] init];
@@ -130,7 +130,7 @@
   }
   return self.fieldEditor;
 }
-*/
+
 
 #pragma mark -
 #pragma mark Helper

@@ -68,6 +68,12 @@
   }
   return self;
 }
+
+- (BOOL)wantsUpdateLayer {
+  return NO;
+}
+
+
 /* vent HNHUITextView delegation to HNHUITextFieldDelegate */
 - (BOOL)textView:(NSTextView *)textView performAction:(SEL)action {
   if([[self.delegate class] conformsToProtocol:@protocol(HNHUITextFieldDelegate)]) {
