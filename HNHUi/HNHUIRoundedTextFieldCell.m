@@ -64,7 +64,6 @@
 }
 
 - (NSMenu *)menuForEvent:(NSEvent *)event inRect:(NSRect)cellFrame ofView:(NSView *)view {
-  NSLog(@"%@ %@", self.className, NSStringFromSelector(_cmd));
   return [super menuForEvent:event inRect:cellFrame ofView:view];
 }
 
