@@ -31,7 +31,7 @@
 @interface HNHUIRoundedSecureTextField () {
   NSTrackingArea *_trackingArea;
 }
-
+@property (nonatomic, readonly) BOOL requiresTrackingArea;
 @end
 
 @implementation HNHUIRoundedSecureTextField
@@ -71,6 +71,12 @@
 - (BOOL)wantsUpdateLayer {
   return NO;
 }
+
+- (BOOL)requiresTrackingArea {
+  /* We only need to track if we got an action or are not editable */
+  return !self.isEditable && !self.selectable && self.copyActionBlock;
+}
+
 
 /* vent HNHUISecureTextView delegation to HNHUITextFieldDelegate */
 - (BOOL)textView:(NSTextView *)textView performAction:(SEL)action {
@@ -179,7 +185,7 @@
     [self removeTrackingArea:_trackingArea];
     _trackingArea = nil;
   }
-  if(!self.editable && !self.selectable) {
+  if(self.requiresTrackingArea) {
     _trackingArea = [[NSTrackingArea alloc] initWithRect:NSZeroRect options:NSTrackingMouseEnteredAndExited|NSTrackingInVisibleRect|NSTrackingActiveAlways owner:self userInfo:nil];
     [self addTrackingArea:_trackingArea];
   }

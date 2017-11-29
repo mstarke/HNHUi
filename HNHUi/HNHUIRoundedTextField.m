@@ -111,7 +111,7 @@
 
 - (BOOL)requiresTrackingArea {
   /* We only need to track if we got an action or are not editable */
-  return !self.isEditable && self.copyActionBlock;
+  return !self.isEditable && !self.selectable && self.copyActionBlock;
 }
 
 #pragma mark mouse events
