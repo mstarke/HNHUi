@@ -1,8 +1,10 @@
-#HNHUi
+# HNHUi
+
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 Reusable Cocoa UI Components
 
-##License
+## License
 
 Copyright (c) 2013-2014 Michael Starke, HicknHack Software GmbH
 
@@ -24,7 +26,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
-##Copyrights
+## Copyrights
 
 See Licenses for all license files.
 
