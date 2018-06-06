@@ -35,6 +35,20 @@
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if(self) {
+    /* make sure we have the correct cell within, if not, swap it but keep all the attribues */
+    if(![self.cell isMemberOfClass:HNHUIBadgedTextFieldCell.class]) {
+      NSMutableData *data = [[NSMutableData alloc] init];
+      NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+      [self.cell encodeWithCoder:archiver];
+      [archiver finishEncoding];
+      
+      NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+      HNHUIBadgedTextFieldCell *cell = [[HNHUIBadgedTextFieldCell alloc] initWithCoder:unarchiver];
+      [unarchiver finishDecoding];
+      
+      self.cell = cell;
+      self.needsDisplay = YES;
+    }
     _count = NSNotFound;
     _showEmptyBadge = NO;
   }
@@ -48,6 +62,10 @@
     _showEmptyBadge = NO;
   }
   return self;
+}
+
+- (BOOL)wantsUpdateLayer {
+  return NO;
 }
 
 - (void)setCount:(NSInteger)count {
