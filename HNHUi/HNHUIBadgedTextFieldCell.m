@@ -17,7 +17,7 @@
 #import "HNHUIBadgedTextField.h"
 
 #define BADGE_HEIGHT 16
-#define BADGE_BACKGROUND_COLOR [NSColor colorWithSRGBRed:0.588 green:0.647 blue:0.706 alpha:1.0]
+#define BADGE_BACKGROUND_COLOR NSColor.windowFrameColor
 #define BADGE_HIDDEN_BACKGROUND_COLOR [NSColor lightGrayColor]
 #define BADGE_SELECTED_BACKGROUND_COLOR [NSColor whiteColor]
 #define BADGE_FONT [NSFont boldSystemFontOfSize:11]
@@ -86,7 +86,7 @@
   
 	NSColor *backgroundColor;
   //Set the text colour based on window and control state
-  NSColor *badgeColor = isSelected ? [NSColor colorWithSRGBRed:0.588 green:0.647 blue:0.706 alpha:1.0] : [NSColor whiteColor];
+  NSColor *badgeColor = isSelected ? BADGE_BACKGROUND_COLOR : [NSColor whiteColor];
   
   if(isVisible) {
     backgroundColor = isSelected ? BADGE_SELECTED_BACKGROUND_COLOR : BADGE_BACKGROUND_COLOR;
