@@ -87,7 +87,7 @@
 
 - (void)drawInteriorWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
   [super drawInteriorWithFrame:cellFrame inView:controlView];
-  if([controlView isKindOfClass:[HNHUIRoundedSecureTextField class]]) {
+  if([controlView isKindOfClass:HNHUIRoundedSecureTextField.class]) {
     HNHUIRoundedSecureTextField *textField = (HNHUIRoundedSecureTextField *)controlView;
     if(![textField currentEditor] && textField.isMouseOver) {
       [HNHUIRoundedTextFieldCellHelper drawCopyButtonWithFrame:cellFrame mouseDown:textField.isMouseDown controlView:controlView];

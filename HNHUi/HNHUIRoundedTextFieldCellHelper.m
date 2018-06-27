@@ -26,9 +26,8 @@
 #import "HNHUIRoundedTextFieldCellHelper.h"
 
 #define CORNER_RADIUS 4.0
-#define BUTTON_RADIUS 5.0
 #define BUTTON_WIDTH 50.0
-#define BUTTON_MARGIN 5.0
+#define BUTTON_MARGIN 4.0
 
 @implementation HNHUIRoundedTextFieldCellHelper
 
@@ -37,9 +36,9 @@
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
     cell = [[NSButtonCell alloc] init];
-    cell.bezelStyle = NSRoundRectBezelStyle;
-    [cell setButtonType:NSMomentaryLightButton];
-    cell.controlSize = NSSmallControlSize;
+    cell.bezelStyle = NSBezelStyleRegularSquare;
+    [cell setButtonType:NSButtonTypeMomentaryPushIn];
+    cell.controlSize = NSControlSizeSmall;
     cell.title = @"Copy";
     cell.bordered = YES;
   });
@@ -81,15 +80,10 @@
   return[NSBezierPath bezierPathWithRoundedRect:aRect xRadius:CORNER_RADIUS yRadius:CORNER_RADIUS];
 }
 
-+ (NSBezierPath *)copyButtonPathForRect:(NSRect)aRect {
-  aRect = NSInsetRect(aRect, 4.5, 4.5);
-  return [NSBezierPath bezierPathWithRoundedRect:aRect xRadius:BUTTON_RADIUS yRadius:BUTTON_RADIUS];
-}
-
 + (void)drawCopyButtonWithFrame:(NSRect)cellFrame mouseDown:(BOOL)mouseDown controlView:(NSView *)view {
   NSCell *cell = [self copyButtonCell];
   
-  CGFloat width = MIN( NSWidth(cellFrame) - BUTTON_MARGIN, BUTTON_WIDTH + BUTTON_MARGIN);
+  CGFloat width = MIN( NSWidth(cellFrame) - BUTTON_MARGIN, cell.cellSize.width + BUTTON_MARGIN);
   NSRect buttonRect = NSMakeRect(NSMaxX(cellFrame) - width, NSMinY(cellFrame), width - BUTTON_MARGIN, NSHeight(cellFrame));
 
   cell.state = mouseDown ? NSOnState : NSOffState;

@@ -8,12 +8,17 @@
 
 #import "ViewController.h"
 
+@interface ViewController ()
+@property (weak) IBOutlet HNHUIRoundedTextField *roundedTextField;
+@end
+
 @implementation ViewController
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-
-  // Do any additional setup after loading the view.
+  self.roundedTextField.copyActionBlock = ^(NSTextField *tf) {
+    NSLog(@"Action!");
+  };
 }
 
 - (NSMenu *)textField:(NSTextField *)textField textView:(NSTextView *)view menu:(NSMenu *)menu {
