@@ -25,10 +25,6 @@
 #define BADGE_MARGIN 4
 #define ROW_RIGHT_MARGIN 0
 
-#if ! __has_feature(objc_arc)
-#warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
-#endif
-
 @interface HNHUIBadgedTextFieldCell ()
 
 @property (strong) NSShadow *badgeShadow;

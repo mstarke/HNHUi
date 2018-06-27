@@ -26,10 +26,6 @@
 #import "HNHUIBadgedTextField.h"
 #import "HNHUIBadgedTextFieldCell.h"
 
-#if ! __has_feature(objc_arc)
-#warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
-#endif
-
 @implementation HNHUIBadgedTextField
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {

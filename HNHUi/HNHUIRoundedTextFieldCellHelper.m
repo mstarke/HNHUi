@@ -25,10 +25,6 @@
 
 #import "HNHUIRoundedTextFieldCellHelper.h"
 
-#if ! __has_feature(objc_arc)
-#warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
-#endif
-
 #define CORNER_RADIUS 4.0
 #define BUTTON_RADIUS 5.0
 #define BUTTON_WIDTH 50.0

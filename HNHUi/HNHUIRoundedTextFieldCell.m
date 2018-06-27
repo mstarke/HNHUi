@@ -28,10 +28,6 @@
 #import "HNHUIRoundedTextField.h"
 #import "HNHUITextView.h"
 
-#if ! __has_feature(objc_arc)
-#warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
-#endif
-
 @interface HNHUIRoundedTextFieldCell ()
 @property (strong) HNHUITextView *fieldEditor;
 @end
@@ -45,7 +41,7 @@
 
 - (void)drawInteriorWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
   [super drawInteriorWithFrame:cellFrame inView:controlView];
-  if([controlView isKindOfClass:[HNHUIRoundedTextField class]]) {
+  if([controlView isKindOfClass:HNHUIRoundedTextField.class]) {
     HNHUIRoundedTextField *textField = (HNHUIRoundedTextField *)controlView;
     if(![textField currentEditor] && textField.isMouseOver) {
       [HNHUIRoundedTextFieldCellHelper drawCopyButtonWithFrame:cellFrame mouseDown:textField.isMouseDown controlView:controlView];
