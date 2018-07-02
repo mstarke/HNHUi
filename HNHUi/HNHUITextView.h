@@ -16,6 +16,9 @@
 // if the TextView is a filed editor, this will get sent to the NSTextField which then calls out to it's delegate!
 // See HNHUIRoundedTextField for details
 - (BOOL)textView:(NSTextView *)textView performAction:(SEL)action;
+// Return NO to hide services menu on this text view. This might be usefull for editors with sensitive data.
+// Returning YES will result in system defaul behaviour for available services
+- (BOOL)allowServicesForTextView:(NSTextView *)textView;
 @end
 
 /**

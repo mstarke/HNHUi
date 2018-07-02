@@ -80,6 +80,15 @@
   return YES;
 }
 
+- (BOOL)allowServicesForTextView:(NSTextView *)textView {
+  if([[self.delegate class] conformsToProtocol:@protocol(HNHUITextFieldDelegate)]) {
+    if([self.delegate respondsToSelector:@selector(textField:allowServicesForTextView:)]) {
+      return [((id<HNHUITextFieldDelegate>)self.delegate) textField:self allowServicesForTextView:textView];
+    }
+  }
+  return YES;
+}
+
 #pragma mark properties
 - (void)setEditable:(BOOL)flag {
   super.editable = flag;
@@ -107,7 +116,7 @@
 
 - (BOOL)requiresTrackingArea {
   /* We only need to track if we got an action or are not editable */
-  return !self.isEditable && !self.selectable && self.copyActionBlock;
+  return !self.isEditable && /*!self.selectable && */ self.copyActionBlock;
 }
 
 #pragma mark mouse events

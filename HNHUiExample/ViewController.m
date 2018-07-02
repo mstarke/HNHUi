@@ -7,9 +7,11 @@
 //
 
 #import "ViewController.h"
+#import "HNHUIRoundedSecureTextField.h"
 
 @interface ViewController ()
 @property (weak) IBOutlet HNHUIRoundedTextField *roundedTextField;
+@property (weak) IBOutlet HNHUIRoundedSecureTextField *roundedSecureTextField;
 @end
 
 @implementation ViewController
@@ -19,6 +21,10 @@
   self.roundedTextField.copyActionBlock = ^(NSTextField *tf) {
     NSLog(@"Action!");
   };
+  self.roundedSecureTextField.copyActionBlock = ^(NSTextField *tf) {
+    NSLog(@"Action!");
+  };
+
 }
 
 - (NSMenu *)textField:(NSTextField *)textField textView:(NSTextView *)view menu:(NSMenu *)menu {
@@ -32,6 +38,10 @@
     [menu removeItem:item];
   }
   return menu;
+}
+
+- (BOOL)textField:(NSTextField *)textField allowServicesForTextView:(NSTextView *)textView {
+  return YES;
 }
 
 - (BOOL)textField:(NSTextField *)textField textView:(NSTextView *)textView performAction:(SEL)action {

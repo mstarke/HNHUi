@@ -9,70 +9,18 @@
 #import "HNHUITextView.h"
 #import "HNHUIRoundedTextField.h"
 
-@interface HNHUITextView ()
-/*
- {
- NSTrackingArea *_trackingArea;
- BOOL _isMouseOver;
- BOOL _isMouseDown;
- }
- */
-
-@end
-
 @implementation HNHUITextView
 
-/*
- - (void)drawRect:(NSRect)dirtyRect {
- [super drawRect:dirtyRect];
- }
- 
- - (void)mouseEntered:(NSEvent *)theEvent {
- _isMouseOver = YES;
- }
- 
- - (void)mouseExited:(NSEvent *)theEvent {
- _isMouseOver = NO;
- _isMouseDown = NO;
- }
- 
- - (void)mouseDown:(NSEvent *)theEvent {
- _isMouseDown = YES;
- }
- 
- - (void)mouseUp:(NSEvent *)theEvent {
- _isMouseDown = NO;
- }
- 
- - (void)viewWillMoveToWindow:(NSWindow *)newWindow {
- if(_trackingArea) {
- [self removeTrackingArea:_trackingArea];
- }
- }
- 
- - (void)viewDidMoveToWindow {
- [self _updateTrackingArea];
- }
- 
- - (void)setFrame:(NSRect)frameRect {
- super.frame = frameRect;
- [self _updateTrackingArea];
- }
- 
- - (void)_updateTrackingArea {
- if(_trackingArea) {
- [self removeTrackingArea:_trackingArea];
- _trackingArea = nil;
- }
- if(!self.editable && !self.selectable) {
- _trackingArea = [[NSTrackingArea alloc] initWithRect:NSZeroRect
- options:NSTrackingMouseEnteredAndExited|NSTrackingInVisibleRect|NSTrackingActiveAlways
- owner:self
- userInfo:nil];
- [self addTrackingArea:_trackingArea];
- }
- }
- */
+- (id)validRequestorForSendType:(NSPasteboardType)sendType returnType:(NSPasteboardType)returnType {
+  if(self.delegate && [[self.delegate class] conformsToProtocol:@protocol(HNHUITextViewDelegate)]) {
+    if([self.delegate respondsToSelector:@selector(allowServicesForTextView:)]) {
+      if(![((id<HNHUITextViewDelegate>)self.delegate) allowServicesForTextView:self]) {
+        return nil;
+      }
+    }
+  }
+  return [super validRequestorForSendType:sendType returnType:returnType];
+}
 
 - (void)cut:(id)sender {
   if([self _shouldPerformAction:_cmd]) {

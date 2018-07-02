@@ -33,6 +33,8 @@
 - (BOOL)textField:(NSTextField *)textField textView:(NSTextView *)textView performAction:(SEL)action;
 // called whenever a menu on the fieldeditor is opened to allow for customization of the menu via the delegate
 - (NSMenu *)textField:(NSTextField *)textField textView:(NSTextView *)view menu:(NSMenu *)menu;
+// called whenever the services menu should be displayed for a textfield.
+- (BOOL)textField:(NSTextField *)textField allowServicesForTextView:(NSTextView *)textView;
 @end
 
 @interface HNHUIRoundedTextField : NSTextField

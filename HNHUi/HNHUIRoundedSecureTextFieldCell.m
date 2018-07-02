@@ -52,7 +52,6 @@
   self = [super init];
   if(self) {
     _drawHighlight = NO;
-    //_buttonCell = [self _allocButtonCell];
   }
   return self;
 }
@@ -60,23 +59,10 @@
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if(self) {
-//    if([aDecoder isKindOfClass:[NSKeyedUnarchiver class]]) {
-//      _buttonCell = [aDecoder decodeObjectForKey:@"buttonCell"];
-//    }
-//    if(!_buttonCell) {
-//      _buttonCell = [self _allocButtonCell];
-//    }
     _drawHighlight = NO;
   }
   return self;
 }
-
-//- (void)encodeWithCoder:(NSCoder *)aCoder {
-//  [super encodeWithCoder:aCoder];
-//  if([aCoder isKindOfClass:[NSKeyedUnarchiver class]]) {
-//    [aCoder encodeObject:_buttonCell forKey:@"buttonCell"];
-//  }
-//}
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
   [HNHUIRoundedTextFieldCellHelper drawWithFrame:cellFrame enabled:self.enabled withHighlight:_drawHighlight];
@@ -93,19 +79,6 @@
       [HNHUIRoundedTextFieldCellHelper drawCopyButtonWithFrame:cellFrame mouseDown:textField.isMouseDown controlView:controlView];
     }
   }
-  /*
-   Code that was used to draw the Eye.
-   Possible to use this bit again to fire
-   the toggle password display
-   
-  if([controlView respondsToSelector:@selector(currentEditor)]) {
-    if(![(id)controlView currentEditor]) {
-      [self.buttonCell setEnabled:[self isEnabled]];
-      [self.buttonCell drawWithFrame:[self _buttonCellForFrame:cellFrame] inView:controlView];
-    }
-  }
-  [super drawInteriorWithFrame:[self _textCellForFrame:cellFrame] inView:controlView];
-   */
 }
 
 /* Set the focusRing to the bezel shape */
@@ -127,35 +100,5 @@
   return self.fieldEditor;
 }
 
-
-#pragma mark -
-#pragma mark Helper
-/*
-- (NSButtonCell *)_allocButtonCell NS_RETURNS_RETAINED {
-  NSButtonCell *buttonCell = [[NSButtonCell alloc] init];
-  [buttonCell setImage:[NSImage imageNamed:NSImageNameQuickLookTemplate ]];
-  [buttonCell setTitle:@""];
-  [buttonCell setAction:@selector(togglePassword)];
-  [buttonCell setTarget:self];
-  [buttonCell setBackgroundStyle:NSBackgroundStyleRaised];
-  [buttonCell setBezeled:NO];
-  [buttonCell setBordered:NO];
-  [buttonCell setImagePosition:NSImageOnly];
-  return buttonCell;
-}
-
-- (NSRect)_buttonCellForFrame:(NSRect)cellFrame {
-  NSRect textFrame, buttonFrame;
-  NSDivideRect(cellFrame, &buttonFrame, &textFrame, BUTTON_WIDTH, NSMaxXEdge);
-  NSInsetRect(buttonFrame, 2, 2);
-  return buttonFrame;
-}
-
-- (NSRect)_textCellForFrame:(NSRect)cellFrame {
-  NSRect textFrame, buttonFrame;
-  NSDivideRect(cellFrame, &buttonFrame, &textFrame, BUTTON_WIDTH, NSMaxXEdge);
-  return textFrame;
-}
-*/
 
 @end
