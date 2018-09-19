@@ -82,14 +82,18 @@
 }
 
 /* Set the focusRing to the bezel shape */
+/*
 - (void)drawFocusRingMaskWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
   [[HNHUITextFieldCellHelper bezelpathForRect:cellFrame withHightlight:_drawHighlight] fill];
 }
+*/
 
 /* We need to pass NO otherwise the roundend corners get rendering artifacts */
-- (BOOL)drawsBackground {
+/*
+ - (BOOL)drawsBackground {
   return NO;
 }
+*/
 
 
 - (NSTextView *)fieldEditorForView:(NSView *)controlView {
