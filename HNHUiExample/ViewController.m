@@ -7,11 +7,11 @@
 //
 
 #import "ViewController.h"
-#import "HNHUIRoundedSecureTextField.h"
+#import "HNHUISecureTextField.h"
 
 @interface ViewController ()
-@property (weak) IBOutlet HNHUIRoundedTextField *roundedTextField;
-@property (weak) IBOutlet HNHUIRoundedSecureTextField *roundedSecureTextField;
+@property (weak) IBOutlet HNHUITextField *roundedTextField;
+@property (weak) IBOutlet HNHUISecureTextField *roundedSecureTextField;
 @end
 
 @implementation ViewController
@@ -57,6 +57,21 @@
 - (void)doCommandBySelector:(SEL)selector {
   NSLog(@"%@ %@", NSStringFromSelector(_cmd), NSStringFromSelector(selector));
   [super doCommandBySelector:selector];
+}
+
+- (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(nullable id)item {
+  return item ? 0 : 10;
+}
+
+- (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(nullable id)item {
+  if(item) {
+    return @"Child";
+  }
+  return @"Group";
+}
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item {
+  return NO;
 }
 
 @end

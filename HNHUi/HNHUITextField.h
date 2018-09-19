@@ -1,7 +1,7 @@
 //
-//  HNHTokenFieldCell.h
+//  HNHRoundedTextField.h
 //
-//  Created by Michael Starke on 18.07.13.
+//  Created by Michael Starke on 11.06.13.
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,8 +23,24 @@
 //  THE SOFTWARE.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <AppKit/AppKit.h>
+/**
+ A Textfield with rounded apearance
+ */
+@protocol HNHUITextFieldDelegate <NSTextFieldDelegate>
+@optional
+// called for an action that the fieldEditor for this control want to perform. Return NO if you want to prevent default behaviour
+- (BOOL)textField:(NSTextField *)textField textView:(NSTextView *)textView performAction:(SEL)action;
+// called whenever a menu on the fieldeditor is opened to allow for customization of the menu via the delegate
+- (NSMenu *)textField:(NSTextField *)textField textView:(NSTextView *)view menu:(NSMenu *)menu;
+// called whenever the services menu should be displayed for a textfield.
+- (BOOL)textField:(NSTextField *)textField allowServicesForTextView:(NSTextView *)textView;
+@end
 
-@interface HNHUITokenFieldCell : NSTokenFieldCell
+@interface HNHUITextField : NSTextField
+
+@property (nonatomic, readonly, getter=isMouseOver) BOOL mouseOver;
+@property (nonatomic, readonly, getter=isMouseDown) BOOL mouseDown;
+@property (nonatomic, copy) void (^copyActionBlock)(NSTextField *);
 
 @end

@@ -1,7 +1,7 @@
 //
-//  HNHRoundedSecureTextField.h
+//  HNHRoundedSecureTextFieldCell.h
 //
-//  Created by Michael Starke on 07.07.13.
+//  Created by Michael Starke on 07.06.13.
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,15 +24,9 @@
 //
 
 #import <AppKit/AppKit.h>
-#import "HNHUITextView.h"
 
-@interface HNHUIRoundedSecureTextField : NSSecureTextField <HNHUITextViewDelegate>
+@interface HNHUISecureTextFieldCell : NSSecureTextFieldCell
 
-@property (nonatomic, assign) BOOL showPassword;
-@property (nonatomic, readonly) BOOL isMouseOver;
-@property (nonatomic, readonly) BOOL isMouseDown;
-@property (nonatomic, copy) void (^copyActionBlock)(NSTextField *);
-
-- (IBAction) toggleDisplay:(id)sender;
+@property (assign) BOOL drawHighlight;
 
 @end

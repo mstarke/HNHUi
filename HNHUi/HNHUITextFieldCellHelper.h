@@ -1,7 +1,7 @@
 //
-//  HNHTableHeaderCell.h
+//  HNHRoundendTextFieldCellHelper.h
 //
-//  Created by Michael Starke on 13.06.13.
+//  Created by Michael Starke on 30.06.13.
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,10 +22,23 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 //
-
-
 #import <AppKit/AppKit.h>
 
-@interface HNHUITableHeaderCell : NSTableHeaderCell
+/**
+ *	Helper that can be called by Textfields, that need the same apearance.
+ *  It's used by HNHRoundedTextFieldCell and HNHRoundedSecureTextFieldCell
+ */
+@interface HNHUITextFieldCellHelper : NSObject
+
++ (void)drawWithFrame:(NSRect)cellFrame enabled:(BOOL)isEnabled withHighlight:(BOOL)highlight;
+
++ (NSBezierPath *)bezelpathForRect:(NSRect)aRect withHightlight:(BOOL)highlight;
+/**
+ *	Draws the Copy button on a hovering Field
+ *	@param	cellFrame	Frame to draw the button in
+ *	@param	mouseDown	Flag to indicate if the mouse is pressed or not
+ *	@param	view	view that is drawing the button
+ */
++ (void)drawCopyButtonWithFrame:(NSRect)cellFrame mouseDown:(BOOL)mouseDown controlView:(NSView *)view;
 
 @end

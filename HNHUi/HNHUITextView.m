@@ -7,7 +7,7 @@
 //
 
 #import "HNHUITextView.h"
-#import "HNHUIRoundedTextField.h"
+#import "HNHUITextField.h"
 
 @implementation HNHUITextView
 

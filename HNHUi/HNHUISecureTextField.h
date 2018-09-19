@@ -1,7 +1,7 @@
 //
-//  HNHRoundedTextFieldCell.h
+//  HNHRoundedSecureTextField.h
 //
-//  Created by Michael Starke on 01.06.13.
+//  Created by Michael Starke on 07.07.13.
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -10,10 +10,10 @@
 //  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 //  copies of the Software, and to permit persons to whom the Software is
 //  furnished to do so, subject to the following conditions:
-//  
+//
 //  The above copyright notice and this permission notice shall be included in
 //  all copies or substantial portions of the Software.
-//  
+//
 //  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 //  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 //  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -24,12 +24,15 @@
 //
 
 #import <AppKit/AppKit.h>
+#import "HNHUITextView.h"
 
-/*
- Textfieldcell with rounded corners and Highlight at the bottom
- */
-@interface HNHUIRoundedTextFieldCell : NSTextFieldCell
+@interface HNHUISecureTextField : NSSecureTextField <HNHUITextViewDelegate>
 
-@property (nonatomic, assign) BOOL drawHighlight;
+@property (nonatomic, assign) BOOL showPassword;
+@property (nonatomic, readonly) BOOL isMouseOver;
+@property (nonatomic, readonly) BOOL isMouseDown;
+@property (nonatomic, copy) void (^copyActionBlock)(NSTextField *);
+
+- (IBAction) toggleDisplay:(id)sender;
 
 @end

@@ -23,13 +23,13 @@
 //  THE SOFTWARE.
 //
 
-#import "HNHUIRoundedTextFieldCellHelper.h"
+#import "HNHUITextFieldCellHelper.h"
 
 #define CORNER_RADIUS 4.0
 #define BUTTON_WIDTH 50.0
 #define BUTTON_MARGIN 4.0
 
-@implementation HNHUIRoundedTextFieldCellHelper
+@implementation HNHUITextFieldCellHelper
 
 + (NSButtonCell *)copyButtonCell {
   static NSButtonCell *cell = nil;

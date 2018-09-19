@@ -22,19 +22,19 @@
 //  THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "HNHUIRoundedSecureTextField.h"
-#import "HNHUIRoundedSecureTextFieldCell.h"
-#import "HNHUIRoundedTextFieldCell.h"
+#import "HNHUISecureTextField.h"
+#import "HNHUISecureTextFieldCell.h"
+#import "HNHUITextFieldCell.h"
 #import "HNHUITextView.h"
-#import "HNHUIRoundedTextField.h"
+#import "HNHUITextField.h"
 
-@interface HNHUIRoundedSecureTextField () {
+@interface HNHUISecureTextField () {
   NSTrackingArea *_trackingArea;
 }
 @property (nonatomic, readonly) BOOL requiresTrackingArea;
 @end
 
-@implementation HNHUIRoundedSecureTextField
+@implementation HNHUISecureTextField
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
@@ -45,7 +45,7 @@
     [archiver finishEncoding];
     
     NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-    HNHUIRoundedSecureTextFieldCell *cell = [[HNHUIRoundedSecureTextFieldCell alloc] initWithCoder:unarchiver];
+    HNHUISecureTextFieldCell *cell = [[HNHUISecureTextFieldCell alloc] initWithCoder:unarchiver];
     [unarchiver finishDecoding];
     
     self.cell = cell;
@@ -122,11 +122,11 @@
 }
 
 - (void)_toggleCell {
-  if([self.cell isKindOfClass:[HNHUIRoundedTextFieldCell class]]) {
-    [self _swapCellForOneOfClass:[HNHUIRoundedSecureTextFieldCell class]];
+  if([self.cell isKindOfClass:[HNHUITextFieldCell class]]) {
+    [self _swapCellForOneOfClass:[HNHUISecureTextFieldCell class]];
   }
   else {
-    [self _swapCellForOneOfClass:[HNHUIRoundedTextFieldCell class]];
+    [self _swapCellForOneOfClass:[HNHUITextFieldCell class]];
   }
 }
 

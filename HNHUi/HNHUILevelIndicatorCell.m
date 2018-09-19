@@ -65,7 +65,7 @@
     _normalGradient = [[NSGradient alloc] initWithColorsAndLocations:NORMAL_BOTTOM_COLOR, 0.0, NORMAL_MID_COLOR, GRADIENT_STOP, NORMAL_TOP_COLOR, 1.0, nil];
     _warningGradient = [[NSGradient alloc] initWithColorsAndLocations:WARNING_BOTTOM_COLOR, 0.0, WARNING_MID_COLOR, GRADIENT_STOP, WARNING_TOP_COLOR, 1.0, nil];
     _criticalGradient = [[NSGradient alloc] initWithColorsAndLocations:CRITICAL_BOTTOM_COLOR, 0.0, CRITICAL_MID_COLOR, GRADIENT_STOP, CRITICAL_TOP_COLOR, 1.0, nil];;
-  
+    
   }
   return self;
 }
@@ -74,57 +74,64 @@
   return [NSBezierPath bezierPathWithRoundedRect:rect xRadius:OUTER_RADIUS yRadius:OUTER_RADIUS];
 }
 
+
+
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
-  
-  CGFloat value = 0.0;
-  
-  if([controlView respondsToSelector:@selector(doubleValue)]) {
-    value = ([(id)controlView doubleValue] - self.minValue)/ (self.maxValue - self.minValue);
-    /* Clamp the value */
-    value = MAX(0.0, MIN(1.0, value) );
+  /* only use custom drawing when on 10.12 and lower */
+  if(@available(macOS 10.13, *)) {
+    [super drawWithFrame:cellFrame inView:controlView];
   }
-  
-  /* calcualte outline rect */
-  NSRect outlineRect = NSInsetRect(cellFrame, 0.5, 0.5);
-  outlineRect.size.height -= 1;
-  outlineRect = NSOffsetRect(outlineRect, 0, 1);
-  
-  /* Draw highlight
-   */
-  NSRect highlightRect = NSOffsetRect(outlineRect, 0, -1);
-  [[NSColor whiteColor] setStroke];
-  [[self strokePathForRect:highlightRect] stroke];
-  
-  /*
-   Draw outline
-   */
-  [[NSColor darkGrayColor] setStroke];
-  NSBezierPath *outlinePath = [self strokePathForRect:outlineRect];
-  [outlinePath stroke];
-  
-  /*
-   Draw inside
-   */
-  NSGradient *fillGradient = _normalGradient;
-  NSColor *strokeColor = NORMAL_STROKE_COLOR;
-  if(self.doubleValue < self.criticalValue) {
-    fillGradient = _criticalGradient;
-    strokeColor = CRITICAL_STROKE_COLOR;
-  }
-  else if(self.doubleValue < self.warningValue) {
-    fillGradient = _warningGradient;
-    strokeColor = WARNING_STROKE_COLOR;
-  }
-  
-  
-  [_backgroundGradient drawInBezierPath:outlinePath angle:90];
-  if(value > 0.0) {
-    NSRect pillRect = outlineRect; // NSInsetRect(outlineRect, 2, 2);
-    pillRect.size.width *= value;
-    NSBezierPath *pillPath = [NSBezierPath bezierPathWithRoundedRect:pillRect xRadius:OUTER_RADIUS-1 yRadius:OUTER_RADIUS-1];
-    [strokeColor setStroke];
-    [fillGradient drawInBezierPath:pillPath angle:90];
-    [pillPath stroke];
+  else {
+    CGFloat value = 0.0;
+    
+    if([controlView respondsToSelector:@selector(doubleValue)]) {
+      value = ([(id)controlView doubleValue] - self.minValue)/ (self.maxValue - self.minValue);
+      /* Clamp the value */
+      value = MAX(0.0, MIN(1.0, value) );
+    }
+    
+    /* calcualte outline rect */
+    NSRect outlineRect = NSInsetRect(cellFrame, 0.5, 0.5);
+    outlineRect.size.height -= 1;
+    outlineRect = NSOffsetRect(outlineRect, 0, 1);
+    
+    /* Draw highlight
+     */
+    NSRect highlightRect = NSOffsetRect(outlineRect, 0, -1);
+    [[NSColor whiteColor] setStroke];
+    [[self strokePathForRect:highlightRect] stroke];
+    
+    /*
+     Draw outline
+     */
+    [[NSColor darkGrayColor] setStroke];
+    NSBezierPath *outlinePath = [self strokePathForRect:outlineRect];
+    [outlinePath stroke];
+    
+    /*
+     Draw inside
+     */
+    NSGradient *fillGradient = _normalGradient;
+    NSColor *strokeColor = NORMAL_STROKE_COLOR;
+    if(self.doubleValue < self.criticalValue) {
+      fillGradient = _criticalGradient;
+      strokeColor = CRITICAL_STROKE_COLOR;
+    }
+    else if(self.doubleValue < self.warningValue) {
+      fillGradient = _warningGradient;
+      strokeColor = WARNING_STROKE_COLOR;
+    }
+    
+    
+    [_backgroundGradient drawInBezierPath:outlinePath angle:90];
+    if(value > 0.0) {
+      NSRect pillRect = outlineRect; // NSInsetRect(outlineRect, 2, 2);
+      pillRect.size.width *= value;
+      NSBezierPath *pillPath = [NSBezierPath bezierPathWithRoundedRect:pillRect xRadius:OUTER_RADIUS-1 yRadius:OUTER_RADIUS-1];
+      [strokeColor setStroke];
+      [fillGradient drawInBezierPath:pillPath angle:90];
+      [pillPath stroke];
+    }
   }
 }
 @end

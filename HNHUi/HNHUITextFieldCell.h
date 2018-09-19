@@ -1,7 +1,7 @@
 //
-//  HNHTokenField.m
+//  HNHRoundedTextFieldCell.h
 //
-//  Created by Michael Starke on 18.07.13.
+//  Created by Michael Starke on 01.06.13.
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -10,10 +10,10 @@
 //  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 //  copies of the Software, and to permit persons to whom the Software is
 //  furnished to do so, subject to the following conditions:
-//
+//  
 //  The above copyright notice and this permission notice shall be included in
 //  all copies or substantial portions of the Software.
-//
+//  
 //  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 //  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 //  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,26 +23,13 @@
 //  THE SOFTWARE.
 //
 
-#import "HNHUITokenField.h"
-#import "HNHUITokenFieldCell.h"
+#import <AppKit/AppKit.h>
 
-@implementation HNHUITokenField
+/*
+ Textfieldcell with rounded corners and Highlight at the bottom
+ */
+@interface HNHUITextFieldCell : NSTextFieldCell
 
-- (instancetype)initWithCoder:(NSCoder *)aDecoder {
-  self = [super initWithCoder:aDecoder];
-  if(self) {
-    NSMutableData *data = [[NSMutableData alloc] init];
-    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-    [self.cell encodeWithCoder:archiver];
-    [archiver finishEncoding];
-    
-    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-    HNHUITokenFieldCell *newCell = [[HNHUITokenFieldCell alloc] initWithCoder:unarchiver];
-    [unarchiver finishDecoding];
-    
-    self.cell = newCell;
-  }
-  return self;
-}
+@property (nonatomic, assign) BOOL drawHighlight;
 
 @end

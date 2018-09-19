@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C0231A921527E27009910BC /* HNHUi.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4CAEF1F51B661743005C6592 /* HNHUi.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4C7264B61F7139160068F66B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7264B51F7139160068F66B /* AppDelegate.m */; };
 		4C7264B91F7139160068F66B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7264B81F7139160068F66B /* main.m */; };
 		4C7264BC1F7139160068F66B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7264BB1F7139160068F66B /* ViewController.m */; };
@@ -32,16 +33,16 @@
 		4CAEF24B1B661891005C6592 /* HNHUIGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEF21F1B661891005C6592 /* HNHUIGradientView.m */; };
 		4CAEF24C1B661891005C6592 /* HNHUILevelIndicatorCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CAEF2201B661891005C6592 /* HNHUILevelIndicatorCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4CAEF24D1B661891005C6592 /* HNHUILevelIndicatorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEF2211B661891005C6592 /* HNHUILevelIndicatorCell.m */; };
-		4CAEF24E1B661891005C6592 /* HNHUIRoundedSecureTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CAEF2221B661891005C6592 /* HNHUIRoundedSecureTextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4CAEF24F1B661891005C6592 /* HNHUIRoundedSecureTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEF2231B661891005C6592 /* HNHUIRoundedSecureTextField.m */; };
-		4CAEF2501B661891005C6592 /* HNHUIRoundedSecureTextFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CAEF2241B661891005C6592 /* HNHUIRoundedSecureTextFieldCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4CAEF2511B661891005C6592 /* HNHUIRoundedSecureTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEF2251B661891005C6592 /* HNHUIRoundedSecureTextFieldCell.m */; };
-		4CAEF2521B661891005C6592 /* HNHUIRoundedTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CAEF2261B661891005C6592 /* HNHUIRoundedTextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4CAEF2531B661891005C6592 /* HNHUIRoundedTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEF2271B661891005C6592 /* HNHUIRoundedTextField.m */; };
-		4CAEF2541B661891005C6592 /* HNHUIRoundedTextFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CAEF2281B661891005C6592 /* HNHUIRoundedTextFieldCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4CAEF2551B661891005C6592 /* HNHUIRoundedTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEF2291B661891005C6592 /* HNHUIRoundedTextFieldCell.m */; };
-		4CAEF2561B661891005C6592 /* HNHUIRoundedTextFieldCellHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CAEF22A1B661891005C6592 /* HNHUIRoundedTextFieldCellHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4CAEF2571B661891005C6592 /* HNHUIRoundedTextFieldCellHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEF22B1B661891005C6592 /* HNHUIRoundedTextFieldCellHelper.m */; };
+		4CAEF24E1B661891005C6592 /* HNHUISecureTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CAEF2221B661891005C6592 /* HNHUISecureTextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4CAEF24F1B661891005C6592 /* HNHUISecureTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEF2231B661891005C6592 /* HNHUISecureTextField.m */; };
+		4CAEF2501B661891005C6592 /* HNHUISecureTextFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CAEF2241B661891005C6592 /* HNHUISecureTextFieldCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4CAEF2511B661891005C6592 /* HNHUISecureTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEF2251B661891005C6592 /* HNHUISecureTextFieldCell.m */; };
+		4CAEF2521B661891005C6592 /* HNHUITextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CAEF2261B661891005C6592 /* HNHUITextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4CAEF2531B661891005C6592 /* HNHUITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEF2271B661891005C6592 /* HNHUITextField.m */; };
+		4CAEF2541B661891005C6592 /* HNHUITextFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CAEF2281B661891005C6592 /* HNHUITextFieldCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4CAEF2551B661891005C6592 /* HNHUITextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEF2291B661891005C6592 /* HNHUITextFieldCell.m */; };
+		4CAEF2561B661891005C6592 /* HNHUITextFieldCellHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CAEF22A1B661891005C6592 /* HNHUITextFieldCellHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4CAEF2571B661891005C6592 /* HNHUITextFieldCellHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEF22B1B661891005C6592 /* HNHUITextFieldCellHelper.m */; };
 		4CAEF2581B661891005C6592 /* HNHUIScrollDocumentViewAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CAEF22C1B661891005C6592 /* HNHUIScrollDocumentViewAdapter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4CAEF2591B661891005C6592 /* HNHUIScrollDocumentViewAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEF22D1B661891005C6592 /* HNHUIScrollDocumentViewAdapter.m */; };
 		4CAEF25A1B661891005C6592 /* HNHUIScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CAEF22E1B661891005C6592 /* HNHUIScrollView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -50,16 +51,10 @@
 		4CAEF25D1B661891005C6592 /* HNHUISeparator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEF2311B661891005C6592 /* HNHUISeparator.m */; };
 		4CAEF25E1B661891005C6592 /* HNHUIShadowBox.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CAEF2321B661891005C6592 /* HNHUIShadowBox.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4CAEF25F1B661891005C6592 /* HNHUIShadowBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEF2331B661891005C6592 /* HNHUIShadowBox.m */; };
-		4CAEF2601B661891005C6592 /* HNHUITableHeaderCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CAEF2341B661891005C6592 /* HNHUITableHeaderCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4CAEF2611B661891005C6592 /* HNHUITableHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEF2351B661891005C6592 /* HNHUITableHeaderCell.m */; };
 		4CAEF2621B661891005C6592 /* HNHUITableRowView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CAEF2361B661891005C6592 /* HNHUITableRowView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4CAEF2631B661891005C6592 /* HNHUITableRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEF2371B661891005C6592 /* HNHUITableRowView.m */; };
 		4CAEF2641B661891005C6592 /* HNHUITextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CAEF2381B661891005C6592 /* HNHUITextView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4CAEF2651B661891005C6592 /* HNHUITextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEF2391B661891005C6592 /* HNHUITextView.m */; };
-		4CAEF2661B661891005C6592 /* HNHUITokenField.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CAEF23A1B661891005C6592 /* HNHUITokenField.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4CAEF2671B661891005C6592 /* HNHUITokenField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEF23B1B661891005C6592 /* HNHUITokenField.m */; };
-		4CAEF2681B661891005C6592 /* HNHUITokenFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CAEF23C1B661891005C6592 /* HNHUITokenFieldCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4CAEF2691B661891005C6592 /* HNHUITokenFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEF23D1B661891005C6592 /* HNHUITokenFieldCell.m */; };
 		4CC281841C0F645800B9174D /* HNHUISheetWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CC281821C0F645800B9174D /* HNHUISheetWindowController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4CC281851C0F645800B9174D /* HNHUISheetWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC281831C0F645800B9174D /* HNHUISheetWindowController.m */; };
 		4CF5CEC51F7B02F800F67964 /* HNHUISecureTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CF5CEC31F7B02F800F67964 /* HNHUISecureTextView.h */; };
@@ -75,6 +70,19 @@
 			remoteInfo = HNHUi;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4C0231A821527E18009910BC /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4C0231A921527E27009910BC /* HNHUi.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4C7264B21F7139160068F66B /* HNHUiExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HNHUiExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,16 +116,16 @@
 		4CAEF21F1B661891005C6592 /* HNHUIGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHUIGradientView.m; sourceTree = "<group>"; };
 		4CAEF2201B661891005C6592 /* HNHUILevelIndicatorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHUILevelIndicatorCell.h; sourceTree = "<group>"; };
 		4CAEF2211B661891005C6592 /* HNHUILevelIndicatorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHUILevelIndicatorCell.m; sourceTree = "<group>"; };
-		4CAEF2221B661891005C6592 /* HNHUIRoundedSecureTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHUIRoundedSecureTextField.h; sourceTree = "<group>"; };
-		4CAEF2231B661891005C6592 /* HNHUIRoundedSecureTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHUIRoundedSecureTextField.m; sourceTree = "<group>"; };
-		4CAEF2241B661891005C6592 /* HNHUIRoundedSecureTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHUIRoundedSecureTextFieldCell.h; sourceTree = "<group>"; };
-		4CAEF2251B661891005C6592 /* HNHUIRoundedSecureTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHUIRoundedSecureTextFieldCell.m; sourceTree = "<group>"; };
-		4CAEF2261B661891005C6592 /* HNHUIRoundedTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHUIRoundedTextField.h; sourceTree = "<group>"; };
-		4CAEF2271B661891005C6592 /* HNHUIRoundedTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHUIRoundedTextField.m; sourceTree = "<group>"; };
-		4CAEF2281B661891005C6592 /* HNHUIRoundedTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHUIRoundedTextFieldCell.h; sourceTree = "<group>"; };
-		4CAEF2291B661891005C6592 /* HNHUIRoundedTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHUIRoundedTextFieldCell.m; sourceTree = "<group>"; };
-		4CAEF22A1B661891005C6592 /* HNHUIRoundedTextFieldCellHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHUIRoundedTextFieldCellHelper.h; sourceTree = "<group>"; };
-		4CAEF22B1B661891005C6592 /* HNHUIRoundedTextFieldCellHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHUIRoundedTextFieldCellHelper.m; sourceTree = "<group>"; };
+		4CAEF2221B661891005C6592 /* HNHUISecureTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHUISecureTextField.h; sourceTree = "<group>"; };
+		4CAEF2231B661891005C6592 /* HNHUISecureTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHUISecureTextField.m; sourceTree = "<group>"; };
+		4CAEF2241B661891005C6592 /* HNHUISecureTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHUISecureTextFieldCell.h; sourceTree = "<group>"; };
+		4CAEF2251B661891005C6592 /* HNHUISecureTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHUISecureTextFieldCell.m; sourceTree = "<group>"; };
+		4CAEF2261B661891005C6592 /* HNHUITextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHUITextField.h; sourceTree = "<group>"; };
+		4CAEF2271B661891005C6592 /* HNHUITextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHUITextField.m; sourceTree = "<group>"; };
+		4CAEF2281B661891005C6592 /* HNHUITextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHUITextFieldCell.h; sourceTree = "<group>"; };
+		4CAEF2291B661891005C6592 /* HNHUITextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHUITextFieldCell.m; sourceTree = "<group>"; };
+		4CAEF22A1B661891005C6592 /* HNHUITextFieldCellHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHUITextFieldCellHelper.h; sourceTree = "<group>"; };
+		4CAEF22B1B661891005C6592 /* HNHUITextFieldCellHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHUITextFieldCellHelper.m; sourceTree = "<group>"; };
 		4CAEF22C1B661891005C6592 /* HNHUIScrollDocumentViewAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHUIScrollDocumentViewAdapter.h; sourceTree = "<group>"; };
 		4CAEF22D1B661891005C6592 /* HNHUIScrollDocumentViewAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHUIScrollDocumentViewAdapter.m; sourceTree = "<group>"; };
 		4CAEF22E1B661891005C6592 /* HNHUIScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHUIScrollView.h; sourceTree = "<group>"; };
@@ -126,16 +134,10 @@
 		4CAEF2311B661891005C6592 /* HNHUISeparator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHUISeparator.m; sourceTree = "<group>"; };
 		4CAEF2321B661891005C6592 /* HNHUIShadowBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHUIShadowBox.h; sourceTree = "<group>"; };
 		4CAEF2331B661891005C6592 /* HNHUIShadowBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHUIShadowBox.m; sourceTree = "<group>"; };
-		4CAEF2341B661891005C6592 /* HNHUITableHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHUITableHeaderCell.h; sourceTree = "<group>"; };
-		4CAEF2351B661891005C6592 /* HNHUITableHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHUITableHeaderCell.m; sourceTree = "<group>"; };
 		4CAEF2361B661891005C6592 /* HNHUITableRowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHUITableRowView.h; sourceTree = "<group>"; };
 		4CAEF2371B661891005C6592 /* HNHUITableRowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHUITableRowView.m; sourceTree = "<group>"; };
 		4CAEF2381B661891005C6592 /* HNHUITextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHUITextView.h; sourceTree = "<group>"; };
 		4CAEF2391B661891005C6592 /* HNHUITextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHUITextView.m; sourceTree = "<group>"; };
-		4CAEF23A1B661891005C6592 /* HNHUITokenField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHUITokenField.h; sourceTree = "<group>"; };
-		4CAEF23B1B661891005C6592 /* HNHUITokenField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHUITokenField.m; sourceTree = "<group>"; };
-		4CAEF23C1B661891005C6592 /* HNHUITokenFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHUITokenFieldCell.h; sourceTree = "<group>"; };
-		4CAEF23D1B661891005C6592 /* HNHUITokenFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHUITokenFieldCell.m; sourceTree = "<group>"; };
 		4CC281821C0F645800B9174D /* HNHUISheetWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHUISheetWindowController.h; sourceTree = "<group>"; };
 		4CC281831C0F645800B9174D /* HNHUISheetWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHUISheetWindowController.m; sourceTree = "<group>"; };
 		4CF5CEC31F7B02F800F67964 /* HNHUISecureTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HNHUISecureTextView.h; sourceTree = "<group>"; };
@@ -233,14 +235,8 @@
 				4CAEF2331B661891005C6592 /* HNHUIShadowBox.m */,
 				4CC281821C0F645800B9174D /* HNHUISheetWindowController.h */,
 				4CC281831C0F645800B9174D /* HNHUISheetWindowController.m */,
-				4CAEF2341B661891005C6592 /* HNHUITableHeaderCell.h */,
-				4CAEF2351B661891005C6592 /* HNHUITableHeaderCell.m */,
 				4CAEF2361B661891005C6592 /* HNHUITableRowView.h */,
 				4CAEF2371B661891005C6592 /* HNHUITableRowView.m */,
-				4CAEF23A1B661891005C6592 /* HNHUITokenField.h */,
-				4CAEF23B1B661891005C6592 /* HNHUITokenField.m */,
-				4CAEF23C1B661891005C6592 /* HNHUITokenFieldCell.h */,
-				4CAEF23D1B661891005C6592 /* HNHUITokenFieldCell.m */,
 				4CAEF1F81B661743005C6592 /* Supporting Files */,
 			);
 			path = HNHUi;
@@ -289,16 +285,16 @@
 				4CAEF2171B661891005C6592 /* HNHUIBadgedTextField.m */,
 				4CAEF2181B661891005C6592 /* HNHUIBadgedTextFieldCell.h */,
 				4CAEF2191B661891005C6592 /* HNHUIBadgedTextFieldCell.m */,
-				4CAEF2221B661891005C6592 /* HNHUIRoundedSecureTextField.h */,
-				4CAEF2231B661891005C6592 /* HNHUIRoundedSecureTextField.m */,
-				4CAEF2241B661891005C6592 /* HNHUIRoundedSecureTextFieldCell.h */,
-				4CAEF2251B661891005C6592 /* HNHUIRoundedSecureTextFieldCell.m */,
-				4CAEF2261B661891005C6592 /* HNHUIRoundedTextField.h */,
-				4CAEF2271B661891005C6592 /* HNHUIRoundedTextField.m */,
-				4CAEF2281B661891005C6592 /* HNHUIRoundedTextFieldCell.h */,
-				4CAEF2291B661891005C6592 /* HNHUIRoundedTextFieldCell.m */,
-				4CAEF22A1B661891005C6592 /* HNHUIRoundedTextFieldCellHelper.h */,
-				4CAEF22B1B661891005C6592 /* HNHUIRoundedTextFieldCellHelper.m */,
+				4CAEF2221B661891005C6592 /* HNHUISecureTextField.h */,
+				4CAEF2231B661891005C6592 /* HNHUISecureTextField.m */,
+				4CAEF2241B661891005C6592 /* HNHUISecureTextFieldCell.h */,
+				4CAEF2251B661891005C6592 /* HNHUISecureTextFieldCell.m */,
+				4CAEF2261B661891005C6592 /* HNHUITextField.h */,
+				4CAEF2271B661891005C6592 /* HNHUITextField.m */,
+				4CAEF2281B661891005C6592 /* HNHUITextFieldCell.h */,
+				4CAEF2291B661891005C6592 /* HNHUITextFieldCell.m */,
+				4CAEF22A1B661891005C6592 /* HNHUITextFieldCellHelper.h */,
+				4CAEF22B1B661891005C6592 /* HNHUITextFieldCellHelper.m */,
 				4CAEF2381B661891005C6592 /* HNHUITextView.h */,
 				4CAEF2391B661891005C6592 /* HNHUITextView.m */,
 				4CF5CEC31F7B02F800F67964 /* HNHUISecureTextView.h */,
@@ -325,18 +321,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4CAEF24E1B661891005C6592 /* HNHUIRoundedSecureTextField.h in Headers */,
-				4CAEF2561B661891005C6592 /* HNHUIRoundedTextFieldCellHelper.h in Headers */,
+				4CAEF24E1B661891005C6592 /* HNHUISecureTextField.h in Headers */,
+				4CAEF2561B661891005C6592 /* HNHUITextFieldCellHelper.h in Headers */,
 				4CAEF24C1B661891005C6592 /* HNHUILevelIndicatorCell.h in Headers */,
-				4CAEF2681B661891005C6592 /* HNHUITokenFieldCell.h in Headers */,
 				4CAEF2581B661891005C6592 /* HNHUIScrollDocumentViewAdapter.h in Headers */,
 				4CAEF2441B661891005C6592 /* HNHUIBadgedTextFieldCell.h in Headers */,
-				4CAEF2521B661891005C6592 /* HNHUIRoundedTextField.h in Headers */,
-				4CAEF2661B661891005C6592 /* HNHUITokenField.h in Headers */,
-				4CAEF2541B661891005C6592 /* HNHUIRoundedTextFieldCell.h in Headers */,
+				4CAEF2521B661891005C6592 /* HNHUITextField.h in Headers */,
+				4CAEF2541B661891005C6592 /* HNHUITextFieldCell.h in Headers */,
 				4CAEF2461B661891005C6592 /* HNHUIColorWell.h in Headers */,
 				4CAEF25C1B661891005C6592 /* HNHUISeparator.h in Headers */,
-				4CAEF2501B661891005C6592 /* HNHUIRoundedSecureTextFieldCell.h in Headers */,
+				4CAEF2501B661891005C6592 /* HNHUISecureTextFieldCell.h in Headers */,
 				4CAEF2481B661891005C6592 /* HNHUICommon.h in Headers */,
 				4CF5CEC51F7B02F800F67964 /* HNHUISecureTextView.h in Headers */,
 				4CAEF2421B661891005C6592 /* HNHUIBadgedTextField.h in Headers */,
@@ -344,7 +338,6 @@
 				4CAEF1FB1B661743005C6592 /* HNHUi.h in Headers */,
 				4CAEF25E1B661891005C6592 /* HNHUIShadowBox.h in Headers */,
 				4CAEF23E1B661891005C6592 /* NSButton+HNHUITextColor.h in Headers */,
-				4CAEF2601B661891005C6592 /* HNHUITableHeaderCell.h in Headers */,
 				4CAEF25A1B661891005C6592 /* HNHUIScrollView.h in Headers */,
 				4CAEF24A1B661891005C6592 /* HNHUIGradientView.h in Headers */,
 				4CAEF2401B661891005C6592 /* NSWindow+HNHUIShake.h in Headers */,
@@ -363,6 +356,7 @@
 				4C7264AE1F7139160068F66B /* Sources */,
 				4C7264AF1F7139160068F66B /* Frameworks */,
 				4C7264B01F7139160068F66B /* Resources */,
+				4C0231A821527E18009910BC /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -417,7 +411,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = HNHUI;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "HicknHack Software GmbH";
 				TargetAttributes = {
 					4C7264B11F7139160068F66B = {
@@ -511,27 +505,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CAEF2431B661891005C6592 /* HNHUIBadgedTextField.m in Sources */,
-				4CAEF2671B661891005C6592 /* HNHUITokenField.m in Sources */,
-				4CAEF2511B661891005C6592 /* HNHUIRoundedSecureTextFieldCell.m in Sources */,
-				4CAEF2571B661891005C6592 /* HNHUIRoundedTextFieldCellHelper.m in Sources */,
+				4CAEF2511B661891005C6592 /* HNHUISecureTextFieldCell.m in Sources */,
+				4CAEF2571B661891005C6592 /* HNHUITextFieldCellHelper.m in Sources */,
 				4CAEF2591B661891005C6592 /* HNHUIScrollDocumentViewAdapter.m in Sources */,
 				4CAEF2451B661891005C6592 /* HNHUIBadgedTextFieldCell.m in Sources */,
 				4CAEF2631B661891005C6592 /* HNHUITableRowView.m in Sources */,
 				4CAEF24B1B661891005C6592 /* HNHUIGradientView.m in Sources */,
-				4CAEF2551B661891005C6592 /* HNHUIRoundedTextFieldCell.m in Sources */,
-				4CAEF2691B661891005C6592 /* HNHUITokenFieldCell.m in Sources */,
+				4CAEF2551B661891005C6592 /* HNHUITextFieldCell.m in Sources */,
 				4CAEF2471B661891005C6592 /* HNHUIColorWell.m in Sources */,
 				4CF5CEC61F7B02F800F67964 /* HNHUISecureTextView.m in Sources */,
 				4CAEF25D1B661891005C6592 /* HNHUISeparator.m in Sources */,
 				4CAEF2651B661891005C6592 /* HNHUITextView.m in Sources */,
 				4CAEF25F1B661891005C6592 /* HNHUIShadowBox.m in Sources */,
 				4CAEF23F1B661891005C6592 /* NSButton+HNHUITextColor.m in Sources */,
-				4CAEF24F1B661891005C6592 /* HNHUIRoundedSecureTextField.m in Sources */,
+				4CAEF24F1B661891005C6592 /* HNHUISecureTextField.m in Sources */,
 				4CAEF24D1B661891005C6592 /* HNHUILevelIndicatorCell.m in Sources */,
 				4CAEF25B1B661891005C6592 /* HNHUIScrollView.m in Sources */,
-				4CAEF2611B661891005C6592 /* HNHUITableHeaderCell.m in Sources */,
 				4CC281851C0F645800B9174D /* HNHUISheetWindowController.m in Sources */,
-				4CAEF2531B661891005C6592 /* HNHUIRoundedTextField.m in Sources */,
+				4CAEF2531B661891005C6592 /* HNHUITextField.m in Sources */,
 				4CAEF2411B661891005C6592 /* NSWindow+HNHUIShake.m in Sources */,
 				4CAEF2491B661891005C6592 /* HNHUICommon.m in Sources */,
 			);
@@ -578,6 +569,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = HNHUiExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hicknhacksoftware.HNHUiExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -594,6 +586,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = HNHUiExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hicknhacksoftware.HNHUiExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -611,12 +604,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -665,12 +660,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

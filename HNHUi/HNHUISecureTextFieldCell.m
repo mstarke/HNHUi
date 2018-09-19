@@ -1,7 +1,7 @@
 //
-//  HNHRoundedTextFieldCell.m
+//  HNHRoundedSecureTextFieldCell.m
 //
-//  Created by Michael Starke on 01.06.13.
+//  Created by Michael Starke on 07.06.13.
 //  Copyright (c) 2013 HicknHack Software GmbH. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,35 +23,67 @@
 //  THE SOFTWARE.
 //
 
-#import "HNHUIRoundedTextFieldCell.h"
-#import "HNHUIRoundedTextFieldCellHelper.h"
-#import "HNHUIRoundedTextField.h"
-#import "HNHUITextView.h"
+#import "HNHUISecureTextFieldCell.h"
+#import "HNHUITextFieldCellHelper.h"
+#import "HNHUISecureTextField.h"
+#import "HNHUISecureTextView.h"
 
-@interface HNHUIRoundedTextFieldCell ()
-@property (strong) HNHUITextView *fieldEditor;
+#import <AppKit/AppKit.h>
+
+#define BUTTON_WIDTH 25
+
+@interface HNHUISecureTextFieldCell () {
+  //NSButtonCell *_buttonCell;
+}
+
+@property (strong) HNHUISecureTextView *fieldEditor;
+/* ButtonCell used for Rendering and handling actions */
+//@property (nonatomic, strong) NSButtonCell *buttonCell;
+
+//- (NSRect)_buttonCellForFrame:(NSRect)cellFrame;
+//- (NSRect)_textCellForFrame:(NSRect)cellFrame;
+//- (NSButtonCell *)_allocButtonCell;
+
 @end
 
-@implementation HNHUIRoundedTextFieldCell
+@implementation HNHUISecureTextFieldCell
 
-- (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
-  [HNHUIRoundedTextFieldCellHelper drawWithFrame:cellFrame enabled:self.enabled withHighlight:_drawHighlight];
-  [self drawInteriorWithFrame:cellFrame inView:controlView];
+- (instancetype)init {
+  self = [super init];
+  if(self) {
+    _drawHighlight = NO;
+  }
+  return self;
 }
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+  self = [super initWithCoder:aDecoder];
+  if(self) {
+    _drawHighlight = NO;
+  }
+  return self;
+}
+
+//- (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
+//  [HNHUIRoundedTextFieldCellHelper drawWithFrame:cellFrame enabled:self.enabled withHighlight:_drawHighlight];
+//  [self drawInteriorWithFrame:cellFrame inView:controlView];
+//}
+
+
 
 - (void)drawInteriorWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
   [super drawInteriorWithFrame:cellFrame inView:controlView];
-  if([controlView isKindOfClass:HNHUIRoundedTextField.class]) {
-    HNHUIRoundedTextField *textField = (HNHUIRoundedTextField *)controlView;
+  if([controlView isKindOfClass:HNHUISecureTextField.class]) {
+    HNHUISecureTextField *textField = (HNHUISecureTextField *)controlView;
     if(![textField currentEditor] && textField.isMouseOver) {
-      [HNHUIRoundedTextFieldCellHelper drawCopyButtonWithFrame:cellFrame mouseDown:textField.isMouseDown controlView:controlView];
+      [HNHUITextFieldCellHelper drawCopyButtonWithFrame:cellFrame mouseDown:textField.isMouseDown controlView:controlView];
     }
   }
 }
 
 /* Set the focusRing to the bezel shape */
 - (void)drawFocusRingMaskWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
-  [[HNHUIRoundedTextFieldCellHelper bezelpathForRect:cellFrame withHightlight:_drawHighlight] fill];
+  [[HNHUITextFieldCellHelper bezelpathForRect:cellFrame withHightlight:_drawHighlight] fill];
 }
 
 /* We need to pass NO otherwise the roundend corners get rendering artifacts */
@@ -59,16 +91,14 @@
   return NO;
 }
 
-- (NSMenu *)menuForEvent:(NSEvent *)event inRect:(NSRect)cellFrame ofView:(NSView *)view {
-  return [super menuForEvent:event inRect:cellFrame ofView:view];
-}
 
 - (NSTextView *)fieldEditorForView:(NSView *)controlView {
   if(nil == self.fieldEditor) {
-    self.fieldEditor = [[HNHUITextView alloc] init];
+    self.fieldEditor = [[HNHUISecureTextView alloc] init];
     self.fieldEditor.fieldEditor = YES;
   }
   return self.fieldEditor;
 }
+
 
 @end

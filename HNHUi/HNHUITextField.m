@@ -23,11 +23,11 @@
 //  THE SOFTWARE.
 //
 
-#import "HNHUIRoundedTextField.h"
-#import "HNHUIRoundedTextFieldCell.h"
+#import "HNHUITextField.h"
+#import "HNHUITextFieldCell.h"
 #import "HNHUITextView.h"
 
-@interface HNHUIRoundedTextField () <HNHUITextViewDelegate>
+@interface HNHUITextField () <HNHUITextViewDelegate>
 
 @property (strong, nullable) NSTrackingArea *trackingArea;
 @property (nonatomic) BOOL mouseOver;
@@ -36,10 +36,10 @@
 
 @end
 
-@implementation HNHUIRoundedTextField
+@implementation HNHUITextField
 
 + (Class)cellClass {
-  return [HNHUIRoundedTextFieldCell class];
+  return [HNHUITextFieldCell class];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
@@ -48,14 +48,14 @@
     _mouseDown = NO;
     _mouseOver = NO;
     /* make sure we have the correct cell within, if not, swap it but keep all the attribues */
-    if(![self.cell isMemberOfClass:[HNHUIRoundedTextFieldCell class]]) {
+    if(![self.cell isMemberOfClass:[HNHUITextFieldCell class]]) {
       NSMutableData *data = [[NSMutableData alloc] init];
       NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
       [self.cell encodeWithCoder:archiver];
       [archiver finishEncoding];
       
       NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-      HNHUIRoundedTextFieldCell *cell = [[HNHUIRoundedTextFieldCell alloc] initWithCoder:unarchiver];
+      HNHUITextFieldCell *cell = [[HNHUITextFieldCell alloc] initWithCoder:unarchiver];
       [unarchiver finishDecoding];
       
       self.cell = cell;

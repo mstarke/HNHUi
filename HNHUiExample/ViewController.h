@@ -7,8 +7,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "HNHUIRoundedTextField.h"
-@interface ViewController : NSViewController <HNHUITextFieldDelegate>
+#import "HNHUITextField.h"
+@interface ViewController : NSViewController <HNHUITextFieldDelegate, NSOutlineViewDataSource>
 
 @end
 
