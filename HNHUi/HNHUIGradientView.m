@@ -40,23 +40,12 @@
   NSColor *activeTop, *activeBottom, *inactiveTop, *inactiveBottom;
   NSGradient *activeGradient, *inactiveGradient;
   
-  /* As of Yosemite, we want supple gradients and lighter colors */
-  if(HNHUIIsRunningOnYosemiteOrNewer()) {
-    activeTop = [NSColor colorWithCalibratedWhite:0.89 alpha:1];
-    activeBottom = [NSColor colorWithCalibratedWhite:0.85 alpha:1];
-    inactiveTop = [NSColor colorWithCalibratedWhite:0.96 alpha:1];
-    inactiveBottom = [NSColor colorWithCalibratedWhite:0.96 alpha:1];
-    activeGradient = [[NSGradient alloc] initWithColors:@[ activeBottom, activeTop ]] ;
-    inactiveGradient = [[NSGradient alloc] initWithColors:@[ inactiveBottom, inactiveTop ]];
-  }
-  else {
-    activeTop = [NSColor colorWithCalibratedWhite:0.85 alpha:1];
-    activeBottom = [NSColor colorWithCalibratedWhite:0.7 alpha:1];
-    inactiveTop = [NSColor colorWithCalibratedWhite:0.9 alpha:1];
-    inactiveBottom = [NSColor colorWithCalibratedWhite:0.85 alpha:1];
-    activeGradient = [[NSGradient alloc] initWithColors:@[ activeBottom, activeTop ]] ;
-    inactiveGradient = [[NSGradient alloc] initWithColors:@[ inactiveBottom, inactiveTop ]];
-  }
+  activeTop = [NSColor colorWithCalibratedWhite:0.96 alpha:1];
+  activeBottom = [NSColor colorWithCalibratedWhite:0.96 alpha:1];
+  inactiveTop = [NSColor colorWithCalibratedWhite:0.96 alpha:1];
+  inactiveBottom = [NSColor colorWithCalibratedWhite:0.96 alpha:1];
+  activeGradient = [[NSGradient alloc] initWithColors:@[ activeBottom, activeTop ]] ;
+  inactiveGradient = [[NSGradient alloc] initWithColors:@[ inactiveBottom, inactiveTop ]];
   return [self initWithFrame:frameRect activeGradient:activeGradient inactiveGradient:inactiveGradient];
 }
 
@@ -82,30 +71,16 @@
   
   NSRect borderTopRect = NSMakeRect(NSMinX(bounds), NSMaxY(bounds) - 1, NSWidth(bounds), 1);
   if(self.borderType & HNHBorderTop) {
-    if(HNHUIIsRunningOnYosemiteOrNewer()) {
-      [[NSColor colorWithCalibratedWhite:0.69 alpha:1] set];
-    }
-    else {
-      [[NSColor grayColor] set];
-    }
+    [[NSColor colorWithCalibratedWhite:0.69 alpha:1] set];
     NSRectFill(borderTopRect);
     if(self.borderType & HNHBorderHighlight) {
       borderTopRect = NSOffsetRect(borderTopRect, 0, -1);
     }
   }
-  if((self.borderType & HNHBorderHighlight) && !HNHUIIsRunningOnYosemiteOrNewer()) {
-    [[NSColor colorWithCalibratedWhite:1 alpha:1] set];
-    NSRectFill(borderTopRect);
-  }
   
   if(self.borderType & HNHBorderBottom) {
     /* Border at bottom needs no highlight */
-    if(HNHUIIsRunningOnYosemiteOrNewer()) {
-      [[NSColor colorWithCalibratedWhite:0.69 alpha:1] set];
-    }
-    else {
-      [[NSColor grayColor] set];
-    }
+    [[NSColor colorWithCalibratedWhite:0.69 alpha:1] set];
     NSRect strokeRect = NSMakeRect(NSMinX(bounds), NSMinY(bounds), NSWidth(bounds), 1);
     NSRectFill(strokeRect);
   }
@@ -124,12 +99,12 @@
 #pragma mark State Refresh
 - (void)_registerWindow:(NSWindow *)newWindow {
   if(self.window) {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowDidBecomeKeyNotification object:self.window];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowDidResignKeyNotification object:self.window];
+    [NSNotificationCenter.defaultCenter removeObserver:self name:NSWindowDidBecomeKeyNotification object:self.window];
+    [NSNotificationCenter.defaultCenter removeObserver:self name:NSWindowDidResignKeyNotification object:self.window];
   }
   if(newWindow) {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_refreshActiveState) name:NSWindowDidBecomeKeyNotification object:newWindow];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_refreshActiveState) name:NSWindowDidResignKeyNotification object:newWindow];
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_refreshActiveState) name:NSWindowDidBecomeKeyNotification object:newWindow];
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_refreshActiveState) name:NSWindowDidResignKeyNotification object:newWindow];
   }
 }
 

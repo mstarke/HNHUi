@@ -118,20 +118,6 @@
     [self.lineGradient drawInRect:topLine angle:0];
     showShadow = YES;
   }
-  if(!HNHUIIsRunningOnYosemiteOrNewer() && showShadow ) {
-    [NSGraphicsContext saveGraphicsState];
-    [self.borderShadow set];
-    [[NSColor purpleColor] setFill];
-    if(drawTop) {
-      NSBezierPath *oval = [NSBezierPath bezierPathWithOvalInRect:NSMakeRect(0, -10, NSWidth(bounds), 10)];
-      [oval fill];
-    }
-    if(drawBottom) {
-      NSBezierPath *oval = [NSBezierPath bezierPathWithOvalInRect:NSMakeRect(0, NSMaxY(bounds), NSWidth(bounds), 10)];
-      [oval fill];
-    }
-    [NSGraphicsContext restoreGraphicsState];
-  }
 }
 
 - (void)_setupGradients {  

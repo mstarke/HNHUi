@@ -58,7 +58,7 @@
     shadow.shadowColor = [NSColor whiteColor];
     [shadow set];
   }
-  [[NSColor whiteColor] setFill];
+  [NSColor.whiteColor setFill];
   [strokePath fill];
   
   shadow.shadowColor = [NSColor colorWithCalibratedWhite:0.9 alpha:1];

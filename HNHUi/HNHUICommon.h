@@ -24,6 +24,4 @@ FOUNDATION_EXTERN BOOL HNHUIBoolForState(NSCellStateValue state);
 
 FOUNDATION_EXTERN void HNHUISetStateFromBool(id stateItem, BOOL isOn);
 
-FOUNDATION_EXTERN BOOL HNHUIIsRunningOnYosemiteOrNewer(void);
-
 #endif // HNHUi_HNHUICommon_h
