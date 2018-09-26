@@ -21,10 +21,6 @@
 		4CAEF23F1B661891005C6592 /* NSButton+HNHUITextColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEF2131B661891005C6592 /* NSButton+HNHUITextColor.m */; };
 		4CAEF2401B661891005C6592 /* NSWindow+HNHUIShake.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CAEF2141B661891005C6592 /* NSWindow+HNHUIShake.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4CAEF2411B661891005C6592 /* NSWindow+HNHUIShake.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEF2151B661891005C6592 /* NSWindow+HNHUIShake.m */; };
-		4CAEF2421B661891005C6592 /* HNHUIBadgedTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CAEF2161B661891005C6592 /* HNHUIBadgedTextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4CAEF2431B661891005C6592 /* HNHUIBadgedTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEF2171B661891005C6592 /* HNHUIBadgedTextField.m */; };
-		4CAEF2441B661891005C6592 /* HNHUIBadgedTextFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CAEF2181B661891005C6592 /* HNHUIBadgedTextFieldCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4CAEF2451B661891005C6592 /* HNHUIBadgedTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEF2191B661891005C6592 /* HNHUIBadgedTextFieldCell.m */; };
 		4CAEF2461B661891005C6592 /* HNHUIColorWell.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CAEF21A1B661891005C6592 /* HNHUIColorWell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4CAEF2471B661891005C6592 /* HNHUIColorWell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEF21B1B661891005C6592 /* HNHUIColorWell.m */; };
 		4CAEF2481B661891005C6592 /* HNHUICommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CAEF21C1B661891005C6592 /* HNHUICommon.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -104,10 +100,6 @@
 		4CAEF2131B661891005C6592 /* NSButton+HNHUITextColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSButton+HNHUITextColor.m"; sourceTree = "<group>"; };
 		4CAEF2141B661891005C6592 /* NSWindow+HNHUIShake.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSWindow+HNHUIShake.h"; sourceTree = "<group>"; };
 		4CAEF2151B661891005C6592 /* NSWindow+HNHUIShake.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSWindow+HNHUIShake.m"; sourceTree = "<group>"; };
-		4CAEF2161B661891005C6592 /* HNHUIBadgedTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHUIBadgedTextField.h; sourceTree = "<group>"; };
-		4CAEF2171B661891005C6592 /* HNHUIBadgedTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHUIBadgedTextField.m; sourceTree = "<group>"; };
-		4CAEF2181B661891005C6592 /* HNHUIBadgedTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHUIBadgedTextFieldCell.h; sourceTree = "<group>"; };
-		4CAEF2191B661891005C6592 /* HNHUIBadgedTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHUIBadgedTextFieldCell.m; sourceTree = "<group>"; };
 		4CAEF21A1B661891005C6592 /* HNHUIColorWell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHUIColorWell.h; sourceTree = "<group>"; };
 		4CAEF21B1B661891005C6592 /* HNHUIColorWell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNHUIColorWell.m; sourceTree = "<group>"; };
 		4CAEF21C1B661891005C6592 /* HNHUICommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHUICommon.h; sourceTree = "<group>"; };
@@ -281,10 +273,6 @@
 		4CC281861C0F647100B9174D /* Text */ = {
 			isa = PBXGroup;
 			children = (
-				4CAEF2161B661891005C6592 /* HNHUIBadgedTextField.h */,
-				4CAEF2171B661891005C6592 /* HNHUIBadgedTextField.m */,
-				4CAEF2181B661891005C6592 /* HNHUIBadgedTextFieldCell.h */,
-				4CAEF2191B661891005C6592 /* HNHUIBadgedTextFieldCell.m */,
 				4CAEF2221B661891005C6592 /* HNHUISecureTextField.h */,
 				4CAEF2231B661891005C6592 /* HNHUISecureTextField.m */,
 				4CAEF2241B661891005C6592 /* HNHUISecureTextFieldCell.h */,
@@ -325,7 +313,6 @@
 				4CAEF2561B661891005C6592 /* HNHUITextFieldCellHelper.h in Headers */,
 				4CAEF24C1B661891005C6592 /* HNHUILevelIndicatorCell.h in Headers */,
 				4CAEF2581B661891005C6592 /* HNHUIScrollDocumentViewAdapter.h in Headers */,
-				4CAEF2441B661891005C6592 /* HNHUIBadgedTextFieldCell.h in Headers */,
 				4CAEF2521B661891005C6592 /* HNHUITextField.h in Headers */,
 				4CAEF2541B661891005C6592 /* HNHUITextFieldCell.h in Headers */,
 				4CAEF2461B661891005C6592 /* HNHUIColorWell.h in Headers */,
@@ -333,7 +320,6 @@
 				4CAEF2501B661891005C6592 /* HNHUISecureTextFieldCell.h in Headers */,
 				4CAEF2481B661891005C6592 /* HNHUICommon.h in Headers */,
 				4CF5CEC51F7B02F800F67964 /* HNHUISecureTextView.h in Headers */,
-				4CAEF2421B661891005C6592 /* HNHUIBadgedTextField.h in Headers */,
 				4CAEF2621B661891005C6592 /* HNHUITableRowView.h in Headers */,
 				4CAEF1FB1B661743005C6592 /* HNHUi.h in Headers */,
 				4CAEF25E1B661891005C6592 /* HNHUIShadowBox.h in Headers */,
@@ -504,11 +490,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4CAEF2431B661891005C6592 /* HNHUIBadgedTextField.m in Sources */,
 				4CAEF2511B661891005C6592 /* HNHUISecureTextFieldCell.m in Sources */,
 				4CAEF2571B661891005C6592 /* HNHUITextFieldCellHelper.m in Sources */,
 				4CAEF2591B661891005C6592 /* HNHUIScrollDocumentViewAdapter.m in Sources */,
-				4CAEF2451B661891005C6592 /* HNHUIBadgedTextFieldCell.m in Sources */,
 				4CAEF2631B661891005C6592 /* HNHUITableRowView.m in Sources */,
 				4CAEF24B1B661891005C6592 /* HNHUIGradientView.m in Sources */,
 				4CAEF2551B661891005C6592 /* HNHUITextFieldCell.m in Sources */,
