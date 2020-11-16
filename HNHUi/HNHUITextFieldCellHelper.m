@@ -55,7 +55,7 @@
   if(highlight) {
     shadow.shadowColor = [NSColor colorWithCalibratedWhite:1 alpha:1];
     shadow.shadowBlurRadius = 1;
-    shadow.shadowColor = [NSColor whiteColor];
+    shadow.shadowColor = NSColor.whiteColor;
     [shadow set];
   }
   [NSColor.whiteColor setFill];
@@ -86,7 +86,7 @@
   CGFloat width = MIN( NSWidth(cellFrame) - BUTTON_MARGIN, cell.cellSize.width + BUTTON_MARGIN);
   NSRect buttonRect = NSMakeRect(NSMaxX(cellFrame) - width, NSMinY(cellFrame), width - BUTTON_MARGIN, NSHeight(cellFrame));
 
-  cell.state = mouseDown ? NSOnState : NSOffState;
+  cell.state = mouseDown ? NSControlStateValueOn : NSControlStateValueOff;
   cell.highlighted = mouseDown;
   [cell drawWithFrame:buttonRect inView:view];
 }

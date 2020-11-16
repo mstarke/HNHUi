@@ -39,12 +39,13 @@
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if(self) {
-    NSMutableData *data = [[NSMutableData alloc] init];
-    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-    [self.cell encodeWithCoder:archiver];
-    [archiver finishEncoding];
+    NSError *error = nil;
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.cell requiringSecureCoding:NO error:&error];
+    NSAssert(error == nil, @"Unexpected error while archiving cell data");
+    NSAssert(data, @"Unable to archive cell data.");
     
-    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingFromData:data error:&error];
+    unarchiver.requiresSecureCoding = NO;
     HNHUISecureTextFieldCell *cell = [[HNHUISecureTextFieldCell alloc] initWithCoder:unarchiver];
     [unarchiver finishDecoding];
     
@@ -100,12 +101,13 @@
   NSRange selectionRange =  [self currentEditor].selectedRange;
   
   // Seems to me the best way to ensure all properties come along for the ride (e.g. border/editability) is to archive the existing cell
-  NSMutableData *data = [[NSMutableData alloc] init];
-  NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-  [self.cell encodeWithCoder:archiver];
-  [archiver finishEncoding];
+  NSError *error = nil;
+  NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.cell requiringSecureCoding:NO error:&error];
+  NSAssert(!error, @"Unexpected error while swapping cells");
+  NSAssert(data, @"Unable to work with nil data as cell data");
   
-  NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+  NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingFromData:data error:&error];
+  unarchiver.requiresSecureCoding = NO;
   NSTextFieldCell *cell = [[cellClass alloc] initWithCoder:unarchiver];
   [unarchiver finishDecoding];
   

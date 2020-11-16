@@ -24,7 +24,7 @@
 //
 
 #import <AppKit/AppKit.h>
-#import "HNHUITextView.h"
+#import <HNHUi/HNHUITextView.h>
 
 @interface HNHUISecureTextField : NSSecureTextField <HNHUITextViewDelegate>
 

@@ -15,18 +15,18 @@
  *
  *  @return NSStateOn state when flag is YES, NSOffState when flag is NO
  */
-NSCellStateValue HNHUIStateForBool(BOOL flag) {
-  return flag ? NSOnState : NSOffState;
+NSControlStateValue HNHUIStateForBool(BOOL flag) {
+  return flag ? NSControlStateValueOn : NSControlStateValueOff;
 }
 
-BOOL HNHUIBoolForState(NSCellStateValue state) {
+BOOL HNHUIBoolForState(NSControlStateValue state) {
   switch (state) {
-    case NSOnState:
+    case NSControlStateValueOn:
       return YES;
     default:
-    case NSMixedState:
+    case NSControlStateValueMixed:
       NSLog(@"Indetermined state!");
-    case NSOffState:
+    case NSControlStateValueOff:
       return NO;
       break;
   }

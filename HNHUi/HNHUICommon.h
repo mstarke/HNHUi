@@ -18,9 +18,9 @@
  *
  *  @return NSStateOn state when flag is YES, NSOffState when flag is NO
  */
-FOUNDATION_EXTERN NSCellStateValue HNHUIStateForBool(BOOL flag);
+FOUNDATION_EXTERN NSControlStateValue HNHUIStateForBool(BOOL flag);
 
-FOUNDATION_EXTERN BOOL HNHUIBoolForState(NSCellStateValue state);
+FOUNDATION_EXTERN BOOL HNHUIBoolForState(NSControlStateValue state);
 
 FOUNDATION_EXTERN void HNHUISetStateFromBool(id stateItem, BOOL isOn);
 
