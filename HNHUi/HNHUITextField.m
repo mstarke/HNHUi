@@ -49,15 +49,20 @@
     _mouseOver = NO;
     /* make sure we have the correct cell within, if not, swap it but keep all the attribues */
     if(![self.cell isMemberOfClass:[HNHUITextFieldCell class]]) {
-      NSError *error = nil;
-      NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.cell requiringSecureCoding:NO error:&error];
-      NSAssert(!error, @"Unexpected error while archiving cell");
-      NSAssert(data, @"Unexpected nil cell data");
       
-      NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingFromData:data error:&error];
-      unarchiver.requiresSecureCoding = NO;
-      HNHUITextFieldCell *cell = [[HNHUITextFieldCell alloc] initWithCoder:unarchiver];
-      [unarchiver finishDecoding];
+      NSTextFieldCell *oldCell = (NSTextFieldCell*)self.cell;
+      HNHUITextFieldCell *cell = [[HNHUITextFieldCell alloc] init];
+      
+      cell.stringValue = oldCell.stringValue;
+      cell.editable =oldCell.isEditable;
+      cell.placeholderString = oldCell.placeholderString;
+      cell.scrollable = oldCell.isScrollable;
+      cell.font = oldCell.font;
+      cell.bordered = oldCell.isBordered;
+      cell.bezeled = oldCell.isBezeled;
+      cell.backgroundStyle = oldCell.backgroundStyle;
+      cell.bezelStyle = oldCell.bezelStyle;
+      cell.drawsBackground = oldCell.drawsBackground;
       
       self.cell = cell;
       self.needsDisplay = YES;

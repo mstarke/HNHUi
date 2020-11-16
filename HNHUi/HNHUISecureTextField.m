@@ -46,17 +46,23 @@
     _isMouseDown = NO;
     _isMouseOver = NO;
     /* make sure we have the correct cell within, if not, swap it but keep all the attribues */
+    
+    NSAssert([self.cell isKindOfClass:[NSTextFieldCell class]], @"Unexpected cell class");
+    
     if(![self.cell isMemberOfClass:[HNHUISecureTextFieldCell class]]) {
-     
-      NSError *error = nil;
-      NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.cell requiringSecureCoding:NO error:&error];
-      NSAssert(error == nil, @"Unexpected error while archiving cell data");
-      NSAssert(data, @"Unable to archive cell data.");
+      NSTextFieldCell *oldCell = (NSTextFieldCell*)self.cell;
+      HNHUISecureTextFieldCell *cell = [[HNHUISecureTextFieldCell alloc] init];
       
-      NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingFromData:data error:&error];
-      unarchiver.requiresSecureCoding = NO;
-      HNHUISecureTextFieldCell *cell = [[HNHUISecureTextFieldCell alloc] initWithCoder:unarchiver];
-      [unarchiver finishDecoding];
+      cell.stringValue = oldCell.stringValue;
+      cell.editable =oldCell.isEditable;
+      cell.placeholderString = oldCell.placeholderString;
+      cell.scrollable = oldCell.isScrollable;
+      cell.font = oldCell.font;
+      cell.bordered = oldCell.isBordered;
+      cell.bezeled = oldCell.isBezeled;
+      cell.backgroundStyle = oldCell.backgroundStyle;
+      cell.bezelStyle = oldCell.bezelStyle;
+      cell.drawsBackground = oldCell.drawsBackground;
       
       self.cell = cell;
       self.needsDisplay = YES;
@@ -108,16 +114,21 @@
   NSRange selectionRange =  [self currentEditor].selectedRange;
   
   // Seems to me the best way to ensure all properties come along for the ride (e.g. border/editability) is to archive the existing cell
-  NSError *error = nil;
-  NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.cell requiringSecureCoding:NO error:&error];
-  NSAssert(!error, @"Unexpected error while swapping cells");
-  NSAssert(data, @"Unable to work with nil data as cell data");
+
+  NSTextFieldCell *oldCell = (NSTextFieldCell*)self.cell;
+  NSTextFieldCell *cell = [[cellClass alloc] init];
   
-  NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingFromData:data error:&error];
-  unarchiver.requiresSecureCoding = NO;
-  NSTextFieldCell *cell = [[cellClass alloc] initWithCoder:unarchiver];
-  [unarchiver finishDecoding];
-  
+  cell.stringValue = oldCell.stringValue;
+  cell.editable = oldCell.isEditable;
+  cell.placeholderString = oldCell.placeholderString;
+  cell.scrollable = oldCell.isScrollable;
+  cell.font = oldCell.font;
+  cell.bordered = oldCell.isBordered;
+  cell.bezeled = oldCell.isBezeled;
+  cell.backgroundStyle = oldCell.backgroundStyle;
+  cell.bezelStyle = oldCell.bezelStyle;
+  cell.drawsBackground = oldCell.drawsBackground;
+    
   self.cell = cell;
   self.needsDisplay = YES;
   

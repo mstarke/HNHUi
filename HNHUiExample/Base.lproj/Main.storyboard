@@ -690,18 +690,18 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="trailing" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zou-rT-g1V">
-                                <rect key="frame" x="20" y="235" width="690" height="185"/>
+                                <rect key="frame" x="20" y="206" width="690" height="214"/>
                                 <subviews>
                                     <levelIndicator verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rlo-Gk-ynF">
-                                        <rect key="frame" x="594" y="167" width="96" height="18"/>
+                                        <rect key="frame" x="594" y="196" width="96" height="18"/>
                                         <levelIndicatorCell key="cell" alignment="left" doubleValue="2" maxValue="2" warningValue="2" criticalValue="2" id="wLy-CT-AHr" customClass="HNHUILevelIndicatorCell"/>
                                     </levelIndicator>
                                     <levelIndicator verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="su1-Ig-6Fp">
-                                        <rect key="frame" x="639" y="143" width="51" height="18"/>
+                                        <rect key="frame" x="639" y="172" width="51" height="18"/>
                                         <levelIndicatorCell key="cell" alignment="left" doubleValue="8" maxValue="9" warningValue="6" criticalValue="3" levelIndicatorStyle="continuousCapacity" id="qn9-cv-StR"/>
                                     </levelIndicator>
                                     <stackView distribution="fillEqually" orientation="horizontal" alignment="firstBaseline" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2EA-vx-TKI">
-                                        <rect key="frame" x="298" y="116" width="392" height="21"/>
+                                        <rect key="frame" x="298" y="145" width="392" height="21"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ez6-YF-LsY">
                                                 <rect key="frame" x="-2" y="3" width="196" height="16"/>
@@ -731,6 +731,53 @@
                                             <integer value="1000"/>
                                         </visibilityPriorities>
                                         <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                    <stackView distribution="fillEqually" orientation="horizontal" alignment="firstBaseline" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z0m-SI-2HZ">
+                                        <rect key="frame" x="98" y="116" width="592" height="21"/>
+                                        <subviews>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XTw-Kr-psh">
+                                                <rect key="frame" x="-2" y="3" width="196" height="16"/>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="HNHUIRoundedSecureTextField" id="OWG-6q-RoH">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <secureTextField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mc7-n0-MZs" customClass="HNHUISecureTextField">
+                                                <rect key="frame" x="200" y="0.0" width="192" height="21"/>
+                                                <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" borderStyle="bezel" title="Test" drawsBackground="YES" usesSingleLineMode="YES" id="eMn-Su-6LO" customClass="HNHUISecureTextFieldCell">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    <allowedInputSourceLocales>
+                                                        <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                                    </allowedInputSourceLocales>
+                                                </secureTextFieldCell>
+                                                <connections>
+                                                    <outlet property="delegate" destination="XfG-lQ-9wD" id="3aC-wV-r0t"/>
+                                                </connections>
+                                            </secureTextField>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PNT-El-keC">
+                                                <rect key="frame" x="394" y="-7" width="204" height="32"/>
+                                                <buttonCell key="cell" type="push" title="Toggle" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="l5U-05-PES">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="toggleDisplay:" target="mc7-n0-MZs" id="Xiq-M9-FSR"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
                                         </customSpacing>
@@ -875,8 +922,10 @@
                                     <integer value="1000"/>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
+                                    <integer value="1000"/>
                                 </visibilityPriorities>
                                 <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
