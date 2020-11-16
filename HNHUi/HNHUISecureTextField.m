@@ -36,24 +36,31 @@
 
 @implementation HNHUISecureTextField
 
++ (Class)cellClass {
+  return [HNHUISecureTextFieldCell class];
+}
+
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if(self) {
-    NSError *error = nil;
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.cell requiringSecureCoding:NO error:&error];
-    NSAssert(error == nil, @"Unexpected error while archiving cell data");
-    NSAssert(data, @"Unable to archive cell data.");
-    
-    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingFromData:data error:&error];
-    unarchiver.requiresSecureCoding = NO;
-    HNHUISecureTextFieldCell *cell = [[HNHUISecureTextFieldCell alloc] initWithCoder:unarchiver];
-    [unarchiver finishDecoding];
-    
-    self.cell = cell;
     _isMouseDown = NO;
     _isMouseOver = NO;
-    
-    self.needsDisplay = YES;
+    /* make sure we have the correct cell within, if not, swap it but keep all the attribues */
+    if(![self.cell isMemberOfClass:[HNHUISecureTextFieldCell class]]) {
+     
+      NSError *error = nil;
+      NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.cell requiringSecureCoding:NO error:&error];
+      NSAssert(error == nil, @"Unexpected error while archiving cell data");
+      NSAssert(data, @"Unable to archive cell data.");
+      
+      NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingFromData:data error:&error];
+      unarchiver.requiresSecureCoding = NO;
+      HNHUISecureTextFieldCell *cell = [[HNHUISecureTextFieldCell alloc] initWithCoder:unarchiver];
+      [unarchiver finishDecoding];
+      
+      self.cell = cell;
+      self.needsDisplay = YES;
+    }
   }
   return self;
 }
