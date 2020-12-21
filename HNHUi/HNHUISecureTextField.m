@@ -54,6 +54,7 @@
       HNHUISecureTextFieldCell *cell = [[HNHUISecureTextFieldCell alloc] init];
       
       cell.stringValue = oldCell.stringValue;
+      cell.attributedStringValue = oldCell.attributedStringValue;
       cell.editable =oldCell.isEditable;
       cell.placeholderString = oldCell.placeholderString;
       cell.scrollable = oldCell.isScrollable;
@@ -119,6 +120,7 @@
   NSTextFieldCell *cell = [[cellClass alloc] init];
   
   cell.stringValue = oldCell.stringValue;
+  cell.attributedStringValue = oldCell.attributedStringValue;
   cell.editable = oldCell.isEditable;
   cell.placeholderString = oldCell.placeholderString;
   cell.scrollable = oldCell.isScrollable;
