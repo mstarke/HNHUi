@@ -53,6 +53,8 @@
       NSTextFieldCell *oldCell = (NSTextFieldCell*)self.cell;
       HNHUITextFieldCell *cell = [[HNHUITextFieldCell alloc] init];
       
+      cell.lineBreakMode = oldCell.lineBreakMode;
+      cell.truncatesLastVisibleLine = oldCell.truncatesLastVisibleLine;
       cell.stringValue = oldCell.stringValue;
       cell.editable =oldCell.isEditable;
       cell.placeholderString = oldCell.placeholderString;
