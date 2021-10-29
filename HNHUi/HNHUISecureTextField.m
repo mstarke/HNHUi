@@ -121,6 +121,8 @@
   NSTextFieldCell *oldCell = (NSTextFieldCell*)self.cell;
   NSTextFieldCell *cell = [[cellClass alloc] init];
   
+  cell.lineBreakMode = oldCell.lineBreakMode;
+  cell.truncatesLastVisibleLine = oldCell.truncatesLastVisibleLine;
   cell.stringValue = oldCell.stringValue;
   cell.attributedStringValue = oldCell.attributedStringValue;
   cell.editable = oldCell.isEditable;
