@@ -26,6 +26,7 @@
 #import "HNHUITextField.h"
 #import "HNHUITextFieldCell.h"
 #import "HNHUITextView.h"
+#import "HNHUITextFieldCellHelper.h"
 
 @interface HNHUITextField () <HNHUITextViewDelegate>
 
@@ -53,18 +54,8 @@
       NSTextFieldCell *oldCell = (NSTextFieldCell*)self.cell;
       HNHUITextFieldCell *cell = [[HNHUITextFieldCell alloc] init];
       
-      cell.lineBreakMode = oldCell.lineBreakMode;
-      cell.truncatesLastVisibleLine = oldCell.truncatesLastVisibleLine;
-      cell.stringValue = oldCell.stringValue;
-      cell.editable =oldCell.isEditable;
-      cell.placeholderString = oldCell.placeholderString;
-      cell.scrollable = oldCell.isScrollable;
-      cell.font = oldCell.font;
-      cell.bordered = oldCell.isBordered;
-      cell.bezeled = oldCell.isBezeled;
-      cell.backgroundStyle = oldCell.backgroundStyle;
-      cell.bezelStyle = oldCell.bezelStyle;
-      cell.drawsBackground = oldCell.drawsBackground;
+      assignAttributesFromCell(cell, oldCell);
+      
       
       self.cell = cell;
       self.needsDisplay = YES;

@@ -27,6 +27,7 @@
 #import "HNHUITextFieldCell.h"
 #import "HNHUITextView.h"
 #import "HNHUITextField.h"
+#import "HNHUITextFieldCellHelper.h"
 
 @interface HNHUISecureTextField () {
   NSTrackingArea *_trackingArea;
@@ -47,26 +48,14 @@
     _isMouseOver = NO;
     /* make sure we have the correct cell within, if not, swap it but keep all the attribues */
     
-    NSAssert([self.cell isKindOfClass:[NSTextFieldCell class]], @"Unexpected cell class");
+    NSAssert([self.cell isKindOfClass:NSTextFieldCell.class], @"Unexpected cell class");
     
-    if(![self.cell isMemberOfClass:[HNHUISecureTextFieldCell class]]) {
+    if(![self.cell isMemberOfClass:HNHUISecureTextFieldCell.class]) {
       NSTextFieldCell *oldCell = (NSTextFieldCell*)self.cell;
       HNHUISecureTextFieldCell *cell = [[HNHUISecureTextFieldCell alloc] init];
       
-      cell.lineBreakMode = oldCell.lineBreakMode;
-      cell.truncatesLastVisibleLine = oldCell.truncatesLastVisibleLine;
-      cell.stringValue = oldCell.stringValue;
-      cell.attributedStringValue = oldCell.attributedStringValue;
-      cell.editable =oldCell.isEditable;
-      cell.placeholderString = oldCell.placeholderString;
-      cell.scrollable = oldCell.isScrollable;
-      cell.font = oldCell.font;
-      cell.bordered = oldCell.isBordered;
-      cell.bezeled = oldCell.isBezeled;
-      cell.backgroundStyle = oldCell.backgroundStyle;
-      cell.bezelStyle = oldCell.bezelStyle;
-      cell.drawsBackground = oldCell.drawsBackground;
-      
+      assignAttributesFromCell(cell, oldCell);
+
       self.cell = cell;
       self.needsDisplay = YES;
     }
@@ -121,19 +110,7 @@
   NSTextFieldCell *oldCell = (NSTextFieldCell*)self.cell;
   NSTextFieldCell *cell = [[cellClass alloc] init];
   
-  cell.lineBreakMode = oldCell.lineBreakMode;
-  cell.truncatesLastVisibleLine = oldCell.truncatesLastVisibleLine;
-  cell.stringValue = oldCell.stringValue;
-  cell.attributedStringValue = oldCell.attributedStringValue;
-  cell.editable = oldCell.isEditable;
-  cell.placeholderString = oldCell.placeholderString;
-  cell.scrollable = oldCell.isScrollable;
-  cell.font = oldCell.font;
-  cell.bordered = oldCell.isBordered;
-  cell.bezeled = oldCell.isBezeled;
-  cell.backgroundStyle = oldCell.backgroundStyle;
-  cell.bezelStyle = oldCell.bezelStyle;
-  cell.drawsBackground = oldCell.drawsBackground;
+  assignAttributesFromCell(cell, oldCell);
     
   self.cell = cell;
   self.needsDisplay = YES;
