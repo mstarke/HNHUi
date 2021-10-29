@@ -25,14 +25,13 @@
 #import <AppKit/AppKit.h>
 
 /**
- *	Helper that can be called by Textfields, that need the same apearance.
- *  It's used by HNHRoundedTextFieldCell and HNHRoundedSecureTextFieldCell
+ *	Helper that can be called by NSTextFields, that need the same look or functionality
+ *  It's used by HNHTextFieldCell and HNHSecureTextFieldCell
  */
 @interface HNHUITextFieldCellHelper : NSObject
 
-+ (void)drawWithFrame:(NSRect)cellFrame enabled:(BOOL)isEnabled withHighlight:(BOOL)highlight;
+void assignAttributesFromCell(NSTextFieldCell *destination, NSTextFieldCell *source);
 
-+ (NSBezierPath *)bezelpathForRect:(NSRect)aRect withHightlight:(BOOL)highlight;
 /**
  *	Draws the Copy button on a hovering Field
  *	@param	cellFrame	Frame to draw the button in

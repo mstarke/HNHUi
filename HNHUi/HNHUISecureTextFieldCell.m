@@ -30,19 +30,9 @@
 
 #import <AppKit/AppKit.h>
 
-#define BUTTON_WIDTH 25
-
-@interface HNHUISecureTextFieldCell () {
-  //NSButtonCell *_buttonCell;
-}
+@interface HNHUISecureTextFieldCell ()
 
 @property (strong) HNHUISecureTextView *fieldEditor;
-/* ButtonCell used for Rendering and handling actions */
-//@property (nonatomic, strong) NSButtonCell *buttonCell;
-
-//- (NSRect)_buttonCellForFrame:(NSRect)cellFrame;
-//- (NSRect)_textCellForFrame:(NSRect)cellFrame;
-//- (NSButtonCell *)_allocButtonCell;
 
 @end
 
@@ -64,13 +54,6 @@
   return self;
 }
 
-//- (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
-//  [HNHUIRoundedTextFieldCellHelper drawWithFrame:cellFrame enabled:self.enabled withHighlight:_drawHighlight];
-//  [self drawInteriorWithFrame:cellFrame inView:controlView];
-//}
-
-
-
 - (void)drawInteriorWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
   [super drawInteriorWithFrame:cellFrame inView:controlView];
   if([controlView isKindOfClass:HNHUISecureTextField.class]) {
@@ -80,21 +63,6 @@
     }
   }
 }
-
-/* Set the focusRing to the bezel shape */
-/*
-- (void)drawFocusRingMaskWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
-  [[HNHUITextFieldCellHelper bezelpathForRect:cellFrame withHightlight:_drawHighlight] fill];
-}
-*/
-
-/* We need to pass NO otherwise the roundend corners get rendering artifacts */
-/*
- - (BOOL)drawsBackground {
-  return NO;
-}
-*/
-
 
 - (NSTextView *)fieldEditorForView:(NSView *)controlView {
   if(nil == self.fieldEditor) {

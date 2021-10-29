@@ -31,6 +31,22 @@
 
 @implementation HNHUITextFieldCellHelper
 
+void assignAttributesFromCell(NSTextFieldCell *destination, NSTextFieldCell *source) {
+  destination.lineBreakMode = source.lineBreakMode;
+  destination.truncatesLastVisibleLine = source.truncatesLastVisibleLine;
+  destination.stringValue = source.stringValue;
+  destination.attributedStringValue = source.attributedStringValue;
+  destination.editable =source.isEditable;
+  destination.placeholderString = source.placeholderString;
+  destination.scrollable = source.isScrollable;
+  destination.font = source.font;
+  destination.bordered = source.isBordered;
+  destination.bezeled = source.isBezeled;
+  destination.backgroundStyle = source.backgroundStyle;
+  destination.bezelStyle = source.bezelStyle;
+  destination.drawsBackground = source.drawsBackground;
+}
+
 + (NSButtonCell *)copyButtonCell {
   static NSButtonCell *cell = nil;
   static dispatch_once_t onceToken;
@@ -43,41 +59,6 @@
     cell.bordered = YES;
   });
   return cell;
-}
-
-+ (void)drawWithFrame:(NSRect)cellFrame enabled:(BOOL)isEnabled withHighlight:(BOOL)highlight {
-  NSBezierPath *strokePath = [self bezelpathForRect:cellFrame withHightlight:highlight];
-  [(isEnabled ? [NSColor colorWithCalibratedWhite:0.55 alpha:1] : [NSColor colorWithCalibratedWhite:0.75 alpha:1]) setStroke];
-  
-  [NSGraphicsContext saveGraphicsState];
-  NSShadow *shadow = [[NSShadow alloc] init];
-  shadow.shadowOffset = NSMakeSize(0, -1);
-  if(highlight) {
-    shadow.shadowColor = [NSColor colorWithCalibratedWhite:1 alpha:1];
-    shadow.shadowBlurRadius = 1;
-    shadow.shadowColor = NSColor.whiteColor;
-    [shadow set];
-  }
-  [NSColor.whiteColor setFill];
-  [strokePath fill];
-  
-  shadow.shadowColor = [NSColor colorWithCalibratedWhite:0.9 alpha:1];
-  shadow.shadowBlurRadius = 1;
-  [shadow set];
-  
-  [strokePath addClip];
-  [strokePath stroke];
-  
-  [NSGraphicsContext restoreGraphicsState];
-  [strokePath stroke];
-}
-
-+ (NSBezierPath *)bezelpathForRect:(NSRect)aRect withHightlight:(BOOL)highlight {
-  aRect = NSInsetRect(aRect, 0.5, 0.5);
-  if(highlight) {
-    aRect.size.height -= 1;
-  }
-  return[NSBezierPath bezierPathWithRoundedRect:aRect xRadius:CORNER_RADIUS yRadius:CORNER_RADIUS];
 }
 
 + (void)drawCopyButtonWithFrame:(NSRect)cellFrame mouseDown:(BOOL)mouseDown controlView:(NSView *)view {

@@ -34,11 +34,6 @@
 
 @implementation HNHUITextFieldCell
 
-//- (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
-//  [HNHUIRoundedTextFieldCellHelper drawWithFrame:cellFrame enabled:self.enabled withHighlight:_drawHighlight];
-//  [self drawInteriorWithFrame:cellFrame inView:controlView];
-//}
-
 - (void)drawInteriorWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
   [super drawInteriorWithFrame:cellFrame inView:controlView];
   if([controlView isKindOfClass:HNHUITextField.class]) {
@@ -48,17 +43,6 @@
     }
   }
 }
-
-/* Set the focusRing to the bezel shape */
-//- (void)drawFocusRingMaskWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
-//  [[HNHUIRoundedTextFieldCellHelper bezelpathForRect:cellFrame withHightlight:_drawHighlight] fill];
-//}
-
-
-/* We need to pass NO otherwise the roundend corners get rendering artifacts */
-//- (BOOL)drawsBackground {
-//  return NO;
-//}
 
 - (NSMenu *)menuForEvent:(NSEvent *)event inRect:(NSRect)cellFrame ofView:(NSView *)view {
   return [super menuForEvent:event inRect:cellFrame ofView:view];
