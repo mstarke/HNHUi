@@ -107,14 +107,14 @@
   }
 }
 
-- (void)setCopyActionBlock:(void (^)(NSTextField *))copyActionBlock {
-  _copyActionBlock = [copyActionBlock copy];
+- (void)setButtonActionBlock:(void (^)(NSTextField *))copyActionBlock {
+  _buttonActionBlock = [copyActionBlock copy];
   [self _updateTrackingArea];
 }
 
 - (BOOL)requiresTrackingArea {
   /* We only need to track if we got an action or are not editable */
-  return !self.isEditable && /*!self.selectable && */ self.copyActionBlock;
+  return !self.isEditable && /*!self.selectable && */ self.buttonActionBlock;
 }
 
 #pragma mark mouse events
@@ -134,8 +134,8 @@
 
 - (void)mouseUp:(NSEvent *)theEvent {
   self.mouseDown = NO;
-  if(self.copyActionBlock) {
-    self.copyActionBlock(self);
+  if(self.buttonActionBlock) {
+    self.buttonActionBlock(self);
   }
 }
 

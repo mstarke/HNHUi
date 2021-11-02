@@ -38,6 +38,6 @@ void assignAttributesFromCell(NSTextFieldCell *destination, NSTextFieldCell *sou
  *	@param	mouseDown	Flag to indicate if the mouse is pressed or not
  *	@param	view	view that is drawing the button
  */
-+ (void)drawCopyButtonWithFrame:(NSRect)cellFrame mouseDown:(BOOL)mouseDown controlView:(NSView *)view;
++ (void)drawActionButtonWithFrame:(NSRect)cellFrame mouseDown:(BOOL)mouseDown controlView:(NSView *)view title:(NSString *)title;
 
 @end

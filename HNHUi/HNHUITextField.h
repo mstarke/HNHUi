@@ -41,6 +41,7 @@
 
 @property (nonatomic, readonly, getter=isMouseOver) BOOL mouseOver;
 @property (nonatomic, readonly, getter=isMouseDown) BOOL mouseDown;
-@property (nonatomic, copy) void (^copyActionBlock)(NSTextField *);
+@property (copy) NSString *buttonTitle;
+@property (nonatomic, copy) void (^buttonActionBlock)(NSTextField *);
 
 @end

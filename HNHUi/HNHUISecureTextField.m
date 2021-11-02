@@ -79,7 +79,7 @@
 }
 
 - (BOOL)requiresTrackingArea {
-  return !self.isEditable && self.copyActionBlock;
+  return !self.isEditable && self.buttonActionBlock;
 }
 
 
@@ -165,8 +165,8 @@
 - (void)mouseUp:(NSEvent *)theEvent {
   _isMouseDown = NO;
   self.needsDisplay = YES;
-  if(self.copyActionBlock) {
-    self.copyActionBlock(self);
+  if(self.buttonActionBlock) {
+    self.buttonActionBlock(self);
   }
 }
 

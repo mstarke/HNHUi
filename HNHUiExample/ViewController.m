@@ -18,10 +18,12 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  self.roundedTextField.copyActionBlock = ^(NSTextField *tf) {
+  self.roundedTextField.buttonTitle = @"Do something!";
+  self.roundedTextField.buttonActionBlock = ^(NSTextField *tf) {
     NSLog(@"Action!");
   };
-  self.roundedSecureTextField.copyActionBlock = ^(NSTextField *tf) {
+  self.roundedSecureTextField.buttonTitle = @"Do something MORE!";
+  self.roundedSecureTextField.buttonActionBlock = ^(NSTextField *tf) {
     NSLog(@"Action!");
   };
 

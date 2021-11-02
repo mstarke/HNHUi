@@ -31,7 +31,8 @@
 @property (nonatomic, assign) BOOL showPassword;
 @property (nonatomic, readonly) BOOL isMouseOver;
 @property (nonatomic, readonly) BOOL isMouseDown;
-@property (nonatomic, copy) void (^copyActionBlock)(NSTextField *);
+@property (copy) NSString *buttonTitle;
+@property (nonatomic, copy) void (^buttonActionBlock)(NSTextField *);
 
 - (IBAction) toggleDisplay:(id)sender;
 

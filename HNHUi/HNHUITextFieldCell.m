@@ -39,7 +39,10 @@
   if([controlView isKindOfClass:HNHUITextField.class]) {
     HNHUITextField *textField = (HNHUITextField *)controlView;
     if(![textField currentEditor] && textField.isMouseOver) {
-      [HNHUITextFieldCellHelper drawCopyButtonWithFrame:cellFrame mouseDown:textField.isMouseDown controlView:controlView];
+      [HNHUITextFieldCellHelper drawActionButtonWithFrame:cellFrame
+                                                mouseDown:textField.isMouseDown
+                                              controlView:controlView
+                                                    title:textField.buttonTitle];
     }
   }
 }

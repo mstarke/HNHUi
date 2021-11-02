@@ -47,7 +47,7 @@ void assignAttributesFromCell(NSTextFieldCell *destination, NSTextFieldCell *sou
   destination.drawsBackground = source.drawsBackground;
 }
 
-+ (NSButtonCell *)copyButtonCell {
++ (NSButtonCell *)copyButtonCellWithTitle:(NSString *)title {
   static NSButtonCell *cell = nil;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
@@ -55,14 +55,15 @@ void assignAttributesFromCell(NSTextFieldCell *destination, NSTextFieldCell *sou
     cell.bezelStyle = NSBezelStyleRegularSquare;
     [cell setButtonType:NSButtonTypeMomentaryPushIn];
     cell.controlSize = NSControlSizeSmall;
-    cell.title = @"Copy";
+    cell.title = @"ACTION";
     cell.bordered = YES;
   });
+  cell.title = title;
   return cell;
 }
 
-+ (void)drawCopyButtonWithFrame:(NSRect)cellFrame mouseDown:(BOOL)mouseDown controlView:(NSView *)view {
-  NSCell *cell = [self copyButtonCell];
++ (void)drawActionButtonWithFrame:(NSRect)cellFrame mouseDown:(BOOL)mouseDown controlView:(NSView *)view title:(NSString *)title {
+  NSCell *cell = [self copyButtonCellWithTitle:title];
   
   CGFloat width = MIN( NSWidth(cellFrame) - BUTTON_MARGIN, cell.cellSize.width + BUTTON_MARGIN);
   NSRect buttonRect = NSMakeRect(NSMaxX(cellFrame) - width, NSMinY(cellFrame), width - BUTTON_MARGIN, NSHeight(cellFrame));

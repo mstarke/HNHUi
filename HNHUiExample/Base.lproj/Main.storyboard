@@ -894,13 +894,10 @@
                                             </textField>
                                             <secureTextField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="c8i-zs-QDr">
                                                 <rect key="frame" x="122" y="0.0" width="114" height="21"/>
-                                                <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="nza-Rf-EWs">
+                                                <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" echosBullets="NO" id="nza-Rf-EWs">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    <allowedInputSourceLocales>
-                                                        <string>NSAllRomanInputSourcesLocaleIdentifier</string>
-                                                    </allowedInputSourceLocales>
                                                 </secureTextFieldCell>
                                             </secureTextField>
                                         </subviews>

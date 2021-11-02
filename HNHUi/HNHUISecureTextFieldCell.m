@@ -59,7 +59,10 @@
   if([controlView isKindOfClass:HNHUISecureTextField.class]) {
     HNHUISecureTextField *textField = (HNHUISecureTextField *)controlView;
     if(![textField currentEditor] && textField.isMouseOver) {
-      [HNHUITextFieldCellHelper drawCopyButtonWithFrame:cellFrame mouseDown:textField.isMouseDown controlView:controlView];
+      [HNHUITextFieldCellHelper drawActionButtonWithFrame:cellFrame
+                                                mouseDown:textField.isMouseDown
+                                              controlView:controlView
+                                                    title:textField.buttonTitle];
     }
   }
 }
