@@ -134,7 +134,8 @@
 
 - (void)mouseUp:(NSEvent *)theEvent {
   self.mouseDown = NO;
-  if(self.buttonActionBlock) {
+  // only call the action block if we are not editable
+  if(self.requiresTrackingArea) {
     self.buttonActionBlock(self);
   }
 }
